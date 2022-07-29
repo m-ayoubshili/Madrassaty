@@ -1,0 +1,93 @@
+﻿<div ng-controller="schoolCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2>&Eacute;cole</h2>
+        </div>
+
+        <div class="col-lg-3">
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <form name="EditSchoolForm" class="form-horizontal" ng-submit="EditSchool();">
+            <div class="row col-lg-12">
+                <div class="row" style="display:none;">
+                    <div class="col-md-12">
+                        <input type="file" accept="image/*" id="imgFile" fileread="schoolModel.PhotoBytes" />
+                    </div>
+                </div>
+                <div class="school-image col-lg-3">
+                    <img ng-src="{{schoolModel.School.Photo}}" id="schoolImg" class="img-circle circle-border m-b-md" alt="school" style="width:200px; height:200px;">
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="schoolModel.School.Name" class="control-label col-lg-4">Nom</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="schoolModel.School.Name" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolModel.School.Street" class="control-label col-lg-4">Adresse</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="schoolModel.School.Street" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolModel.School.ZipCode" class="control-label col-lg-4">Code postale</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="schoolModel.School.ZipCode" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolModel.School.City" class="control-label col-lg-4">Ville</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="schoolModel.School.City" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="schoolModel.School.Country" class="control-label col-lg-4">Pays</label>
+                        <div class="col-lg-8">
+                            <select chosen name="countrySelect" id="countrySelect" ng-model="schoolModel.School.Country" class="form-control">
+                                <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+
+                </div>
+            </div>
+
+            <div class="col-lg-offset-2 col-lg-10 text-right">
+                <button class="btn btn-primary" type="submit" ng-disabled="EditSchoolForm.$invalid">Modifier</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $("#schoolImg").click(function () {
+        $("#imgFile").click();
+    });
+
+    $("#imgFile").change(function () {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#schoolImg").attr('src', '');
+                $('#schoolImg').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

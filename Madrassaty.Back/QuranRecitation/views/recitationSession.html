@@ -1,0 +1,71 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading" ng-controller="recitationSessionCtrl">
+    <div class="col-lg-11">
+        <h2>Sessions</h2>
+        <div class="pull-right">
+            <a ng-click="addEvent()"><i class="fa fa-plus"></i> Ajouter</a>
+        </div>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>App views</a>
+            </li>
+            <li class="active">
+                <strong>Sessions</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="recitationSessionCtrl">
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="sessionItem in recitationSessionsList">
+            <a ui-sref="core.recitationSessionStudents" ng-click="gotToRecitationSessionStudents(sessionItem)">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">{{sessionItem.Description}}</span>
+                        <h5>Titre de la session : </h5> <h5 style="color:black"> {{sessionItem.Title}}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="team-members">
+                            <div ng-repeat="studentListItem in sessionItem.Students">
+                                <div ng-repeat="studentItem in studentListItem">
+                                    <i>{{studentItem.FullName}}</i>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Informations concernant la session de récitation </h4>
+                        <p>
+
+                            Discipline : {{sessionItem.DisciplineName}} <br />
+                            Level : <i ng-repeat="level in sessionItem.RecitationDisciplineLevels">{{level}}, </i> <br />
+                            Professeur : {{sessionItem.TeacherName}}<br />
+                            Participants: {{sessionItem.NbStudents}} <br />
+                        </p>
+                        <div>
+                            <span>Taux de remplissage:</span>
+                            <div class="stat-percent">{{sessionItem.TauxRemplissage}}%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: {{sessionItem.TauxRemplissage}}%;" class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="row  m-t-sm">
+                            <div class="col-sm-4">
+                                <div class="font-bold">Heure début</div>
+                                {{sessionItem.StartDate | date:'dd-MM-yyyy HH:mm'}}
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="font-bold">Heure fin</div>
+                                {{sessionItem.EndTime  | date:'dd-MM-yyyy HH:mm'}}
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <div class="font-bold">Temps du créneau</div>
+                                {{sessionItem.DivisionParam}} min <i class="fa fa-level-up text-navy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+ .card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+ .card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 24px;
+  min-height: 131px;
+  margin-top: 15px;
+}
+
+.img {
+  border-radius: 15%;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+
+}
+.column {
+  flex: 1;
+}
+.mat-success {
+  background-color: rgb(33, 172, 33);
+  color: #fff;
+}
+.mat-warn {
+  margin-left: 7px;
+  margin-right: 13px;
+}
+
+
+
+ mat-form-field.mat-form-field {
+  width: 500px;
+}
+
+#schoolLogo{
+  width: 156px;
+   height: 128px;
+    border-radius: 45%;
+      margin: 0 auto;
+      display: block;
+      margin-top: -43px;
+    margin-bottom: 13px;
+}
+
+::ng-deep .my-custom-dialog-class {
+  mat-dialog-container {
+    width: 92%;
+  }
+}
+ table {
+  width: 100%;
+}
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+
+

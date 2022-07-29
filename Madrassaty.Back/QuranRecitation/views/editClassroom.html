@@ -1,0 +1,22 @@
+﻿<div>
+    <div class="modal-header"><h2>{{modalTitle}}</h2></div>
+    <div>
+        <form name="addEditClassroomForm" class="form-horizontal" ng-submit="addEditClassroom();">
+            <div class="modal-body" style="display: flex;">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="classroom.Wording" class="control-label col-lg-2">Nom</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" ng-model="classroom.Wording" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+                <button class="btn btn-primary" type="submit" ng-disabled="addEditClassroomForm.$invalid">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>

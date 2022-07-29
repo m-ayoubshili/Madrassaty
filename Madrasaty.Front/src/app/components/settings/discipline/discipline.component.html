@@ -1,0 +1,109 @@
+<app-settings-header [showSearch]="false" (btnClick)="OpenDiag(-1)" (btnClickSwitchToCard)="switchToCard()"></app-settings-header>
+ <div class="row" *ngIf="switchbtn == false">
+    <div class="col-lg-4" *ngFor="let item of rowData | filter:search">
+
+
+        <mat-card class="card">
+            <div class="col-sm-12">
+                <h4 class="card-title"><strong class="strong">{{item.Wording}}</strong></h4>
+                <br>
+                <h5 class="card-text"><strong class="strong2">{{ item.Description}} </strong></h5>
+
+
+
+
+                <mat-card-actions align="end" style="margin-bottom: -5px;">
+                    <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+
+
+
+
+
+
+                <div class="clearfix"></div>
+            </div>
+
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #callAPIDialog>
+    <h2 mat-dialog-title>{{DialogTitle}}</h2>
+    <form [formGroup]="DisciplineForm" (ngSubmit)="saveDiscipline()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Placeholder" required type="text" formControlName="Wording">
+        <mat-error *ngIf="DisciplineForm.controls['Wording'].errors?.required"> Le nom est obligatoire et doit être unique.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Déscription</mat-label>
+        <input matInput placeholder="Placeholder" required type="textarea" formControlName="Description">
+        <mat-error *ngIf="DisciplineForm.controls['Description'].errors?.required"> Description est obligatoire .
+        </mat-error>
+      </mat-form-field>
+      
+   
+
+
+  
+  
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close color="warn">Quitter</button>
+        <button mat-raised-button color="success" mat-dialog-close [disabled]="DisciplineForm.invalid" type="submit">Confirmer</button>
+      </mat-dialog-actions>
+    </form>
+  </ng-template>
+
+  <div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="rowData">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Wording }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element">{{ element.Description}}</td>
+  
+        </ng-container>
+    
+  
+       
+
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+  
+          <td mat-cell *matCellDef="let element">
+            <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  >
+              <span  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"  class="svg-icon svg-icon-3" (click)="OpenDiag(element.Id)" ></span>
+            </button>
+            <button
+              href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"  >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                class="svg-icon svg-icon-3" (click)="deleteItem(element.Id)"
+              ></span>
+  
+            </button>
+          </td>
+        </ng-container>
+  
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons aria-label="Select page of rowData">
+      </mat-paginator>
+    </div>
+  </div> 

@@ -1,0 +1,170 @@
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+</style>
+
+<div ng-controller="profileCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2>Profil</h2>
+
+        </div>
+        <div class="col-lg-3">
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <form name="EditProfileForm" class="form-horizontal" ng-submit="EditProfile();">
+            <div class="row col-lg-12">
+                <div class="row" style="display:none;">
+                    <div class="col-md-12">
+                        <input type="file" accept="image/*" id="imgFile" fileread="memberModel.PhotoBytes" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <img ng-src="{{memberModel.member.PhotoPath}}" id="memberImg" class="img-circle circle-border m-b-md" alt="profile" style="width:150px; height:150px;">
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="">
+                        <div class="form-group">
+                            <label for="memberModel.member.LastName" class="control-label col-lg-4">Nom</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="memberModel.member.LastName" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.FirstName" class="control-label col-lg-4">Pr&eacute;nom</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="memberModel.member.FirstName" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.Gender" class="control-label col-lg-4">Sexe</label>
+                            <div class="col-lg-8">
+                                <select name="genderSelect" id="genderSelect" ng-model="memberModel.member.Gender" class="form-control">
+                                    <option ng-repeat="option in genderOptions" value="{{option.id}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.SkypeId" class="control-label col-lg-4">Skype</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="memberModel.member.SkypeId" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.PhoneNumber" class="control-label col-lg-4">T&eacute;l&eacute;phone</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="memberModel.member.PhoneNumber" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.BeginningDate" class="control-label col-lg-4">Date d'entr&eacute;e</label>
+                            <div class="col-lg-8">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="memberModel.member.BeginningDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.BirthDate" class="control-label col-lg-4">Date de naissance</label>
+                            <div class="col-lg-8">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="memberModel.member.BirthDate" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memberModel.member.Profession" class="control-label col-lg-4">Profession</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="memberModel.member.Profession" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <label for="memberModel.member.Street" class="control-label col-lg-4">Adresse</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="memberModel.member.Street" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberModel.member.ZipCode" class="control-label col-lg-4">Code postale</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="memberModel.member.ZipCode" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberModel.member.City" class="control-label col-lg-4">Ville</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="memberModel.member.City" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memberModel.member.Country" class="control-label col-lg-4">Pays</label>
+                        <div class="col-lg-8">
+                            <select chosen name="countrySelect" id="countrySelect" ng-model="memberModel.member.Country" class="form-control">
+                                <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-offset-2 col-lg-10 text-right">
+                <button class="btn btn-primary" type="submit" ng-disabled="EditProfileForm.$invalid">Modifier</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    $("#memberImg").click(function () {
+        $("#imgFile").click();
+    });
+
+    $("#imgFile").change(function () {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#memberImg").attr('src', '');
+                $('#memberImg').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

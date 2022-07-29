@@ -1,0 +1,38 @@
+
+<div class="container-fluid" >
+  <div class="row" >
+    <div class="col-lg-4" *ngFor="let item of rowData">
+      <div>
+        <mat-card class="card" style="width: 82%">
+
+          <div class="row">
+            <div class="column">
+              <mat-card-content>
+                <h2>
+                  <strong>{{ item.Wording }}</strong>
+                </h2>
+                <h5>
+                  <i
+                    ><strong> {{ item.StartDate|date }}</strong ></i
+                  >
+                </h5>
+                <h3>
+                  <strong>{{ item.Teacher }}</strong>
+                </h3>
+              </mat-card-content>
+            </div>
+          </div>
+          <mat-card-actions align="end" style="margin-bottom: -5px">
+            <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>

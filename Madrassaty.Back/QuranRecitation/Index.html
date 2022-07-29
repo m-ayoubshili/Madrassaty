@@ -1,0 +1,192 @@
+﻿<!--
+*
+* INSPINIA - Responsive Admin Theme
+* Version 2.6
+*
+-->
+
+<!DOCTYPE html>
+<html ng-app="isApi" ng-class="{'rtl':Language.isRtl()}" dir="{{(Language.isRtl())?'rtl':'ltr'}}">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Main Inspinia CSS files -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style.css" rel="stylesheet">
+
+    <!-- Angular notify -->
+    <link href="css/plugins/angular-notify/angular-notify.min.css" rel="stylesheet" />
+
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+
+
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+<body class="{{$state.current.data.specialClass}}" landing-scrollspy id="page-top">
+
+    <!-- Main view  -->
+    <div ui-view></div>
+
+    <!-- jQuery and Bootstrap -->
+    <script src="js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+
+
+    <!-- MetsiMenu -->
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peace JS -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+
+    <!-- Main Angular scripts-->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/angular-sanitize.js"></script>
+    <script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="js/angular-translate/angular-translate.min.js"></script>
+    <script src="js/notify/angular-notify.js"></script>
+    <script src="js/ui-router/angular-ui-router.min.js"></script>
+    <script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="js/plugins/angular-idle/angular-idle.js"></script>
+
+
+    <script src="js/jquery/moment.min.js"></script>
+    <script src="js/jquery/jquery-ui.custom.min.js"></script>
+
+    <script src="js/plugins/fullcalendar/calendar.js"></script>
+    <script src="js/plugins/fullcalendar/lang-all.js"></script>
+    <script src="js/plugins/fullcalendar/fullcalendar.js"></script>
+    <script src="js/plugins/fullcalendar/gcal.js"></script>
+
+    <script src="js/plugins/dataTables/angular-datatables.buttons.min.js"></script>
+    <script src="js/plugins/dataTables/angular-datatables.min.js"></script>
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chosen-localytics/1.4.0/angular-chosen.min.js"></script>
+    <!--
+     You need to include this script on any page that has a Google Map.
+     When using Google Maps on your own site you MUST signup for your own API key at:
+     https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+     After your sign up replace the key in the URL below..
+    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
+
+    <!-- Anglar App Script -->
+    <!--<script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>-->
+    <!-- Anglar App Script -->
+    <script src="js/quranRecitation/init/app.js"></script>
+    <script src="js/quranRecitation/init/config.js"></script>
+    <script src="js/quranRecitation/init/interceptors.js"></script>
+    <script src="js/quranRecitation/init/translations.js"></script>
+
+    <script src="js/quranRecitation/controllers/datatablesController.js"></script>
+    <script src="js/quranRecitation/controllers/loginController.js"></script>
+    <script src="js/quranRecitation/controllers/topNavigationController.js"></script>
+    <script src="js/quranRecitation/controllers/homeController.js"></script>
+    <script src="js/quranRecitation/controllers/nextController.js"></script>
+    <script src="js/quranRecitation/controllers/calendarController.js"></script>
+    <script src="js/quranRecitation/controllers/modalInstanceController.js"></script>
+    <script src="js/quranRecitation/controllers/translateController.js"></script>
+    <script src="js/quranRecitation/controllers/navigationController.js"></script>
+    <script src="js/quranRecitation/controllers/courseController.js"></script>
+    <script src="js/quranRecitation/controllers/editCourseController.js"></script>
+    <script src="js/quranRecitation/controllers/editProfileController.js"></script>
+    <script src="js/quranRecitation/controllers/membersController.js"></script>
+    <script src="js/quranRecitation/controllers/profileController.js"></script>
+    <script src="js/quranRecitation/controllers/removeCourseController.js"></script>
+    <script src="js/quranRecitation/controllers/removeMemberController.js"></script>
+    <script src="js/quranRecitation/controllers/schoolController.js"></script>
+    <script src="js/quranRecitation/controllers/registerController.js"></script>
+    <script src="js/quranRecitation/controllers/disciplinesController.js"></script>
+    <script src="js/quranRecitation/controllers/recurrencesController.js"></script>
+    <script src="js/quranRecitation/controllers/editDisciplineController.js"></script>
+    <script src="js/quranRecitation/controllers/removeDisciplineController.js"></script>
+    <script src="js/quranRecitation/controllers/disciplineLevelController.js"></script>
+    <script src="js/quranRecitation/controllers/classroomsController.js"></script>
+    <script src="js/quranRecitation/controllers/loginMemberController.js"></script>
+    <script src="js/quranRecitation/controllers/editClassroomController.js"></script>
+    <script src="js/quranRecitation/controllers/removeClassroomController.js"></script>
+    <script src="js/quranRecitation/controllers/levelsController.js"></script>
+    <script src="js/quranRecitation/controllers/levelStudentsController.js"></script>
+    <script src="js/quranRecitation/controllers/roleController.js"></script>
+    <script src="js/quranRecitation/controllers/sessionsRecitationController.js"></script>
+    <script src="js/quranRecitation/controllers/sessionsRecitationStudentsController.js"></script>
+    <script src="js/quranRecitation/controllers/sessionsRecitationParticipantController.js"></script>
+    <script src="js/quranRecitation/controllers/vacancesController.js"></script>
+    <script src="js/quranRecitation/controllers/editVacancesController.js"></script>
+    <script src="js/quranRecitation/controllers/removeVacanceController.js"></script>
+    <script src="js/quranRecitation/controllers/AnneeScolaireController.js"></script>
+    <script src="js/quranRecitation/controllers/editAnneeScolaireController.js"></script>
+    <script src="js/quranRecitation/controllers/removeAnneeScolaireController.js"></script>
+    <script src="js/quranRecitation/controllers/PresencesController.js"></script>
+    <script src="js/quranRecitation/controllers/ExamensController.js"></script>
+    <script src="js/quranRecitation/controllers/editExamenController.js"></script>
+    <script src="js/quranRecitation/controllers/removeExamenController.js"></script>
+    <script src="js/quranRecitation/controllers/NotesExamenController.js"></script>
+    <script src="js/quranRecitation/controllers/moutounController.js"></script>
+    <script src="js/quranRecitation/controllers/editMoutounController.js"></script>
+    <script src="js/quranRecitation/controllers/removeMoutounController.js"></script>
+    <script src="js/quranRecitation/controllers/moutounSessionController.js"></script>
+    <script src="js/quranRecitation/controllers/editMoutounSessionController.js"></script>
+    <script src="js/quranRecitation/controllers/removeMoutounSessionController.js"></script>
+
+    <script src="js/quranRecitation/factories/authDataFactory.js"></script>
+
+    <script src="js/quranRecitation/services/authenticationService.js"></script>
+    <script src="js/quranRecitation/services/loginService.js"></script>
+    <script src="js/quranRecitation/services/calendarService.js"></script>
+    <script src="js/quranRecitation/services/memberService.js"></script>
+    <script src="js/quranRecitation/services/schoolService.js"></script>
+    <script src="js/quranRecitation/services/disciplineService.js"></script>
+    <script src="js/quranRecitation/services/recurrenceService.js"></script>
+    <script src="js/quranRecitation/services/disciplineLevelService.js"></script>
+    <script src="js/quranRecitation/services/courseService.js"></script>
+    <script src="js/quranRecitation/services/countryService.js"></script>
+    <script src="js/quranRecitation/services/classroomService.js"></script>
+    <script src="js/quranRecitation/services/statusServices.js"></script>
+    <script src="js/quranRecitation/services/roleService.js"></script>
+    <script src="js/quranRecitation/services/recitationSessionsService.js"></script>
+    <script src="js/quranRecitation/services/recitationSessionLevelService.js"></script>
+    <script src="js/quranRecitation/services/sessionsRecitationStudentService.js"></script>
+    <script src="js/quranRecitation/services/vacancesService.js"></script>
+    <script src="js/quranRecitation/services/anneeScolaireService.js"></script>
+    <script src="js/quranRecitation/services/PresencesService.js"></script>
+    <script src="js/quranRecitation/services/ExamensService.js"></script>
+    <script src="js/quranRecitation/services/notesExamenService.js"></script>
+    <script src="js/quranRecitation/services/moutounService.js"></script>
+    <script src="js/quranRecitation/services/moutounSessionService.js"></script>
+
+    <script src="js/quranRecitation/utils/constants.js"></script>
+    <script src="js/quranRecitation/directives/directives.js"></script>
+    <script src="js/quranRecitation/directives/language.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/quranRecitation.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+<div
+        class="d-flex flex-column align-items"
+        [ngClass]="'align-items-' + (message.type === 'in' ? 'start' : 'end')"
+      >
+        <div class="d-flex align-items-center mb-2">
+          <ng-container *ngIf="message.type === 'in'">
+            <div div class="symbol symbol-35px symbol-circle">
+              <img
+                alt="Pic"
+                src={{this.memberService.GetMemberPhotoPath(user.PhotoPath)}}
+              />
+            </div>
+            <div class="ms-3">
+              <a
+                href="#"
+                class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1"
+              >
+                {{user.FirstName+user.LastName}}
+              </a>
+              <span class="text-muted fs-7 mb-1">{{ message.time|date:'MMM d, y, h:mm a' }}</span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="message.type !== 'in'">
+            <div class="me-3">
+              <span class="text-muted fs-7 mb-1">{{ message.time |date:'MMM d, y, h:mm a'}}</span>
+              <a
+                href="#"
+                class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1"
+              >
+                You
+              </a>
+            </div>
+            <div div class="symbol symbol-35px symbol-circle">
+              <img
+                alt="Pic"
+                [src]="currentUserPhotoPath"
+              />
+            </div>
+          </ng-container>
+        </div>
+
+
+          <p
+          *ngIf="message.text"
+          data-kt-element="message-text"
+          [ngClass]="getMessageCssClass(message)">{{message.text}}</p>
+          <a [href]="msgPic" target="_blank" *ngIf="msgPic">
+          <img
+        style="height:250px ;width:250px;"
+
+          [ngClass]="getMessageCssClass(message)"
+          data-kt-element="message-text"
+          [src]="msgPic"
+        />
+
+        </a>
+
+      </div>
+

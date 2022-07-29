@@ -1,0 +1,93 @@
+<nav class="navbar-default navbar-static-side" role="navigation" ng-controller="navigationController">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+
+            <li class="nav-header">
+                <img class="profile-element" uib-dropdown src="../../img/logo_ibn_jazzar.png" style="height: 140px;" />
+                <!--<div class="profile-element" uib-dropdown>
+            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+            <a uib-dropdown-toggle href>
+                <span class="clear">
+                    <span class="block m-t-xs">
+                        <strong class="font-bold">David Williams</strong>
+                    </span>
+                    <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                </span>
+            </a>
+            <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                <li><a ui-sref="app.profile">Profile</a></li>
+                <li><a ui-sref="app.contacts">Contacts</a></li>
+                <li><a ui-sref="mailbox.inbox">Mailbox</a></li>
+                <li class="divider"></li>
+                <li><a ui-sref="login">Logout</a></li>
+            </ul>
+        </div>-->
+                <div class="logo-element" style="height: 60px;">
+                </div>
+            </li>
+
+            <li ui-sref-active="active" ng-class="{active: $state.includes('dashboards')}">
+                <a ui-sref="core.dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">{{ 'DASHBOARD' | translate }}</span></a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="core.profile"><i class="fa fa-user"></i> <span class="nav-label">{{ 'PROFILE' | translate }}</span> </a>
+            </li>
+
+            <li ng-show="user.MemberStatusId == 1" ng-class="{active: $state.includes('generalparams')}">
+                <a ui-sref="app.generalparams"><i class="fa fa-cogs"></i> <span class="nav-label">{{ 'GENERAL_PARAMS' | translate }}</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{active: $state.includes('generalparams')}">
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.school"><i class="fa fa-home"></i> {{ 'SCHOOL' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.classrooms"><i class="fa fa-desktop"></i> {{ 'CLASSROOMS' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.members"><i class="fa fa-users"></i> {{ 'MEMBERS' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.disciplines"><i class="fa fa-book"></i> {{ 'DISCIPLINE' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.levels"><i class="fa fa-signal"></i> {{ 'LEVELS' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.courses"><i class="fa fa-columns"></i> {{ 'COURSE' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.roles"><i class="fa fa-lock"></i> {{ 'ROLES' | translate }}</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.vacances"><i class="fa fa-plane"></i> Vacances scolaires</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="core.calendar"><i class="fa fa-calendar"></i> <span class="nav-label">{{ 'CALENDAR' | translate }}</span> </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="core.recitationSession"><i class="fa fa-files-o"></i> <span class="nav-label">{{ 'SESSION' | translate }}</span> </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="core.examens"><i class="fa fa-files-o"></i> <span class="nav-label">Examens</span> </a>
+            </li>
+
+            <li ng-show="user.MemberStatusId == 1">
+                <a><i class="fa fa-bell"></i> <span class="nav-label">Moutoun</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.moutoun"><i class="fa fa-bars"></i> Liste Moutoun</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="core.moutounSession"><i class="fa fa-bullhorn"></i> Session Moutoun</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</nav>

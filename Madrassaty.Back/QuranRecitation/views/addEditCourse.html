@@ -1,0 +1,104 @@
+﻿<div>
+    <div class="modal-header"><h2>{{modalTitle}}</h2></div>
+    <div>
+        <form name="addEditCourseForm" class="form-horizontal" ng-submit="addEditCourse();">
+            <div class="modal-body" style="display: inline-block;">
+                <div class="row col-lg-12">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="course.Name" class="control-label col-lg-4">Nom</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" ng-model="course.Name" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course.TeacherId" class="control-label col-lg-4">Professeur</label>
+                            <div class="col-lg-8">
+                                <select ng-model="course.TeacherId" class="form-control">
+                                    <option ng-selected="{{teacher.Id == course.TeacherId}}"
+                                            ng-repeat="teacher in teachers"
+                                            value="{{teacher.Id}}">
+                                        {{teacher.FullName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course.DisciplineId" class="control-label col-lg-4">Discipline</label>
+                            <div class="col-lg-8">
+                                <select ng-model="course.DisciplineId" class="form-control" ng-change="updateLevels(course.DisciplineId)">
+                                    <option ng-selected="{{discipline.Id == course.DisciplineId}}"
+                                            ng-repeat="discipline in disciplines"
+                                            value="{{discipline.Id}}">
+                                        {{discipline.Wording}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course.DisciplineLevelId" class="control-label col-lg-4">Niveau</label>
+                            <div class="col-lg-8">
+                                <select ng-model="course.DisciplineLevelId" class="form-control">
+                                    <option ng-selected="{{level.Id == course.DisciplineLevelId}}"
+                                            ng-repeat="level in levels"
+                                            value="{{level.Id}}">
+                                        {{level.Wording}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="course.ClassroomId" class="control-label col-lg-4">Salle</label>
+                            <div class="col-lg-8">
+                                <select ng-model="course.ClassroomId" class="form-control">
+                                    <option ng-selected="{{classroom.Id == course.ClassroomId}}"
+                                            ng-repeat="classroom in classrooms"
+                                            value="{{classroom.Id}}">
+                                        {{classroom.Wording}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course.StartDate" class="control-label col-lg-4">Date</label>
+                            <div class="col-lg-8">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="course.StartDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-4">D&eacute;but</label>
+                            <div class="col-lg-8">
+                                <div uib-timepicker ng-model="course.Begin" ng-change="changed()" minute-step="divisionParam" show-meridian="false"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-4">Fin</label>
+                            <div class="col-lg-8">
+                                <div uib-timepicker ng-model="course.End" ng-change="changed()" minute-step="divisionParam" show-meridian="false"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+                <button class="btn btn-primary" type="submit" ng-disabled="addEditCourseForm.$invalid">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>

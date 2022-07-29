@@ -1,0 +1,109 @@
+﻿<div class=" text-center loginscreen animated fadeInDown" style="margin-left: 15px;margin-right: 15px;">
+
+    <div ng-controller="registerCtrl">
+
+        <div>
+            <p>
+                <img class="logo-name" src="../img/logo_ibn_jazar_login.png" style="height:176px;margin-top: 0px;">
+            </p>
+        </div>
+        <h3>{{ 'REGISTER_TO_QURANRECITATION' | translate}}</h3>
+        <p>{{ 'CREATE_ACCOUNT' | translate}}</p>
+        <form name="registerform" class="m-t" role="form">
+
+            <div class="row">
+
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationFirstName" class="form-control" placeholder="{{ 'NOM' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationLastName" class="form-control" placeholder="{{ 'PRÉNOM' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationEmail" class="form-control" placeholder="{{ 'EMAIL' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" ng-model="userRegistrationPassword" class="form-control" placeholder="{{ 'PASSWORD' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" ng-model="userRegistrationConfirmPassword" class="form-control" placeholder="{{ 'CONFIRM_PASSWORD' | translate}}" required="">
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <select id="status" class="form-control" ng-model="userRegistrationMemberStatus" ng-options="st as st.Wording for st in status" required=""></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationSkypeId" class="form-control" placeholder="{{ 'SKYPE' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationProfession" class="form-control" placeholder="{{ 'PROFESSION' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <!--<input type="text" ng-model="userRegistrationBirthDate" class="form-control" placeholder="{{ 'BIRTHDATE' | translate}}" required="">-->
+                        <div class="input-group date">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="userRegistrationBirthDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationStreet" class="form-control" placeholder="{{ 'STREET' | translate}}" required="">
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="userRegistrationGender" ng-options="gen as gen.title for gen in genders | filter:translate(gen.title)" required></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationZipCode" class="form-control" placeholder="{{ 'ZIPCODE' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="userRegistrationCity" class="form-control" placeholder="{{ 'CITY' | translate}}" required="">
+                    </div>
+                    <div class="form-group">
+                        <!--<input type="text" ng-model="userRegistrationCountry" class="form-control" placeholder="{{ 'COUNTRY' | translate}}" required="">-->
+                        <select ng-model="userRegistrationCountry" class="form-control" required="">
+                            <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select chosen id="schools" placeholder="{{ 'SCHOOL' | translate}}" class="chosen-select" ng-model="userRegistrationSchool" ng-options="sch as sch.Name for sch in schools" required="">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                </div>
+
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-primary block full-width m-b" ng-disabled="registerform.$invalid" ng-click="registerUser()">{{ 'REGISTER' | translate}}</button>
+                    <p class="text-muted text-center"><small>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate}}</small></p>
+                    <a class="btn btn-sm btn-primary btn-block" ui-sref="login">{{ 'LOGIN' | translate}}</a>
+                </div>
+
+                <div class="col-lg-4">
+                </div>
+            </div>
+
+        </form>
+        <p class="m-t"><small><strong>{{ 'COPYRIGHT' | translate}}</strong> <a href="http://www.iyasoft.fr/">IYA SOFT</a> &copy; 2015-2017</small> </p>
+
+    </div>
+
+    <div ng-controller="translateCtrl">
+        <a ng-click="changeLanguage('ar')">{{ 'ARABE' | translate}}</a>
+        <a ng-click="changeLanguage('fr')">{{ 'FRANCAIS' | translate}}</a>
+    </div>
+
+</div>

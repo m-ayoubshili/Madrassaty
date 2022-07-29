@@ -1,0 +1,60 @@
+﻿<div ng-controller="CalendarCtrl">
+
+    <div class="row animated fadeInDown">
+
+        <div class="col-lg-3" ng-show="user.MemberStatusId == 1 || user.MemberStatusId == 2">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title">
+                    <h5>Les Evénements prédéfinis</h5>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="dd" id="nestable">
+                        <ol class="dd-list" ng-repeat="ev in savedEvents">
+                            <li class="dd-item" data-id="1">
+                                <div ng-click="showSavedEventDetails(ev.Id)" class="dd-handle" style="background-color: #1ab394; color: #ffffff;" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{animate:true}" ng-hide="!ev.Title">
+                                    {{ev.Title}}
+                                    <i class="fa fa-times pull-right center-block" ng-click="deleteFromSavedEvents(ev.Id)"></i>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- /btn-group -->
+
+                    <form name="myForm">
+                        <div class="input-group">
+                            <input id="new-event" name="newEvent" type="text" class="form-control" placeholder="Event Title" ng-model="newEvent.title" required />
+                            <div class="input-group-btn">
+                                <button id="add-new-event" ng-disabled="myForm.$invalid" type="button" ng-click="addToSavedEvents()" class="btn btn-primary btn-flat">Ajouter</button>
+                            </div>
+                            <!-- /btn-group -->
+                        </div>
+                    </form>
+                    <!-- /input-group -->
+                </div>
+
+            </div>
+        </div>
+
+        <div ng-class="user.MemberStatusId == 1 || user.MemberStatusId == 2 ? 'col-lg-9' : 'col-lg-12'">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{ 'EVENTS' | translate }}</h5>
+                    <div class="pull-right">
+                        <a ng-click="addEvent()"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-content ui-calendar connectPanels">
+                    <div id="fullCalendar" ui-calendar="uiConfig.calendar" calendar="fullCalendar" class="calendar" ng-model="eventSources"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+</div>
+

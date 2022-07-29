@@ -1,0 +1,146 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+        <small class="font-bold">Création évenement.</small>
+    </div>
+
+    <form class="row" style="margin: 0px;" name="myForm">
+
+        <div class="col-lg-6" style="padding-right: 0px; padding-left: 0px;">
+
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title modal-body" style="background: #ffffff;">
+                    <h5>
+                        Details
+                    </h5>
+                </div>
+
+                <div class="ibox-content">
+
+                    <div>
+                        Name *:
+                        <input type="text" placeholder="Name" class="form-control" ng-model="newEvent.Title" required>
+                    </div>
+
+                    <br />
+
+                    <div>
+                        Description :
+                        <input type="text" placeholder="Description" class="form-control" ng-model="newEvent.Description">
+                    </div>
+
+                    <br />
+
+                    <div>
+                        Recurrence *:
+                        <select id="recurrences" ng-model="newEvent.Recurrence" ng-options="recu as recu.Wording for recu in recurrences" ng-change="changed()">
+                            <option></option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title modal-body" style="background: #ffffff;">
+                    <h5>
+                        Discipline / Level
+                    </h5>
+                </div>
+
+                <div class="ibox-content">
+
+
+
+                    <div>
+                        Discipline *:
+                        <select chosen id="disciplines" class="chosen-select" ng-model="newEvent.Discipline" ng-options="disc as disc.Wording for disc in disciplines" ng-change="changed()"></select>
+                    </div>
+
+                    <br />
+
+                    <div>
+
+                        Level:
+                        <style>
+                            .chosen-container {
+                                width: 100% !important;
+                            }
+                        </style>
+                        <select chosen multiple ng-model="newEvent.LevelIds" ng-options="discLev as discLev.Wording for discLev in newEvent.Discipline.DisciplineLevels" ng-change="changed()" required></select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6" style="padding-right: 0px; padding-left: 0px;">
+
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title modal-body" style="background: #ffffff;">
+                    <h5>
+                        Time and date
+                    </h5>
+                </div>
+
+                <div class="ibox-content">
+
+                    <p>
+                        Simple and easy select a time for a text input using your mouse.
+                    </p>
+
+                    <div class="form-group" id="data_1">
+                        <label class="font-noraml">Date *:</label>
+                        <div class="input-group date">
+                            <input type="date" datetime="2009-11-13" class="form-control" id="exampleInput" name="input" ng-model="newEvent.EventDate" value="2020-11-20" placeholder="yyyy-MM-dd" ng-min="2001-01-01" ng-max="2020-12-31" required />
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div>
+                        Slot time *:
+                        <select class="form-control" ng-model="newEvent.DivisionParam" ng-options="opt for opt in options.slots" required></select>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="font-noraml">Start Time *:</label>
+                            <div uib-timepicker ng-model="newEvent.StartTime" ng-change="changed()" minute-step="newEvent.DivisionParam" show-meridian="false"></div>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="font-noraml">End Time *:</label>
+                            <div uib-timepicker ng-model="newEvent.EndTime" ng-change="changed()" minute-step="newEvent.DivisionParam" show-meridian="false"></div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div>
+                        <input id="save" name="acceptTerms" type="checkbox" ng-model="newEvent.isSaved" class="required ng-valid ng-dirty ng-valid-parse ng-empty ng-touched"> Save in my events
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveEvent()" ng-disabled="myForm.$invalid">Save changes</button>
+    </div>
+
+</div>

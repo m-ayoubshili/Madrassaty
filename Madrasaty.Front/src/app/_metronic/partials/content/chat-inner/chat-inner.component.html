@@ -1,0 +1,169 @@
+
+
+<div
+  id="kt_drawer_chat"
+  class="bg-white"
+  data-kt-drawer="true"
+  data-kt-drawer-name="chat"
+  data-kt-drawer-activate="true"
+  data-kt-drawer-overlay="true"
+  data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+  data-kt-drawer-direction="end"
+  data-kt-drawer-toggle="#kt_drawer_chat_toggle"
+  data-kt-drawer-close="#kt_drawer_chat_close"
+>
+
+<div class="card w-100 rounded-0" id="kt_drawer_chat_messenger">
+  <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
+
+    <div class="card-title">
+      <div class="d-flex align-items-center mb-2">
+        <div div class="symbol symbol-35px symbol-circle">
+          <img
+          style="margin-right:10px ;"
+            alt="Pic"
+            src={{this.pic}}
+          />
+        </div>
+        <span
+          class="
+            fs-4
+            fw-bolder
+            text-gray-900 text-hover-primary
+            me-1
+            mb-2
+            lh-1
+            cursor-pointer
+          "
+          >{{nomContact}}</span
+        >
+
+      </div>
+    </div>
+    <div class="card-toolbar">
+      <div class="me-2">
+        <button
+          class="btn btn-sm btn-icon btn-active-light-primary"
+          data-kt-menu-trigger="click"
+          data-kt-menu-placement="bottom-end"
+          data-kt-menu-flip="top-end"
+        >
+          <i class="bi bi-three-dots fs-3"></i>
+        </button>
+      </div>
+      <div
+        class="btn btn-sm btn-icon btn-active-light-primary"
+        id="kt_drawer_chat_close"
+      >
+        <span class="svg-icon svg-icon-2"></span>
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"
+          class="svg-icon svg-icon-2"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="scroll-y me-n5 pe-5"
+    [ngClass]="!isDrawer ? 'h-300px h-lg-auto' : ''"
+    data-kt-element="messages"
+    data-kt-scroll="true"
+    data-kt-scroll-activate="{default: false, lg: true}"
+    data-kt-scroll-max-height="auto"
+    [attr.data-kt-scroll-dependencies]="
+      isDrawer
+        ? '#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer'
+        : '#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer'
+    "
+    [attr.data-kt-scroll-wrappers]="
+      isDrawer
+        ? '#kt_drawer_chat_messenger_body'
+        : '#kt_content, #kt_chat_messenger_body'
+    "
+    [attr.data-kt-scroll-offset]="isDrawer ? '0px' : '-2px'"
+    style="overflow: scroll; height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeight"
+  >
+    <ng-container *ngFor="let message of messagesObs | async">
+      <div
+        [ngClass]="{
+          'd-flex': !isDrawer,
+          'd-none': message.template,
+          'justify-content-start': message.type === 'in',
+          'justify-content-end': message.type !== 'in'
+        }"
+        [attr.data-kt-element]="'template-' + message.type"
+        class="mb-10"
+      >
+        <div style="margin-left: 30px;">
+          <app-message [message]="message" [newPhoto]="fileToUpload2"></app-message>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div
+    class="card-footer pt-4"
+    [id]="
+      isDrawer ? 'kt_drawer_chat_messenger_footer' : 'kt_chat_messenger_footer'
+    "
+  >
+    <textarea
+      #messageInput
+      class="form-control form-control-flush mb-3"
+      rows="1"
+      data-kt-element="input"
+      placeholder="Type a message"
+
+    ></textarea>
+
+    <div class="d-flex flex-stack">
+      <div class="d-flex align-items-center me-2">
+
+       <form >
+        <label for="file" style="margin: 5px;">
+          <i class="bi bi-paperclip fs-3"></i>
+        <input #form
+        type="file" id="file" style="display: none" name="image"
+        accept="image/gif,image/jpeg,image/jpg,image/png"
+        (change)="handleFileToUpload($event.target.files[0])" >
+        </label>
+        <!-- <button (click) ="toggleEmojiPicker()"> 😀</button><br>
+<emoji-mart
+class="emoji-mart"
+set="{{set}}"
+*ngIf="showEmojiPicker"
+(emojiSelect)="addEmoji($event)"
+title="Pick your emoji…">
+
+</emoji-mart> -->
+       </form>
+        <!-- <label for="file" style="margin: 5px;">
+          <i class="bi bi-upload fs-3"></i>
+        <input #form
+        type="file" id="file" style="display: none" name="image"
+        accept="image/gif,image/jpeg,image/jpg,image/png"
+        (change)="handleFileToUpload($event.target.files[0])" >
+        </label> -->
+        <span style="margin: 20px;" *ngIf="selected">{{fileName}}</span>
+
+
+      </div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-kt-element="send"
+        (click)="submitMessage()"
+      >
+        Send
+      </button>
+      <button
+      type="button"
+      (click)="dtest()">ENLLL</button>
+    </div>
+  </div>
+
+
+</div>
+</div>
+

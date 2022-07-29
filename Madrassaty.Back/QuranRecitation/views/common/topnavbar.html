@@ -1,0 +1,58 @@
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        
+        <div class="navbar-header">
+            <span minimaliza-sidebar></span>            
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <!--<li>-->
+            <!--<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>-->
+            <!--</li>-->
+            <!--<li uib-dropdown>
+        <div uib-dropdown>
+
+            <div class="count-info center-block" href uib-dropdown-toggle>
+                <img class="col-sm-4" alt="image" src="img/profile_small.jpg" />
+                <span class="col-sm-8 ">
+                    <span class="block m-t-xs">
+                        <strong class="font-bold">David Williams</strong>
+                    </span>
+                    <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                </span>
+            </div>
+
+
+            <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                <li><a ui-sref="app.profile">Profile</a></li>
+                <li><a ui-sref="app.contacts">Contacts</a></li>
+                <li><a ui-sref="mailbox.inbox">Mailbox</a></li>
+                <li class="divider"></li>
+                <li><a ui-sref="login">Logout</a></li>
+            </ul>
+        </div>
+    </li>-->
+            <li ng-controller="topNavigationCtrl">
+                <a ui-sref="core.anneeScolaire">
+                    <i class="fa fa-pencil"></i> Année Scolaire
+                </a>
+            </li>
+
+            <li uib-dropdown>
+                <a class="count-info" uib-dropdown-toggle>
+                    Language
+                </a>
+                <ul uib-dropdown-menu class="animated fadeInRight m-t-xs" ng-controller="translateCtrl">
+                    <li><a ng-click="changeLanguage('ar')">Arabe</a></li>
+                    <li><a ng-click="changeLanguage('fr')">Fran&ccedil;ais</a></li>
+                </ul>
+            </li>
+            <li ng-controller="topNavigationCtrl">
+                <a ng-click="logOut()">
+                    <i class="fa fa-sign-out"></i> Log out
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>

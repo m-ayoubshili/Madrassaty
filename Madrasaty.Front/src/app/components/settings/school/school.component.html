@@ -1,0 +1,196 @@
+<app-settings-header (btnClick)="OpenDiag(-1)"  (btnClickSwitchToCard)="switchToCard()"></app-settings-header>
+
+<div class="container-fluid" *ngIf="switchbtn == false">
+  <div class="row" >
+    <div class="col-lg-4" *ngFor="let item of rowData">
+      <div>
+        <mat-card class="card" style="width: 82%">
+
+          <div class="row">
+            <div class="column">
+              <div class="photo">
+                <img class="img" src="https://picsum.photos/200" />
+              </div>
+            </div>
+            <div class="column">
+              <mat-card-content>
+                <h2>
+                  <strong>{{ item.Name }}</strong>
+                </h2>
+                <h5>
+                  <i
+                    ><strong
+                      >{{ item.Street }}, {{ item.City }},
+                      {{ item.ZipCode }}</strong
+                    ></i
+                  >
+                </h5>
+                <h3>
+                  <strong>{{ item.Country }}</strong>
+                </h3>
+              </mat-card-content>
+            </div>
+          </div>
+          <mat-card-actions align="end" style="margin-bottom: -5px">
+            <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #callAPIDialog>
+  <div class="container">
+   <h2 mat-dialog-title>{{DialogTitle}}</h2>
+ <form [formGroup]="schoolForm" (ngSubmit)="saveSchool()" >
+
+
+   <div class="row">
+     <label for="fileupload">
+
+       <md-icon class="material-icons">attach_file</md-icon>
+       <mat-hint>Choisir une image ...</mat-hint>
+     </label>
+     <input   type="file" name="fileupload" value="fileupload" id="fileupload"  style="visibility:hidden;" accept=".jpg"
+     #fileInput (change)="onChange(fileInput.files[0])"  />
+
+      <img src={{LogoPath}} id="schoolLogo">
+
+   </div>
+
+     <mat-form-field appearance="outline">
+       <mat-label>Ecole</mat-label>
+
+       <input matInput placeholder="Placeholder" required  type="text" formControlName="Name">
+       <mat-error *ngIf="schoolForm.controls['Name'].errors?.required"> Le nom est obligatoire et doit être unique.</mat-error>
+     </mat-form-field>
+     <br>
+     <mat-form-field  appearance="outline">
+       <mat-label>Adresse</mat-label>
+       <input matInput placeholder="Placeholder" type="text" required  formControlName="Street">
+       <mat-error *ngIf="schoolForm.controls['Street'].errors?.required">Adresse est obligatoire.</mat-error>
+     </mat-form-field>
+     <br>
+
+    <mat-form-field appearance="outline">
+       <mat-label>Code postale</mat-label>
+       <input matInput placeholder="Placeholder"  formControlName="ZipCode"  required type="text">
+       <mat-error *ngIf="schoolForm.controls['ZipCode'].errors?.required">Le code postale est obligatoire.</mat-error>
+     </mat-form-field>
+     <br>
+     <mat-form-field appearance="outline">
+       <mat-label>Ville</mat-label>
+       <input matInput placeholder="Placeholder"  required formControlName="City" type="text">
+       <mat-error *ngIf="schoolForm.controls['City'].errors?.required">La ville est obligatoire.</mat-error>
+     </mat-form-field>
+     <br>
+   <mat-form-field appearance="outline">
+     <mat-label>Pays</mat-label>
+     <mat-select name="Country" formControlName="Country" required placeholder="Country">
+       <mat-error *ngIf="schoolForm.controls['Country'].errors?.required">Le pays est obligatoire.</mat-error>
+        <mat-option *ngFor="let opt of countries" [value]="opt.name">{{opt.name}}</mat-option>
+     </mat-select>
+   </mat-form-field>
+   <br>
+     <mat-form-field appearance="outline">
+       <mat-label>Nom Société</mat-label>
+       <input matInput placeholder="Placeholder" formControlName="SocietyName" type="text" required >
+       <mat-error *ngIf="schoolForm.controls['SocietyName'].errors?.required">Le nom de la société est obligatoire.</mat-error>
+     </mat-form-field>
+     <br>
+     <mat-form-field appearance="outline">
+       <mat-label>SIRET</mat-label>
+       <input matInput required formControlName="SiretCode" type="text" required placeholder="14 chiffres : 9 SIREN + 5 NIC" >
+       <mat-error *ngIf="schoolForm.controls['SiretCode'].errors?.required">La SIRET est obligatoire.</mat-error>
+       <mat-error *ngIf="schoolForm.controls['SiretCode'].errors?.pattern">La SIRET doit contenir 14 chiffres : 9 SIREN + 5 NIC.</mat-error>
+     </mat-form-field>
+     <br>
+     <mat-form-field appearance="outline">
+       <mat-label>NumTVA</mat-label>
+       <input matInput formControlName="NumTVA" type="text" required placeholder="FR + 11 chiffres" >
+       <mat-error *ngIf="schoolForm.controls['NumTVA'].errors?.required">Le numéro de TVA est obligatoire.</mat-error>
+       <mat-error *ngIf="schoolForm.controls['NumTVA'].errors?.pattern">Le numéro de TVA intracommunautaire doit contenir le code FR + 11 Chiffres'</mat-error>
+     </mat-form-field>
+   <mat-dialog-actions align="end">
+     <button mat-raised-button (click)="ClearForm()" color="warn">Clear</button>
+     <button mat-raised-button mat-dialog-close [disabled]="schoolForm.invalid" type="submit" color="success">Confirmer</button>
+   </mat-dialog-actions>
+ </form>
+</div>
+</ng-template>
+
+
+
+<div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="Ecole">
+        <th mat-header-cell *matHeaderCellDef>Ecole</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Adresse">
+        <th mat-header-cell *matHeaderCellDef>Adresse</th>
+        <td   mat-cell *matCellDef="let element">
+          {{ element.Street }}</td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="TVA">
+        <th mat-header-cell *matHeaderCellDef>TVA</th>
+        <td  mat-cell *matCellDef="let element">{{ element.NumTVA }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Siret">
+        <th mat-header-cell *matHeaderCellDef>Siret</th>
+        <td   mat-cell *matCellDef="let element">{{ element.SiretCode }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="SocietyName">
+        <th mat-header-cell *matHeaderCellDef>Society Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.SocietyName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+
+        <td mat-cell *matCellDef="let element">
+          <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="OpenDiag(element.Id)">
+            <span  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"  class="svg-icon svg-icon-3"  ></span>
+          </button>
+          <button
+            href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" (click)="deleteItem(element.Id)" >
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+              class="svg-icon svg-icon-3"
+            ></span>
+
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row  *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[1, 3, 20]"
+      showFirstLastButtons
+      aria-label="Select page of dataSource"
+    >
+    </mat-paginator>
+  </div>
+
+</div>
+
+

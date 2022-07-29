@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <mat-card-title>Les erreurs de Tajweed</mat-card-title>
+  <div fxFlex fxLayout="row" fxLayout.lt-sm="column" fxFlexOffset="16px">
+    <ngx-nestable
+      (drag)="drag($event)"
+      (drop)="drop($event)"
+
+      [(list)]="tajwidErrorData"
+      #nestable
+      [options]="options"
+      [template]="itemTemplate"
+      fxFlex="50"
+    >
+    </ngx-nestable>
+  </div>
+
+  <ng-template #itemTemplate let-row>
+    <button mat-icon-button [ngxNestableDragHandle]="row">
+      <mat-icon>drag_handle</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="row.item.children && row.item.children.length; else empty_item" [ngxNestableExpandCollapse]="row">
+      <mat-icon>{{row.item.$$expanded ? "keyboard_arrow_down" : "keyboard_arrow_right" }} </mat-icon>
+    </button>
+   <div>{{ row.item.name }} </div> <div style=" margin-left: 25px;"><h4 style="color: rgb(187, 14, 14);">{{ row.item.code }}</h4></div>
+  </ng-template>
+  <ng-template #empty_item>
+    <span style="width: 40px"></span>
+  </ng-template>
+</mat-card>

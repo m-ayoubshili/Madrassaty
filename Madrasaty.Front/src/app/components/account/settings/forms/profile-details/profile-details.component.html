@@ -1,0 +1,214 @@
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#kt_account_profile_details"
+    aria-expanded="true"
+    aria-controls="kt_account_profile_details"
+  >
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Profile Details</h3>
+    </div>
+  </div>
+  <div id="kt_account_profile_details" class="collapse show">
+    
+    <form novalidate="" class="form">
+      <div class="card-body border-top p-9">
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
+          <div class="col-lg-8">
+            <div
+              class="image-input image-input-outline"
+              data-kt-image-input="true"
+              [style.background-image]="'url(./assets/media/avatars/blank.png'"
+            >
+              <div
+                class="image-input-wrapper w-125px h-125px"
+                [style.background-image]="
+                  'url(./assets/media/avatars/150-2.jpg'
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Full Name</label >
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <input type="text"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name" formControlName="FirstName" name="fName" value="Max" />
+              </div>
+              <div class="col-lg-6 fv-row">
+                <input type="text"
+                  class="form-control form-control-lg form-control-solid" placeholder="Last name" formControlName="LastName" name="lName" value="Smith" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6" >Sexe</label>
+          <div class="col-lg-8 fv-row">
+            <select
+            class="form-select form-select-solid form-select-lg fw-bold" name="Gender"  formControlName="Gender" >
+            <option value="">Select a Genre...</option>
+            <option value="M">Masculin</option>
+            <option value="F">Femenin</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Skype</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid" formControlName="SkypeId" 
+              placeholder="Skype"
+              name="contactPhone"            
+            />
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Téléphone</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="tel"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Phone number"
+              name="contactPhone"
+              formControlName="PhoneNumber"
+            />
+          </div>
+        </div>
+        
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Date d'entrée </span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Company website"
+              name="companySite"
+              value="keenthemes.com"
+            />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Date de naissance </span></label >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Company website"
+              name="companySite"
+              value="keenthemes.com"
+            />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Profession</span></label >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Profession"
+              name="Profession"
+              formControlName="Profession" 
+            />
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Adresse</span></label >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Street"
+              name="Street"
+              formControlName="Street"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Code postale</span></label >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="ZipCode"
+              name="ZipCode"
+              formControlName="ZipCode"
+            />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Ville</span></label >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="City"
+              name="City"
+              formControlName="City" 
+            />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Pays</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <select
+              class="form-select form-select-solid form-select-lg fw-bold"
+              name="country"
+            >
+              <option value="">Select a Country...</option>
+              <option value="AF">Afghanistan</option>
+              <option value="AX">Aland Islands</option>
+   
+           
+            </select>
+          
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="isLoading"
+          (click)="saveSettings()"
+        >
+          <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+          <ng-container *ngIf="isLoading">
+            <span clas="indicator-progress" [style.display]="'block'">
+              Please wait...{{ " " }}
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span>
+          </ng-container>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

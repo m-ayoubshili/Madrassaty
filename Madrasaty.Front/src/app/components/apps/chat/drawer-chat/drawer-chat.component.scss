@@ -1,0 +1,59 @@
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+ .card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 24px;
+  min-height: 131px;
+  margin-top: 15px;
+}
+.row {
+  display: flex;
+
+}
+.column {
+  flex: 1;
+}
+.mat-success {
+  background-color: rgb(33, 172, 33);
+  color: #fff;
+}
+.mat-grey {
+  background-color: rgb(122, 131, 122);
+  color: #fff;
+}
+
+.mat-warn {
+  margin-left: 7px;
+  margin-right: 13px;
+}
+table {
+  width: 100%;
+}
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+mat-form-field.mat-form-field {
+  width: 550px;
+}
+.mat-card{width: 50%;}
+.mat-primary {
+  margin-left: 7px;
+  margin-right: 13px;
+}
+#ajout {
+  background-color: rgb(122, 131, 122);
+  color: #fff;
+}
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

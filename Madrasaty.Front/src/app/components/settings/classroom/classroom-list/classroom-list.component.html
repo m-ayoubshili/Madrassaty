@@ -1,0 +1,128 @@
+<app-settings-header [showSearch]="true" (btnClick)="OpenDiag(-1)" (btnClickSwitchToCard)="switchToCard()"></app-settings-header>
+
+<div class="row" *ngIf="(switchbtn == false)">
+
+    <div class="col-lg-4" *ngFor="let item of rowData ">
+        <mat-card class="card">
+            <div class="col-sm-12">
+                <h3 class="card-title"><strong class="strong">{{item.Wording}}</strong></h3>
+
+                <h5 class="card-text"><i><strong class="strong2">{{item.NumberProjector}} projecteurs</strong></i></h5>
+                <h4 class="card-text"><strong class="strong2">{{item.NumberDesk}} tables</strong></h4>
+                <h4 class="card-text"><strong class="strong2">{{item.NumberChair}} chaises</strong></h4>
+
+
+                <mat-card-actions align="end" style="margin-bottom: -5px;">
+                    <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </div>
+            <div class="clearfix"></div>
+
+        </mat-card>
+
+    </div>
+ 
+
+
+
+</div>
+<!--affichage mode tableau-->
+<div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="rowData">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>name</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.Wording }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="NumberProjector">
+                <th mat-header-cell *matHeaderCellDef>nombre de Projector</th>
+                <td mat-cell *matCellDef="let element">{{ element.NumberProjector }}</td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="NumberDesk">
+                <th mat-header-cell *matHeaderCellDef>nombre de table</th>
+                <td mat-cell *matCellDef="let element">{{ element.NumberDesk}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="NumberChair">
+                <th mat-header-cell *matHeaderCellDef>nombre de chaises</th>
+                <td mat-cell *matCellDef="let element"> {{element.NumberChair}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+
+                <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" (click)="OpenDiag(element.Id)" > 
+                        <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                            class="svg-icon svg-icon-3"></span>
+                    </button>
+                    <button href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                            class="svg-icon svg-icon-3"></span>
+
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons aria-label="Select page of rowData">
+        </mat-paginator>
+    </div>
+
+</div>
+<!--formulaire pour l'ajout -->
+<ng-template #callAPIDialog>
+    <h2 mat-dialog-title>{{DialogTitle}}</h2>
+    <form [formGroup]="classroomForm" (ngSubmit)="saveClassroom()">
+        <mat-form-field appearance="outline">
+            <mat-label> classe </mat-label>
+            <input matInput placeholder="Placeholder" required formControlName="Wording">
+            <mat-error *ngIf="classroomForm.controls['Wording'].errors?.required"> Le nom est obligatoire et doit être
+                unique.
+            </mat-error>
+        </mat-form-field>
+      <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de projecteurs</mat-label>
+            <input matInput required type="number" formControlName="NumberProjector">
+            <mat-error *ngIf="classroomForm.controls['NumberProjector'].errors?.required"> La valeur de ce champ doit
+                être un nombre positif.
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de tables</mat-label>
+            <input matInput required type="number" formControlName="NumberDesk">
+            <mat-error *ngIf="classroomForm.controls['NumberDesk'].errors?.required"> La valeur de ce champ doit être un
+                nombre positif.
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de chaises</mat-label>
+            <input matInput required type="number" formControlName="NumberChair">
+            <mat-error *ngIf="classroomForm.controls['NumberChair'].errors?.required"> La valeur de ce champ doit être
+                un nombre positif.
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close color="warn">Quitter</button>
+            <button mat-raised-button color="success" [disabled]="classroomForm.invalid"
+               >Confirmer</button>
+        </mat-dialog-actions>
+    </form>
+</ng-template>

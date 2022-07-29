@@ -1,0 +1,49 @@
+﻿<div>
+    <div class="modal-header"><h2>{{modalTitle}}</h2></div>
+    <div>
+        <form name="addEditMoutounSessionForm" class="form-horizontal" ng-submit="addEditMoutounSession();">
+            <div class="modal-body" style="display: flex;">
+                <div class="col-lg-12">                    
+                    <div class="form-group">
+                        <label for="moutounSession.TeacherId" class="control-label col-lg-4">Professeur</label>
+                        <div class="col-lg-8">
+                            <select ng-model="moutounSession.TeacherId" class="form-control" required>
+                                <option ng-selected="{{teacher.Id == moutounSession.TeacherId}}"
+                                        ng-repeat="teacher in Teachers"
+                                        value="{{teacher.Id}}">
+                                    {{teacher.FullName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moutounSession.StudentId" class="control-label col-lg-4">Etudiant</label>
+                        <div class="col-lg-8">
+                            <select ng-model="moutounSession.StudentId" class="form-control" required>
+                                <option ng-selected="{{student.Id == moutounSession.StudentId}}"
+                                        ng-repeat="student in Students"
+                                        value="{{student.Id}}">{{student.FullName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moutounSession.MoutounId" class="control-label col-lg-4">Moutoun</label>
+                        <div class="col-lg-8">
+                            <select ng-model="moutounSession.MoutounId" class="form-control" required
+                                     ng-options="value.Id as value.Wording for (key, value) in Moutouns">
+                               
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+                <button class="btn btn-primary" type="submit" ng-disabled="addEditMoutounSessionForm.$invalid">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>

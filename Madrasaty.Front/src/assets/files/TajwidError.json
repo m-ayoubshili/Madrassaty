@@ -1,0 +1,170 @@
+[
+  {
+    "name":"traits distinctifs des lettres",
+    "children": [
+      {
+        "name": "perception légère du son",
+        "code": "هـ"
+      },
+      {
+        "name": "perception claire du son",
+        "code": "ج"
+      },
+      {
+        "name": "Continuité compléte du son",
+        "code": "خ"
+      },
+      {
+        "name": "interruption du son",
+        "code": "ش"
+      },
+      {
+        "name": "Continuité partielle du son",
+        "code": "ب"
+      },
+      {
+        "name": "le son de dirige vers le palais",
+        "code": "ع"
+      },
+      {
+        "name": "le son ne se dirige pas vers le palais",
+        "code": "س"
+      },
+      {
+        "name": "compression du son entre la langue et le palais",
+        "code": "ط"
+      },
+      {
+        "name": "Non compression du son entre la langue et le palais",
+        "code": "ف"
+      },
+      {
+        "name": "Vibration de la lettre",
+        "code": "ق"
+      },
+      {
+        "name": "Faible Vibration de la lettre",
+        "code": "ك"
+      },
+      {
+        "name": "intensité du son",
+        "code": "ص"
+      },
+      {
+        "name": "impulsion de la langue de l'arrière à l'avant",
+        "code": "ل"
+      },
+      {
+        "name": "Nasillement",
+        "code": "غ"
+      }
+    ]
+  },
+  {
+    "name":"Règles de R",
+
+     "children":[
+      {
+        "name": "pas emphatique",
+        "code": "تف"
+      },
+      {
+        "name": "pas amincie",
+        "code": "تر"
+      }
+    ]
+
+  },
+  {
+    "name":"Règles de mim statique",
+    "children": [
+      {
+        "name": "prononciation  distincte de la lettre 'mim'",
+        "code": "ظش"
+      },
+      {
+        "name": "Assimilation de la lettre 'mim'",
+        "code": "دش"
+      },
+      {
+        "name": "Dissimulation de la lettre 'mim'",
+        "code": "خش"
+      }
+    ]
+  },
+  {
+     "name":"Règles de noun statique et tanween",
+     "children" :[
+      {
+        "name": "prononciation  distincte de la lettre 'noun' / 'nounation'",
+        "code": "ظ"
+      },
+      {
+        "name": "Substitution de...",
+        "code": "ق"
+      },
+      {
+        "name": "Dissimulation de la lettre...",
+        "code": "خ"
+      },
+      {
+        "name": "Assimilation avec nasillement",
+        "code": "دغ"
+      },
+      {
+        "name": "Assimilation sans nasillement",
+        "code": " دلا"
+      }
+    ]
+  },
+  {
+     "name":"Règles de Mad",
+      "children":[
+      {
+        "name": "Allongement primaire faisant partie du lot",
+        "code": "طع"
+      },
+      {
+        "name": "Allongement autorisé",
+        "code": "فص"
+      },
+      {
+        "name": "Dissimulation de la lettre 'mim'",
+        "code": "صل"
+      },
+      {
+        "name": "Allongement nécessaire",
+        "code": "لز"
+      },
+      {
+        "name": "Allongement à l'arrêt",
+        "code": "عا"
+      },
+      {
+        "name": "Allongement de silah mineure",
+        "code": "صغ"
+      },
+      {
+        "name": "Allongement de silah majeure",
+        "code": "صك"
+      },
+      {
+        "name": "Allongement des diphtongues 'و' et 'ي' à l'arrêt",
+        "code": "لن"
+      }
+    ]
+  },
+  {
+    "name":"Règles d arrêt et de démarrage",
+    "children": [
+      {
+        "name": "Arrête incorrect",
+        "code": "وق"
+      },
+      {
+        "name": "Début incorrect",
+        "code": "بق"
+      }
+    ]
+  }
+]

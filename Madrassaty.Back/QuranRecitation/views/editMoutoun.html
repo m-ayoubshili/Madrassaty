@@ -1,0 +1,28 @@
+﻿<div>
+    <div class="modal-header"><h2>{{modalTitle}}</h2></div>
+    <div>
+        <form name="addEditMoutounForm" class="form-horizontal" ng-submit="addEditMoutoun();">
+            <div class="modal-body" style="display: flex;">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="moutoun.Wording" class="control-label col-lg-4">Nom</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" ng-model="moutoun.Wording" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="moutoun.NumberVerdict" class="control-label col-lg-4">Nombre de verdict</label>
+                        <div class="col-lg-8">
+                            <input type="number" class="form-control" ng-model="moutoun.NumberVerdict" min="1" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+                <button class="btn btn-primary" type="submit" ng-disabled="addEditMoutounForm.$invalid">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>

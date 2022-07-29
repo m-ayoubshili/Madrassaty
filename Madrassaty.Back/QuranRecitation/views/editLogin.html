@@ -1,0 +1,34 @@
+﻿<div>
+    <div class="modal-header"><h2> </h2></div>
+    <form name="editLoginForm" class="form-horizontal" ng-submit="EditLogin();">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="loginModel.UserName" class="control-label col-lg-3">Nom d'utilisateur</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" ng-model="loginModel.UserName" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="loginModel.Password" class="control-label col-lg-3">Mot de passe</label>
+                <div class="col-lg-8">
+                    <input type="password" name="password" class="form-control" ng-model="loginModel.Password" ng-pattern="passwordPattern" required />
+                    <p ng-show="editLoginForm.password.$invalid" style="color: red">Mot de passe non valide ! 6 caractéres minimum (au moins : un caract spécial, une lettre en majuscule et un chiffre.. )</p>  
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="loginModel.ConfirmPassword" class="control-label col-lg-3">Confirmer le mot de passe</label>
+                <div class="col-lg-8">
+                    <input type="password" name="passwordConfirm" class="form-control" ng-model="loginModel.ConfirmPassword" ng-pattern="passwordPattern" required compare-to="loginModel.Password" />
+                    <p ng-show="editLoginForm.passwordConfirm.$invalid" style="color: red">Mot de passe non valide ! 6 caractéres minimum (au moins : un caract spécial, une lettre en majuscule et un chiffre.. )</p>  
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+            <button class="btn btn-primary" type="submit" ng-disabled="editLoginForm.$invalid">Confirmer</button>
+        </div>
+    </form>
+</div>

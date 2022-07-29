@@ -1,0 +1,31 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown" >
+    <div>
+        
+        <div>
+            <p>
+                <img class="logo-name" src="../img/logo_ibn_jazar_login.png" style="height:176px;margin-top: 0px;">
+            </p>
+        </div>
+
+        <h3>{{ 'WELCOME' | translate }}</h3>
+        
+        <p>{{ 'LOGIN_TITLE' | translate }}</p>
+        <form ng-controller="loginCtrl" name="loginform" class="m-t" role="form" >
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="{{ 'USERNAME' | translate }}" required="" ng-model="userLoginEmail">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}" required="" ng-model="userLoginPassword">
+            </div>
+            <button type="submit" ng-disabled="loginform.$invalid" ng-click="login()" class="btn btn-primary block full-width m-b">{{ 'LOGIN' | translate }}</button>
+            <a ui-sref="forgot_password"><small>{{ 'FORGOT_PASSWORD' | translate }}</small></a>
+            <p class="text-muted text-center"><small>{{ 'DO_NOT_HAVE_AN_ACCOUNT' | translate }}</small></p>
+            <a class="btn btn-sm btn-primary btn-block" ui-sref="register">{{'CREATE_AN_ACCOUNT' | translate }}</a>
+        </form>
+        <p class="m-t"> <small><strong>{{ 'COPYRIGHT' | translate}}</strong> <a href="http://www.iyasoft.fr/">IYA SOFT</a> &copy; 2015-2017</small> </p>
+        <div ng-controller="translateCtrl">
+            <a ng-click="changeLanguage('ar')">{{ 'ARABE' | translate}}</a>
+            <a ng-click="changeLanguage('fr')">{{ 'FRANCAIS' | translate}}</a>
+        </div>
+    </div>
+</div>

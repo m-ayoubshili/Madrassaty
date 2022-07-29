@@ -1,0 +1,38 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h2>{{modalTitle}}</h2>
+    </div>
+    <div>
+        <form name="addEditDisciplineForm" [formGroup]="disciplineForm" (ngSubmit)="saveDiscipline()"
+         class="form-horizontal">
+            <div class="modal-body" style="display: flex;">
+                <div class="col-xs-12">
+                    <div class="form-group" >
+                        <label for="wordingId" class="control-label col-lg-2">Nom</label>
+                        <div class="col-lg-10" [ngClass]="{'has-error': displayMessage.Wording}">
+                            <input type="text" autocomplete="off" class="form-control" required id="wordingId" type="text"
+                                formControlName="Wording"/>
+                                <span class="help-block">
+                                    {{displayMessage.Wording}}
+                                  </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="control-label col-lg-2">Déscription</label>
+                        <div class="col-lg-10">
+                            <textarea rows="4" cols="50" class="form-control" id="descriptionId"
+                                formControlName="Description" >
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" (click)="bsModalRef.hide()">Quitter</button>
+                <button class="btn btn-primary" type="submit">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>

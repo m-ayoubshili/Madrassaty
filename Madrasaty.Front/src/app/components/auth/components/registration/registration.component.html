@@ -1,0 +1,383 @@
+<div class="w-lg-900px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+
+
+  <form
+    class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+    [formGroup]="registerform"
+    novalidate="novalidate"
+    id="kt_login_signup_form"
+    (ngSubmit)="GetAdmins(registerform.value)"
+  >
+    <!--begin::Heading-->
+    <div class="mb-10 text-center">
+      <h1 class="text-dark mb-3">Create an Account</h1>
+      <div class="text-gray-400 fw-bold fs-4">
+        Already have an account?
+        <a
+          routerLink="/auth/login"
+          class="link-primary fw-bolder"
+          [style.margin-left]="'5px'"
+          >Sign in?</a
+        >
+      </div>
+    </div>
+    <!--end::Heading-->
+
+    <div class="d-flex align-items-center mb-10">
+      <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+      <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+      <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+    </div>
+
+    <!-- begin::Alert error-->
+    <ng-container *ngIf="hasError">
+      <div class="mb-lg-15 alert alert-danger">
+        <div class="alert-text font-weight-bold">
+          The registration details are incorrect
+        </div>
+      </div>
+    </ng-container>
+    <!-- end::Alert error-->
+
+    <div class="row">
+      <div class="col-lg-4">
+        <!--begin::Form group-->
+        <div class="row fv-row mb-7">
+          <label class="form-label fw-bolder text-dark fs-6">Nom * </label>
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="text"
+            name="LastName"
+            formControlName="LastName"
+            placeholder="Nom"
+            autocomplete="off"
+            [ngClass]="{ 'has-error': displayMessage.LastName }"
+            required
+          />
+
+          <span class="help-block" style="color: red">
+            {{ displayMessage.LastName }}
+          </span>
+        </div>
+
+        <div class="fv-row mb-7">
+          <label class="form-label fw-bolder text-dark fs-6">Prénom *</label>
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="text"
+            name="FirstName"
+            formControlName="FirstName"
+            placeholder="Prénom"
+            autocomplete="off"
+            [ngClass]="{ 'has-error': displayMessage.FirstName }"
+            required
+          />
+          <span class="help-block" style="color: red">
+            {{ displayMessage.FirstName }}
+          </span>
+        </div>
+
+        <!--end::Form group-->
+
+        <!--begin::Form group-->
+        <div class="fv-row mb-7">
+          <label class="form-label fw-bolder text-dark fs-6">Email *</label>
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="email"
+            placeholder="Email"
+            name="Email"
+            formControlName="Email"
+            autocomplete="off"
+            [ngClass]="{ 'has-error': displayMessage.Email }"
+            required
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Adresse email est obligatoire',
+              control: registerform.controls['Email']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'pattern',
+              message: 'Entrez une adresse email valide.',
+              control: registerform.controls['Email']
+            }"
+          ></ng-container>
+        </div>
+        <!--end::Form group-->
+
+        <!--begin::Form group-->
+        <div class="mb-10 fv-row">
+          <label class="form-label fw-bolder text-dark fs-6"
+            >Mot de passe *</label
+          >
+          <input
+          (keyup)="checkPassSame()"
+            class="form-control form-control-lg form-control-solid"
+            type="password"
+            placeholder="Mot de passe"
+            name="password"
+            formControlName="Password"
+            autocomplete="off"
+
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Le mot de passe est obligatoire',
+              control: registerform.controls['Password']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'minlength',
+              message: 'Les mots de passe doivent contenir au moins 6 caractères.',
+              control: registerform.controls['Password']
+            }"
+          ></ng-container>
+        </div>
+
+        <!--end::Form group-->
+
+        <!--begin::Form group-->
+        <div class="fv-row mb-5">
+          <label class="form-label fw-bolder text-dark fs-6"
+            >Confirmé mot de passe *</label
+          >
+          <input
+          (keyup)="checkPassSame()"
+            class="form-control form-control-lg form-control-solid"
+            type="password"
+            placeholder="Confirmé mot de passe"
+            name="ConfirmPassword"
+            autocomplete="off"
+            formControlName="ConfirmPassword"
+            required
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'La confirmation doit correspondre au mot de passe.',
+              control: registerform.controls['cPassword']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'minlength',
+              message: 'La confirmation doit contenir au moins 6 caractères.',
+              control: registerform.controls['cPassword']
+            }"
+          ></ng-container>
+            <div *ngIf="passmsg != '' " >
+              <div class="fv-help-block">
+                'Passsword' and 'Confirm Password' didn't match.
+              </div>
+            </div>
+
+
+        </div>
+        <!--end::Form group-->
+      </div>
+      <div class="col-lg-4">
+        <div class="fv-row mb-4">
+          <label for="Name" class="form-label fw-bolder text-dark fs-6">Date de naissance * </label>
+            <div class="input-group">
+              <input  class="form-control form-control-lg form-control-solid" placeholder= "Date de naissance"
+              placement="bottom" formControlName="BirthDate" ngbDatepicker #dp="ngbDatepicker">
+              <button #buttonEl class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+              <span class="help-block" style="color: red">
+                {{ displayMessage.BirthDate }}
+              </span>
+            </div>
+        </div>
+        <div class="fv-row mt-10 mb-7">
+          <label class="form-label fw-bolder text-dark fs-6">Genre * </label>
+          <select
+            class="form-control form-control-lg form-control-solid"
+            name="Gender"
+            formControlName="Gender"
+            [ngClass]="{ 'has-error': displayMessage.Gender }"
+            required
+          >
+            <option value="" disabled style="background: #eeeeee">Genre</option>
+            <option value="M">Masculin</option>
+            <option value="F">Femenin</option>
+          </select>
+          <span class="help-block" style="color: red">
+            {{ displayMessage.Genre }}
+          </span>
+        </div>
+
+        <div class="fv-row mb-4">
+          <label for="Name" class="form-label fw-bolder text-dark fs-6"
+            >Profession *
+          </label>
+          <div
+            class="form-group"
+            [ngClass]="{ 'has-error': displayMessage.Profession }"
+          >
+            <input
+              class="form-control form-control-lg form-control-solid"
+              type="text"
+              placeholder="Profession"
+              name="Profession"
+              autocomplete="off"
+              formControlName="Profession"
+            />
+            <span class="help-block" style="color: red">
+              {{ displayMessage.Profession }}
+            </span>
+          </div>
+        </div>
+        <div class="fv-row mt-7 mb-4">
+          <label class="form-label fw-bolder text-dark fs-6">Ecole *</label>
+          <select
+            class="form-control form-control-lg form-control-solid"
+            name="SchoolId"
+            formControlName="SchoolId"
+            [ngClass]="{ 'has-error': displayMessage.SchoolId }"
+            required=""
+          >
+            <option value="" disabled style="background: #eeeeee">
+              Sélectionner votre école
+            </option>
+            <option *ngFor="let opt of schoolId" [value]="opt.Id">
+              {{ opt.Name }}
+            </option>
+          </select>
+          <span class="help-block" style="color: red">
+            {{ displayMessage.schoolId }}
+          </span>
+        </div>
+        <div class="fv-row mt-10">
+          <label class="form-label fw-bolder text-dark fs-6">Role *</label>
+          <select
+            class="form-control form-control-lg form-control-solid"
+            name="MembreStatusId"
+            formControlName="MembreStatusId"
+          >
+            <option value="" disabled style="background: #eeeeee">
+              Sélectionner votre Role
+            </option>
+            <option *ngFor="let opt of MemberStatusId" [value]="opt.Id">
+              {{ opt.Wording }}
+            </option>
+          </select>
+          <span class="help-block" style="color: red">
+            {{ displayMessage.MemberStatusId }}
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="fv-row mb-4">
+          <label class="form-label fw-bolder text-dark fs-6">Adresse *</label>
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="text"
+            placeholder="Adresse"
+            name="Street"
+            autocomplete="off"
+            formControlName="Street"
+            [ngClass]="{ 'has-error': displayMessage.Street }"
+            required
+          />
+          <span class="help-block" style="color: red">
+            {{ displayMessage.Street }}
+          </span>
+        </div>
+
+        <div class="fv-row mt-10 mb-7">
+          <label class="form-label fw-bolder text-dark fs-6"
+            >Code postale *</label
+          >
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="text"
+            placeholder="Code postale"
+            name="ZipCode"
+            autocomplete="off"
+            formControlName="ZipCode"
+            [ngClass]="{ 'has-error': displayMessage.ZipCode }"
+          />
+          <span class="help-block" style="color: red">
+            {{ displayMessage.ZipCode }}
+          </span>
+        </div>
+        <div class="fv-row mb-4">
+          <label class="form-label fw-bolder text-dark fs-6">Ville *</label>
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="text"
+            placeholder="Ville"
+            name="City"
+            autocomplete="off"
+            formControlName="City"
+            [ngClass]="{ 'has-error': displayMessage.City }"
+          />
+          <span class="help-block" style="color: red">
+            {{ displayMessage.City }}
+          </span>
+        </div>
+        <div class="fv-row mb-5">
+          <label class="form-label fw-bolder text-dark fs-6">Pays *</label>
+          <select
+            class="form-control form-control-lg form-control-solid"
+            name="Country"
+            formControlName="Country"
+            placeholder="Pays"
+          >
+            <option *ngFor="let opt of countries" [value]="opt.code">
+              {{ opt.name }}
+            </option>
+          </select>
+          <span class="help-block" style="color: red">
+            {{ displayMessage.Country }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--begin::Form group-->
+
+    <!--end::Form group-->
+
+    <!--begin::Form group-->
+    <div class="text-center">
+      <button
+        type="submit"
+        id="kt_login_signup_form_cancel_button"
+        class="btn btn-lg btn-light-primary w-100 mb-3"
+      >
+        S’inscrire
+      </button>
+      <p class="text-muted text-center">
+        <small>VOUS AVEZ DEJA UN COMPTE </small>
+      </p>
+      <a
+        routerLink="/auth/login"
+        type="button"
+        id="kt_login_signup_form_cancel_button"
+        class="btn btn-lg btn-light-primary w-100 mb-5"
+      >
+        Se connecter
+      </a>
+    </div>
+    <!--end::Form group-->
+  </form>
+
+  <ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation"
+  >
+  </ng-template>
+</div>

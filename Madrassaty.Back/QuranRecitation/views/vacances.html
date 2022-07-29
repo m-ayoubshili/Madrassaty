@@ -1,0 +1,45 @@
+﻿<div ng-controller="vacancesCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2>Vacances</h2>
+        </div>
+        <div class="col-lg-3">
+            <h2><a class="btn btn-primary pull-right" ng-click="setVacanceId(0, 'lg', -1)"><i class="fa fa-plus"></i></a></h2>
+        </div>
+        <div class="col-lg-12">
+            <b>Année Scolaire <a>{{ anneeScolaire.description }}</a> :</b>  <span>Date début ({{ anneeScolaire.StartDay | date:'dd-MM-yyyy' }}) , Date Fin ({{ anneeScolaire.EndDay| date:'dd-MM-yyyy' }})</span>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeinright" ng-controller="datatablesCtrl">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Date Début</th>
+                                    <th>Date fin</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="vacance in vacances">
+                                    <td>{{ vacance.description }}</td>
+                                    <td>{{ vacance.StartDay | date:'dd-MM-yyyy'}}</td>
+                                    <td>{{ vacance.EndDay| date:'dd-MM-yyyy' }}</td>
+                                    <td>
+                                        <a class="btn btn-info" ng-click="setVacanceId(vacance.Id, 'lg', $index)"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger" ng-click="deleteVacance(vacance.Id, 'sm', $index)"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

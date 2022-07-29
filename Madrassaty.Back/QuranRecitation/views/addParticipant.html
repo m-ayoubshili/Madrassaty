@@ -1,0 +1,33 @@
+﻿<div>
+    <div class="modal-header"><h2>{{modalTitle}}</h2></div>
+    <div>
+        <form name="sessionsRecitationParticipantForm" class="form-horizontal" ng-submit="addSessionsRecitationParticipant();">
+            <div class="modal-body" style="display: flex;">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="discipline.Wording" class="control-label col-lg-2">Level</label>
+                        <div class="col-lg-10">
+                            <select name="LevelSelect" id="LevelSelect" ng-model="LevelSelect" class="form-control" required>
+                                <option ng-repeat="Level in disciplineLevels" value="{{Level.DisciplineLevelId}}">{{Level.DisciplineLevelDescription}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discipline.Wording" class="control-label col-lg-2">Etudiant</label>
+                        <div class="col-lg-10">
+                            <select name="StudentSelect" id="StudentSelect" ng-model="StudentSelect" class="form-control" required>
+                                <option ng-repeat="Student in Students" value="{{Student.Id}}">{{Student.FullName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" ng-click="cancelModal()">Annuler</button>
+                <button class="btn btn-primary" type="submit" ng-disabled="sessionsRecitationParticipantForm.$invalid">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>
