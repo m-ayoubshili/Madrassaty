@@ -1,0 +1,24 @@
+
+    <div class="modal-header">
+      <h2>{{modalTitle}}</h2>
+    </div>
+    <div>
+      <form name="addSubErrorsForm" class="form-horizontal">
+        <div class="modal-body" style="display: flex;">
+          <div class="col-xs-12">
+            <div class="form-group">
+  
+              <button *ngFor="let item of subErrorsList; let index=index;" class="btn btn-secondary" (click)="onButtonClick(item)" class="{{item.cssclass}}"
+                     style="margin: 3px;" >{{item.name}} <p style="color: rgb(46, 0, 252);">{{item.code }}</p></button>
+  
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" (click)="bsModalRef.hide()">Annuler</button>
+          <button class="btn btn-primary" (click)="saveSubErrors()">Confirmer</button>
+        </div>
+      </form>
+    </div>

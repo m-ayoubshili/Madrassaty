@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QuranRecitation.Data.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T>, IGenericRepositoryAsync<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected QuranRecitationDbContext DbContext { get; set; }
         protected DbSet<T> DbSet { get; set; }
@@ -75,25 +75,29 @@ namespace QuranRecitation.Data.Repositories
                 DbContext.SaveChanges();
 
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Console.WriteLine("Exception save changes", ex);
             }
-
+           
         }
 
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            return await DbSet.FindAsync(id);
+        }
         public T CreateList(List<T> entity)
         {
-            T result = entity.FirstOrDefault();
+            T result=entity.FirstOrDefault();
             try
             {
                 foreach (var row in entity)
                 {
-                    result = DbSet.Add(row);
+                 result =   DbSet.Add(row);
                     Save();
                 }
-
-
+                
+               
             }
             catch (Exception ex)
             {
@@ -101,68 +105,6 @@ namespace QuranRecitation.Data.Repositories
             }
             return result;
         }
-
-        #region async
-
-        public async Task<T> GetByIdAsync(int id)
-        {
-            return await DbSet.FindAsync(id);
-        }
-
-        public async Task<T> CreateAsync(T entity)
-        {
-            T result = entity;
-            DbEntityEntry<T> dbEntityEntry = DbContext.Entry(entity);
-            if (dbEntityEntry.State != EntityState.Detached)
-                dbEntityEntry.State = EntityState.Added;
-            else
-                result = DbSet.Add(entity);
-            await SaveAsync();
-            return result;
-        }
-
-        public async Task<T> GetByIdGuidAsync(Guid id)
-        {
-            return await DbSet.FindAsync(id);
-        }
-
-        public async Task UpdateAsync(T entity)
-        {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
-            if (dbEntityEntry.State == EntityState.Detached)
-                DbSet.Attach(entity);
-            dbEntityEntry.State = EntityState.Modified;
-            await SaveAsync();
-        }
-
-        public async Task DeleteAsync(T entity)
-        {
-
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
-            if (dbEntityEntry.State != EntityState.Deleted)
-                dbEntityEntry.State = EntityState.Deleted;
-            else
-            {
-                DbSet.Attach(entity);
-                DbSet.Remove(entity);
-            }
-            await SaveAsync();
-        }
-
-        public async Task SaveAsync()
-        {
-            try
-            {
-                await DbContext.SaveChangesAsync();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception save changes", ex);
-            }
-        }
-
-        #endregion
     }
 
 
@@ -176,15 +118,5 @@ namespace QuranRecitation.Data.Repositories
         void Delete(T entity);
         void Save();
         T CreateList(List<T> entity);
-    }
-
-    public interface IGenericRepositoryAsync<T> where T : class
-    {
-        Task<T> GetByIdAsync(int id);
-        Task<T> CreateAsync(T entity);
-        Task<T> GetByIdGuidAsync(Guid id);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task SaveAsync();
     }
 }

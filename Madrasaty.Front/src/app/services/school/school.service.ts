@@ -40,13 +40,14 @@ export class SchoolService {
     }
     return this.http.get<School>(this.schoolsUrl+id,this.httpOptions)
   }
+  
   GetSchoolPhotoPath(photo: string) {
     var photoPath = environment.SCHOOL_PHOTO_PATH;
     if (photo != "" && photo != null && photo!="0.jpg"  && photo!="0") {
       photoPath = photoPath + photo + '?' + new Date().getTime();
     }
     else {
-      photoPath = photoPath + "madrasaty_logo.png";
+      photoPath = photoPath + "madrasaty_logo.jpg";
     }
 
     return photoPath;

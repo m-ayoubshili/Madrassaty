@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { LayoutService } from 'src/app/_metronic/layout';
 import { environment } from '../../../../../../environments/environment';
 type Tabs = 'Header' | 'Toolbar' | 'PageTitle' | 'Aside' | 'Content' | 'Footer';
@@ -12,32 +13,28 @@ type Tabs = 'Header' | 'Toolbar' | 'PageTitle' | 'Aside' | 'Content' | 'Footer';
 export class ExploreMainDrawerComponent implements OnInit {
   appPurchaseUrl: string = environment.appPurchaseUrl;
   appPreviewUrl: string = environment.appPreviewUrl;
-
+  @Input() template: string;
+  @Input() functionality: string;
+  @Input() id: string;
   activeTab: Tabs = 'Header';
   model: any;
   @ViewChild('form', { static: true }) form: NgForm;
   configLoading: boolean = false;
   resetLoading: boolean = false;
 
-  constructor(private layout: LayoutService) {}
+
+  constructor() {
+  
+  }
 
   ngOnInit(): void {
-    this.model = this.layout.getConfig();
+
+
   }
 
-  setActiveTab(tab: Tabs) {
-    this.activeTab = tab;
-  }
 
-  resetPreview(): void {
-    this.resetLoading = true;
-    this.layout.refreshConfigToDefault();
-  }
 
-  submitPreview(): void {
-    this.configLoading = true;
-    this.layout.setConfig(this.model);
-    location.reload();
-  }
+
+
 }
 

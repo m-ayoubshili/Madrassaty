@@ -1,15 +1,18 @@
+import { MembersListService } from './members/members-list.service';
 import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { Member } from '../models/member';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 declare let $: any;
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class UserService {
 
   private isUserLoggedIn;
+  currentMemberId
+  memberData
   CurrentUser:any;
   userdata: string;
   httpOptions = {
@@ -21,8 +24,10 @@ export class UserService {
 
   constructor( private httpclient:HttpClient, private router:Router) {
   	this.isUserLoggedIn = false;
+ 
   }
 
+ 
   setUserLoggedIn() {
   	this.isUserLoggedIn = true;
 
@@ -40,7 +45,7 @@ export class UserService {
 
   logOut() {
     localStorage.removeItem('currentUser');
-    //correction
+ 
     localStorage.clear();
     this.router.navigate(['/auth/login']);
     this.httpclient.post(environment.ACCOUNT_URL+"Logout",this.httpOptions).subscribe({
@@ -49,13 +54,20 @@ export class UserService {
     })
   }
 
+
 getMemberStatutId()
 {
    this.CurrentUser = JSON.parse(localStorage.getItem("currentUser"))["user"];
    return JSON.parse(this.CurrentUser).MemberStatusId;
 }
 
-forgotPassword(email):any{
 
+getMemberSchoolId()
+{
+   this.CurrentUser = JSON.parse(localStorage.getItem("currentUser"))["user"];
+   return JSON.parse(this.CurrentUser).schoolId;
 }
+
+
+
 }

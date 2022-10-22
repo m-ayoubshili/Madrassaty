@@ -65,7 +65,7 @@ namespace QuranRecitation.WebApi
             //{
             //    ClientId = "",
             //    ClientSecret = ""
-            //});          
+            //});
         }
     }
 }

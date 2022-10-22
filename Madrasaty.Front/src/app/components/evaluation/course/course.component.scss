@@ -1,0 +1,43 @@
+.flex {
+  display: flex;
+}
+
+.gap-4 {
+  gap: 1rem /* 16px */;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+.cardAnimation {
+  transition: transform 400ms;
+  will-change: transform;
+
+}
+.cardAnimation:hover,
+.cardAnimation:focus {
+  transform: translateY(10px);
+}
+
+
+.row {
+  display: flex;
+
+}
+.column {
+  flex: 1;
+}
+  .table.gs-0 th:first-child, .table.gs-0 td:first-child {
+    padding-left: 1rem;
+  }
+  .table.gs-0 th:last-child, .table.gs-0 td:last-child {
+    padding-right: 1rem;
+  }
+
+
+
+  .inline { float:left; }

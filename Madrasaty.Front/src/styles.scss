@@ -8,4 +8,39 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+//grid Ag css
+
+@import "node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+.ag-theme-alpine {
+
+    @include ag-theme-alpine();
+  }
+  .fc-button {
+    color: #fff;
+    background-color: #1ab394;
+    
+}
+.fc-button:hover {
+  background-color: #7ad89b;
+  
+}
+.fc-button-primary:disabled {
+  color: #fff;
+  color: #fff;
+    background-color: #1ab394;
+    border-color:  #fff;
+   }
+  .fc-button-primary:not(:disabled).fc-button-active {
+    color: #fff;
+    color: #fff;
+    background-color: #1ab394;
+    border-color:  #fff;
+   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
 

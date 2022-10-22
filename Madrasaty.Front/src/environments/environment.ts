@@ -44,7 +44,6 @@ export const environment = {
   STUDENT_RECITATION_DETAIL_URL: "http://" +  location.hostname + ":58232/api/RecitationDetail/GetAllByIdStudent/",
   ACCOUNT_URL: "http://" + location.hostname + ":58232/api/Account/",
   SCHOOL_PHOTO_PATH: "http://" + location.hostname + ":58232/images/school/",
-  MESSAGE_PHOTO_PATH: "http://" + location.hostname + ":58232/images/messages/",
   COURSE_SESSION_URL: "http://" + location.hostname + ":58232/api/CourseSession/",
   Get_Level_Url: "http://" + location.hostname + ":58232/api/DisciplineLevelById/",
 };

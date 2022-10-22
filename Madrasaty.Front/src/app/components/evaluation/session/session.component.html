@@ -1,1 +1,404 @@
-<p>session works!</p>
+<app-settings-header-shared   (SearchEvent)="searchResult($event)"  (btnClick)="OpenDiag(-1)" (btnClickSwitchToCard)="this.switchbtn =!this.switchbtn" ></app-settings-header-shared> 
+
+<div class="container-fluid">
+    <div class="d-flex">
+      <form [formGroup]="reccurenceFormGroup">
+        <mat-form-field appearance="outline">
+          <mat-label disabled >Discipline </mat-label>
+          <mat-select (selectionChange)="changeReccurence($event)" formControlName="reccurenceDropDown" required>
+            <mat-option *ngFor="let disp of reccurenceList" [value]="disp"> {{disp.Wording}}</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+
+
+<div class="container-fluid" *ngIf="switchbtn == false">
+    <div class="row">
+      <div class="col-lg-4" *ngFor="let sessionItem of rowData" >
+        <div class="card cardAnimation card-xl-stretch  mb-5 mb-xl-8">
+     
+<div class="card-body">
+
+    <div class="d-flex flex-stack">
+
+      <div class="d-flex align-items-center">
+    
+        <div class="symbol symbol-60px me-5">
+          <span class="symbol-label" [ngClass]="'bg-' + color + '-light'">
+            <img [src]=""  class="h-50 align-self-center" alt="" />
+          </span>
+        </div>
+      
+        <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+          <a href="#" class="text-dark fw-bolder text-hover-primary fs-5">
+            {{sessionItem.DisciplineName}}
+          </a>
+       
+  
+          <span class="text-muted fw-bold">{{sessionItem.TeacherName}}</span>
+        </div>
+    
+      </div>
+    
+      <div class="ms-1">
+        <button
+          type="button"
+          class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+          data-kt-menu-trigger="click"
+          data-kt-menu-placement="bottom-end"
+          data-kt-menu-flip="top-end"
+          style="width: 60px;"
+        >
+          <span          
+            class="svg-icon svg-icon-1"
+          > <i class="fa fa-clock-o"></i> {{sessionItem.DivisionParam}} min</span>
+        </button>
+       
+      </div>
+
+    </div>
+
+   <br>
+   
+  
+   
+
+       <div class="d-flex">
+        <h6 class="fs-5">Niveaux :</h6>
+          <h5 *ngFor="let level of sessionItem.RecitationDisciplineLevels" style=" margin-left: 3px;"  class="text-muted fw-bold fs-6 mt-1">
+            {{level}}
+         </h5>
+      </div>
+
+
+
+      <div class="col-sm-12 mt-3" style="display:inline-block;">
+        <h5> Le {{sessionItem.StartDate +'Z'  | date:'dd-MM-yyyy'}} de {{sessionItem.StartDate +'Z'  | date:'HH:mm'}}  vers  {{sessionItem.EndTime +'Z' | date:'HH:mm'}} </h5>
+    </div>
+
+
+    <div class="d-flex flex-column w-100 mt-9">
+      <span class="text-dark me-2 fw-bolder pb-3">Progress</span>
+      <div class="stat-percent">{{sessionItem.TauxRemplissage}} %</div>
+      <div class="progress h-9px w-80">
+        <div
+          class="progress-bar"
+          ngClass="bg-success"
+          role="progressbar"
+          [style.width.px]="sessionItem.TauxRemplissage"
+        ></div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column mt-10">
+      <div class="text-dark me-2 fw-bolder pb-4">Team</div>
+  
+      <div class="d-flex">
+        <a
+          href="#"
+          class="symbol symbol-35px me-2"
+          data-bs-toggle="tooltip"
+          title="Ana Stone"
+        >
+          <img src="./assets/media/avatars/150-1.jpg" alt="" />
+        </a>
+  
+        <a
+          href="#"
+          class="symbol symbol-35px me-2"
+          data-bs-toggle="tooltip"
+          title="Mark Larson"
+        >
+          <img src="./assets/media/avatars/150-4.jpg" alt="" />
+        </a>
+  
+        <a
+          href="#"
+          class="symbol symbol-35px me-2"
+          data-bs-toggle="tooltip"
+          title="Sam Harris"
+        >
+          <img src="./assets/media/avatars/150-8.jpg" alt="" />
+        </a>
+  
+        <a
+          href="#"
+          class="symbol symbol-35px"
+          data-bs-toggle="tooltip"
+          title="Alice Micto"
+        >
+          <img src="./assets/media/avatars/150-9.jpg" alt="" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <mat-card-actions align="end" style=   " margin-top: -25px;">     
+         
+                  
+    <button  [routerLink]="['/crafted/evaluation/session/participants', sessionItem.Id]"  class="btn btn-icon" >
+    <span class="svg-icon svg-icon-2x svg-icon-warning" ng-reflect-inline-s-v-g="./assets/media/icons/duotune/a">
+      <i class="fas fa-group" style="font-size: 25px; color: rgb(40, 47, 143);"></i></span>
+</button> 
+
+<app-shared-buttons [ismodified]="true"   (btnEditClick)="OpenDiag(sessionItem.Id)"  (btnDeleteClick)="deleteSession(sessionItem.Id)"  ></app-shared-buttons>    
+</mat-card-actions>
+        </div>   
+      </div>
+   
+    </div>
+  </div>
+
+ 
+
+  <app-shared-drawer [template]="callAPIDialog" [fonctionality]="DialogTitle"></app-shared-drawer>
+  <ng-template #callAPIDialog>
+      <form [formGroup]="sessionForm" (ngSubmit)="saveSession()">
+        <div class="row">
+          <div class="col-6">           
+        <mat-form-field appearance="outline">
+          <mat-label>Titre</mat-label>
+          
+          <input matInput placeholder="Placeholder" required type="text" formControlName="Title">
+          <mat-error *ngIf="sessionForm.controls['Title'].errors?.required"> Le Title est obligatoire et doit être unique.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>            
+            <input matInput placeholder="Placeholder" required type="text" formControlName="Description">
+            <mat-error *ngIf="sessionForm.controls['Description'].errors?.required"> La Description est obligatoire et doit être unique.
+            </mat-error>
+          </mat-form-field> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Type d'evaluation</mat-label>
+            <mat-select formControlName="TypeEvaluation" id="TypeEvaluation" required >
+                <mat-option value="S">Moutoun</mat-option> 
+              <mat-option value="D">Evaluation</mat-option>                               
+            </mat-select>
+            <mat-error *ngIf="sessionForm.controls['TypeEvaluation'].errors?.required"> Le type d'evaluation est obligatoire.
+            </mat-error>
+          </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Enseignant</mat-label>
+          <mat-select formControlName="TeacherId" id="TeacherId" required >
+            <mat-option *ngFor="let opt of teachers" [value]="opt.Id">{{opt.FullName}}</mat-option>                                
+          </mat-select>
+          <mat-error *ngIf="sessionForm.controls['TeacherId'].errors?.required"> L'enseignant est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Classe</mat-label>
+          <mat-select formControlName="ClassroomId" id="ClassroomId" required >
+          
+            <mat-option *ngFor="let opt of classrooms"  [value]="opt.Id">{{opt.Wording}}</mat-option>                               
+          </mat-select>
+          <mat-error *ngIf="sessionForm.controls['ClassroomId'].errors?.required"> Le Classe Est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+          <mat-label> Discipline / Niveaux</mat-label>
+          <mat-select formControlName="DisciplineId" id="DisciplineId" required [ngModel]="selectedDiscipline"  (ngModelChange)="refreshLevels($event)">
+
+            <mat-option *ngFor="let opt of DisciplineList" [value]="opt.Id">{{opt.Wording}}</mat-option>                               
+          </mat-select>
+          <mat-error *ngIf="sessionForm.controls['DisciplineId'].errors?.required"> La période scolaire est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Niveaux</mat-label>
+          <mat-select formControlName="LevelIds" id="LevelIds" required  multiple>
+   
+            <mat-option *ngFor="let opt of LevelList" [value]="opt.Id">{{opt.Wording}}</mat-option>                                 
+          </mat-select>
+          <mat-error *ngIf="sessionForm.controls['LevelIds'].errors?.required"> Les Niveaux sont obligatoire.
+          </mat-error>
+        </mat-form-field>
+     
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Recurrence</mat-label>
+            <mat-select formControlName="RecurrenceId" id="RecurrenceId" required  (ngModelChange)="refreshReccurenceValue()" >
+     
+              <mat-option *ngFor="let opt of reccurenceList" [value]="opt.Id">{{opt.Wording}}</mat-option>                                 
+            </mat-select>
+            <mat-error *ngIf="sessionForm.controls['RecurrenceId'].errors?.required"> La Recurrence est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        
+      </div>
+    </div>
+        <br>
+    <div class="row">
+          <div class="col-6"  *ngIf="(ReccurenceValue == 3)">
+            <mat-form-field appearance="outline">
+                <mat-label> Jour :</mat-label>
+                <mat-select formControlName="Jour" id="Jour" required >
+         
+                  <mat-option *ngFor="let opt of DaysList" [value]="opt">{{opt}}</mat-option>                                 
+                </mat-select>
+                <mat-error *ngIf="sessionForm.controls['Jour'].errors?.required"> Le jour est obligatoire.
+                </mat-error>
+              </mat-form-field>
+           </div>
+
+      <div class="col-6"  *ngIf="(ReccurenceValue == 1||ReccurenceValue == 2|| ReccurenceValue ==4 )">
+          
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Date </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              type="datetime"
+              required
+              formControlName="StartDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-error *ngIf="sessionForm.controls['StartDate'].errors?.required"
+              >la date de début est obligatoire.</mat-error
+            >
+            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+          </mat-form-field>
+      </div>
+      
+      <div class="col-6" *ngIf="(ReccurenceValue == 5)">
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Trimestre 1: </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              type="datetime"
+              required
+              formControlName="T1"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+           
+            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+          </mat-form-field>
+          
+      <div class="flex gap-4 justify-start items-center">
+          <mat-form-field color="accent" appearance="outline" class="inline">
+            <mat-label>Trimestre 2: </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              type="datetime"
+              required
+              formControlName="T2"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>       
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+          </mat-form-field>
+       
+         
+          <mat-form-field color="accent" appearance="outline"  class="inline">
+            <mat-label>Trimestre 3: </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker3"
+              type="datetime"
+              required
+              formControlName="T3"
+              class="example-right-align"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker3"
+            ></mat-datepicker-toggle>       
+            <mat-datepicker #picker3 color="primary"></mat-datepicker>
+          </mat-form-field>
+  
+        </div>
+      </div>
+  
+ 
+        <div class="col-6">
+            <mat-form-field appearance="outline">
+                <mat-label> Créneau :</mat-label>
+                <mat-select formControlName="DivisionParam" id="DivisionParam" required >
+         
+                  <mat-option *ngFor="let opt of slotList"  [value]="opt">{{opt}}</mat-option>                                 
+                </mat-select>
+                <mat-error *ngIf="sessionForm.controls['DivisionParam'].errors?.required"> Le Paramétre de Division  est obligatoire.
+                </mat-error>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+         
+                <mat-label> D&eacute;but :</mat-label>
+                <ngb-timepicker [(ngModel)]="BeginTime" formControlName="StartDate" required ></ngb-timepicker>
+                <mat-error *ngIf="sessionForm.controls['StartDate'].errors?.required"> La Date de  début est obligatoire.
+                </mat-error>
+           
+        </div> 
+      <div class="col-6">
+        
+                <mat-label> Fin :</mat-label>
+                <ngb-timepicker [(ngModel)]="EndTime"  formControlName="EndTime" required=""  ></ngb-timepicker>
+                <mat-error *ngIf="sessionForm.controls['EndTime'].errors?.required"> La Date de Fin est obligatoire.
+                </mat-error>
+           
+        </div> 
+    </div>
+   
+    <div class="row">
+        <div class="col-6">
+            <mat-checkbox class="example-margin" required [(ngModel)]="checked"  formControlName="IsSaved">Checked</mat-checkbox>
+        </div> 
+    </div>
+        <div class="card-footer py-6"> 
+          <div class="col-lg-9">
+            <button
+              type="button"
+              (click)="this.sessionForm.reset()"
+              class="btn btn-primary me-2"      
+            >          
+            <span class="indicator-label">Clear</span>      
+            </button>
+            <button
+              type="submit"                  
+              [disabled]="sessionForm.invalid"   
+              data-bs-dismiss="offcanvas" 
+              class="btn btn-active-light btn-color-muted" >
+              <ng-container >
+                <span class="indicator-label">Confirme</span>
+              </ng-container>            
+            </button>
+          </div>
+        </div> 
+      </form>
+    </ng-template>

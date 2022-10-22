@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
 
@@ -13,13 +12,8 @@ namespace QuranRecitation.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            var hubConfiguration = new HubConfiguration();
-            hubConfiguration.EnableDetailedErrors = true;
-            //hubConfiguration.EnableJavaScriptProxies = true;    
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             ConfigureAuth(app);
-            app.MapSignalR("/chat",hubConfiguration);
-           
         }
     }
 }

@@ -8,6 +8,7 @@ import { IconUserModel } from '../icon-user.model';
 })
 export class UserListComponent implements OnInit {
   @Input() users: Array<IconUserModel> = [];
+
   constructor() {}
 
   ngOnInit(): void {}

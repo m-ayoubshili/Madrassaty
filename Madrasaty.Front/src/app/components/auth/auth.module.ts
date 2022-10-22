@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../shared/material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +14,9 @@ import { UserService } from 'src/app/services/user.service';
 
 import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterService } from 'src/app/services/register.service';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { MembersListService } from 'src/app/services/members/members-list.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -21,6 +25,8 @@ import { RegisterService } from 'src/app/services/register.service';
     RegistrationComponent,
     ForgotPasswordComponent,
     AuthComponent,
+    ConfirmEmailComponent,
+    ChangePasswordComponent,
 
   ],
   imports: [
@@ -31,9 +37,10 @@ import { RegisterService } from 'src/app/services/register.service';
     ReactiveFormsModule,
     NgbModule,
     NgbDatepickerModule,
+    MaterialModule,
 
     HttpClientModule, ],
-    providers:[UserService, RegisterService]
+    providers:[UserService, RegisterService,MembersListService ]
 
 })
 export class AuthModule {}

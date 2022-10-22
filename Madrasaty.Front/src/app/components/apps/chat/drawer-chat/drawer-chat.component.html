@@ -1,307 +1,178 @@
-<!-- <app-settings-header ></app-settings-header> -->
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <div class="d-flex">
-      <mat-form-field appearance="outline" *ngIf="showSearch">
-        <mat-label>Search...</mat-label>
-        <input matInput type="search" placeholder="Search">
-      </mat-form-field>
-    </div>
-      <div class="d-flex">
-        <button mat-mini-fab color="grey" matTooltip="Ajouter" (click)="OpenCreateDiag()" id="ajout " [disabled]="this.currentUser.MemberStatusId!=1 && this.currentUser.MemberStatusId!= 2  "><mat-icon>add</mat-icon></button>
-        <button mat-mini-fab color="primary" matTooltip="Changer le mode d'affichage" (click)="onClickSwitchToCard()"><mat-icon>remove_red_eye</mat-icon></button>
-      </div>
+<div class="d-flex flex-wrap flex-stack mb-6">
+  <h3 class="fw-bolder my-2">
+    My Contacts
+    <span class="fs-6 text-gray-400 fw-bold ms-1">(59)</span>
+  </h3>
 
-  </div>
- </nav>
-</div>
-<!-- <app-settings-header (btnClick)="OpenDiag(-1)"  (btnClickSwitchToCard)="switchToCard()"></app-settings-header> -->
-
-<div class="container-fluid"  *ngIf="switchbtn == false">
-  <div class="row" >
-    <div class="col-lg-4" *ngFor="let item of rowData">
-      <div>
-        <mat-card class="card" style="width: 82%">
-
-          <div class="row">
-            <div class="column">
-              <mat-card-content>
-                <h2>
-                  <strong>{{ item.Name }}</strong>
-                </h2>
-              </mat-card-content>
-            </div>
-          </div>
-          <div *ngIf="this.currentUser.MemberStatusId==1 || this.currentUser.MemberStatusId== 2;else simpleUser">
-            <mat-card-actions align="end" style="margin-bottom: -5px">
-            <button mat-mini-fab color="primary" (click)="openMembersDialog(item.MessageGroupId)">
-              <mat-icon>group</mat-icon>
-            </button>
-            <button mat-mini-fab color="success" (click)="OpenUpdateDiag(item.MessageGroupId)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" (click)="deleteGroup(item.MessageGroupId)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            </mat-card-actions>
-          </div>
-          <ng-template #simpleUser>
-            <mat-card-actions  align="end" style="margin-bottom: -5px">
-              <button mat-mini-fab color="warn" type="button" (click)="quitGroup(item.MessageGroupId)" >
-                <mat-icon>exit_to_app</mat-icon>
-              </button>
-            </mat-card-actions>
-          </ng-template>
-        </mat-card>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="Name">
-        <th  mat-header-cell *matHeaderCellDef >Name</th>
-        <td    mat-cell *matCellDef="let element">
-          {{ element.Name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef >Actions</th>
-        <td mat-cell *matCellDef="let element">
-          <div *ngIf="this.currentUser.MemberStatusId==1 || this.currentUser.MemberStatusId== 2;else simpleUser2">
-            <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="OpenUpdateDiag(element.MessageGroupId)">
-              <span  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"  class="svg-icon svg-icon-3"  ></span>
-            </button>
-            <button title="Edit Members"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="openMembersDialog(element.MessageGroupId)">
-              <span  [inlineSVG]="'./assets/media/icons/duotune/communication/com006.svg'" class="svg-icon svg-icon-3"  ></span>
-            </button>
-            <button
-              class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" (click)="deleteGroup(element.MessageGroupId)" >
-              <span
-                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
-                class="svg-icon svg-icon-3"
-              ></span>
-            </button>
-          </div>
-          <ng-template #simpleUser2>
-            <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="quitGroup(element.MessageGroupId  )">
-              <span  [inlineSVG]="'./assets/media/icons/duotune/general/gen034.svg'"  class="svg-icon svg-icon-3"  ></span>
-            </button>
-          </ng-template>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row  *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator
-    [pageSize]="1"
-      [pageSizeOptions]="[1, 3, 20]"
-      showFirstLastButtons
-      aria-label="Select page of dataSource"
+  <div class="d-flex my-2">
+    <select
+      name="status"
+      data-control="select2"
+      data-hide-search="true"
+      class="form-select form-select-white form-select-sm w-125px"
     >
-    </mat-paginator>
+      <option value="Online" selected>Online</option>
+      <option value="Pending">Pending</option>
+      <option value="Declined">Declined</option>
+      <option value="Accepted">Accepted</option>
+    </select>
   </div>
-
 </div>
 
-<ng-template  #editGroup>
-  <div class="container">
-    <h2 mat-dialog-title>{{DialogTitle}}</h2>
-  <form [formGroup] ="groupForm" (ngSubmit)="updateGroup()" >
-
-     <mat-form-field appearance="outline">
-        <mat-label>Nom</mat-label>
-        <input matInput placeholder="Placeholder" required  type="text" formControlName="Name" >
-       <mat-error *ngIf="groupForm.controls['Name'].errors?.required"> Le nom est obligatoire.</mat-error>
-      </mat-form-field>
-      <br>
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Members</mat-label>
-        <mat-select  [formControl]="Members" multiple>
-          <mat-option *ngFor="let Member of allUsers" [value]="Member.FullName" >{{Member.FullName}}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
-    <mat-dialog-actions align="end">
-      <button mat-raised-button type="button" (click)="ClearForm()" color="warn">Clear</button>
-      <button mat-raised-button mat-dialog-close [disabled]="groupForm.invalid" type="submit" color="success">Confirmer</button>
-    </mat-dialog-actions>
-  </form>
- </div>
-</ng-template>
-
-<ng-template  #createGroup>
-  <div class="container">
-    <h2 mat-dialog-title>{{DialogTitle}}</h2>
-  <form [formGroup] ="groupForm" (ngSubmit)="ajouterGroup()" >
-
-     <mat-form-field appearance="outline">
-        <mat-label>Nom</mat-label>
-        <input matInput placeholder="Placeholder" required  type="text" formControlName="Name" >
-       <mat-error *ngIf="groupForm.controls['Name'].errors?.required"> Le nom est obligatoire.</mat-error>
-      </mat-form-field>
-      <br>
-    <mat-dialog-actions align="end">
-      <button mat-raised-button type="button" (click)="ClearForm()" color="warn">Clear</button>
-      <button mat-raised-button mat-dialog-close [disabled]="groupForm.invalid" type="submit" color="success">Confirmer</button>
-    </mat-dialog-actions>
-  </form>
- </div>
-</ng-template>
-
-<ng-template #editMembers>
-  <div class="container" >
-    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="this.selection.clear()">
-    <mat-tab  style="height: 10px;" label="Add Members">
-      <mat-dialog-actions align="center" >
-        <button mat-raised-button mat-dialog-close type="button" color="success" (click)="addMembers()">Ajouter</button>
-      </mat-dialog-actions>
-      <br/>
-      <mat-form-field appearance="standard" class="full-width">
-        <mat-label>Search Member</mat-label>
-        <input
-        matInput
-        placeholder="Type something here"
-        (keyup)="searchMember($event)">
-      </mat-form-field>
-      <mat-dialog-content>
-        <table mat-table [dataSource]="membersDataSource" class="mat-elevation-z8" >
-
-         <div >
-           <!-- Checkbox Column -->
-           <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()"
-                            [aria-label]="checkboxLabel()">
-              </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row" >
-
-                <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)"
-                            [aria-label]="checkboxLabel(row)">
-              </mat-checkbox>
-
-            </td>
-          </ng-container>
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="First Name" >
-            <th mat-header-cell *matHeaderCellDef> Nom </th>
-            <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Last Name">
-            <th mat-header-cell *matHeaderCellDef> Nom de famille </th>
-            <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element" > {{element.Email}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Role">
-            <th mat-header-cell *matHeaderCellDef> Role </th>
-            <td mat-cell *matCellDef="let element">
-              <div [ngSwitch]="element.MemberStatusId">
-                <div  *ngSwitchCase="1"> Administrateur</div>
-                <div  *ngSwitchCase="2"> Enseignant actif</div>
-                <div *ngSwitchCase="3"> Enseignant non actif</div>
-                <div  *ngSwitchCase="4"> Etudiant actif</div>
-                <div  *ngSwitchCase="5"> Etudiant non actif</div>
-                <div  *ngSwitchCase="6"> Nouvelle inscription</div>
-                <div  *ngSwitchDefault> </div>
-              </div>
-          </td>
-          </ng-container>
-
-         </div>
-          <tr mat-header-row *matHeaderRowDef="membersDisplayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: membersDisplayedColumns;"
-              (click)="selection.toggle(row)">
-          </tr>
-        </table>
-      </mat-dialog-content>
-  </mat-tab>
-    <mat-tab label="Delete Members">
-      <mat-dialog-actions align="center">
-        <button mat-raised-button mat-dialog-close type="button" color="warn" (click)="deleteMembers()">Delete</button>
-      </mat-dialog-actions>
-      <br/>
-      <mat-form-field appearance="standard" class="full-width">
-        <mat-label>Search Member</mat-label>
-        <input
-        matInput
-        placeholder="Type something here"
-        (keyup)="searchExistingMember($event)">
-      </mat-form-field>
-      <mat-dialog-content>
-        <table mat-table [dataSource]="existingMembersDataSource" class="mat-elevation-z8" >
-
-          <!-- Checkbox Column -->
-          <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? toggleAllRowstoDelete() : null"
-                            [checked]="selection.hasValue() && isAllSelectedtoDelete()"
-                            [indeterminate]="selection.hasValue() && !isAllSelectedtoDelete()"
-                            [aria-label]="checkboxLabeltoDelete()">
-              </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)"
-                            [aria-label]="checkboxLabeltoDelete(row)">
-              </mat-checkbox>
-            </td>
-          </ng-container>
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="First Name">
-            <th mat-header-cell *matHeaderCellDef> Nom </th>
-            <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Last Name">
-            <th mat-header-cell *matHeaderCellDef> Nom de famille </th>
-            <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Role">
-            <th mat-header-cell *matHeaderCellDef> Role </th>
-            <td mat-cell *matCellDef="let element"> <div [ngSwitch]="element.MemberStatusId">
-              <div  *ngSwitchCase="1"> Administrateur</div>
-              <div  *ngSwitchCase="2"> Enseignant actif</div>
-              <div *ngSwitchCase="3"> Enseignant non actif</div>
-              <div  *ngSwitchCase="4"> Etudiant actif</div>
-              <div  *ngSwitchCase="5"> Etudiant non actif</div>
-              <div  *ngSwitchCase="6"> Nouvelle inscription</div>
-              <div  *ngSwitchDefault> </div>
-            </div></td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="membersDisplayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: membersDisplayedColumns;"
-              (click)="selection.toggle(row)">
-          </tr>
-        </table>
-      </mat-dialog-content>
-    </mat-tab>
-  </mat-tab-group>
+<div class="row g-6 g-xl-9">
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-1.jpg"
+      name="Emma Smith"
+      job="Art Director"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
   </div>
-  <!-- <mat-dialog-actions>
-    <button mat-raised-button mat-dialog-close type="button" color="success" (click)="onMembersModified()">Confirmer</button>
-  </mat-dialog-actions> -->
-</ng-template>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      color="danger"
+      name="Melody Macy"
+      job="Marketing Analytic"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+      [online]="true"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-2.jpg"
+      name="Max Smith"
+      job="Software Enginer"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-4.jpg"
+      name="Sean Bean"
+      job="Web Developer"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-15.jpg"
+      name="Brian Cox"
+      job="UI/UX Designer"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      color="warning"
+      name="Mikaela Collins"
+      job="Head Of Marketing"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+      [online]="true"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-8.jpg"
+      name="Francis Mitcham"
+      job="Software Arcitect"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      color="danger"
+      name="Olivia Wild"
+      job="System Admin"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+      [online]="true"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      color="primary"
+      name="Neil Owen"
+      job="Account Manager"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+      [online]="true"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-6.jpg"
+      name="Dan Wilson"
+      job="Web Desinger"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      color="danger"
+      name="Emma Bold"
+      job="Corporate Finance"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+      [online]="true"
+    ></app-card1>
+  </div>
+  <div class="col-md-6 col-xxl-4">
+    <app-card1
+      avatar="./assets/media/avatars/150-7.jpg"
+      name="Ana Crown"
+      job="Customer Relationship"
+      avgEarnings="$14,560"
+      totalEarnings="$236,400"
+    ></app-card1>
+  </div>
+</div>
 
+<div class="d-flex flex-stack flex-wrap pt-10">
+  <div class="fs-6 fw-bold text-gray-700">Showing 1 to 10 of 50 entries</div>
+
+  <ul class="pagination">
+    <li class="page-item previous">
+      <a class="page-link cursor-pointer">
+        <i class="previous"></i>
+      </a>
+    </li>
+
+    <li class="page-item active">
+      <a class="page-link cursor-pointer"> 1 </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link cursor-pointer"> 2 </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link cursor-pointer"> 3 </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link cursor-pointer"> 4 </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link cursor-pointer"> 5 </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link cursor-pointer"> 6 </a>
+    </li>
+
+    <li class="page-item next">
+      <a class="page-link cursor-pointer">
+        <i class="next"></i>
+      </a>
+    </li>
+  </ul>
+</div>

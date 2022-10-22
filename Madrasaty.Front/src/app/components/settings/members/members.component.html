@@ -1,10 +1,8 @@
-<app-settings-header
-  (btnClick)="OpenDiag(-1)"
-  (btnClickSwitchToCard)="switchToCard()"
-></app-settings-header>
+ <app-settings-header-shared  (SearchEvent)="searchResult($event)" (btnClickSwitchToCard)="this.switchbtn = !this.switchbtn" (btnClick)="OpenDiag(-1)"></app-settings-header-shared> 
+
 
 <form [formGroup]="memberFormGroup">
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" style="width: 15%;">
     <mat-label>Status</mat-label>
     <mat-select
       (selectionChange)="onSelectChange($event)"
@@ -20,48 +18,49 @@
     </mat-select>
   </mat-form-field>
 </form>
+
+
 <div class="container-fluid" *ngIf="switchbtn == false">
   <div class="row">
-    <div class="col-lg-4" *ngFor="let item of rowData">
-      <div>
-        <mat-card class="card" style="width: 82%">
-          <div class="row">
-            <div class="column">
-              <mat-card-content>
-                <h2>
-                  <strong>{{ item.FirstName }} </strong>
-                </h2>
-                <h5>
-                  <i
-                    ><strong> {{ item.BirthDate | date }}</strong></i
-                  >
-                </h5>
-                <h3>
-                  <strong>{{ item.PhoneNumber }}</strong>
-                </h3>
-              </mat-card-content>
-            </div>
+    <div class="col-lg-3" *ngFor="let item of rowData | filter:search">
+      <div class="card cardAnimation card-xl-stretch mb-5 mb-xl-8">
+        <div class="card-body d-flex align-items-center pt-3 pb-0" >
+          <div class="d-flex flex-column flex-grow-1 py-2 py-lg-13 me-2">
+            <a href="#" class="fw-bolder text-dark fs-4 mb-2 text-hover-primary">
+              <h3>
+                <strong *ngIf="item.FirstName">{{ item.FirstName }} </strong>
+                <strong><br></strong>
+              </h3>
+              <h5>
+                <i
+                  ><strong *ngIf="item.BirthDate"> {{ item.BirthDate | date }}</strong></i >
+                  <strong><br></strong>
+              </h5>
+              <h4>
+                <strong *ngIf="item.PhoneNumber" >{{ item.PhoneNumber }}</strong>
+                <strong><br></strong>
+              </h4>
+            </a>        
+         
           </div>
-          <mat-card-actions align="end" style="margin-bottom: -5px">
-            <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
+        
+          <img *ngIf=" item.Gender=='M'"   src="./assets/media/svg/avatars/029-boy-11.svg" alt=""  class="h-90px" />
+          <img *ngIf=" item.Gender=='F'"   src="./assets/media/svg/avatars/014-girl-7.svg" alt="" class=" h-90px" />
+          <img   *ngIf=" item.Gender==''"  src="./assets/media/svg/avatars/unknown.svg" alt="" class=" h-90px" />
+        </div>
+        <mat-card-actions align="end"  style="margin-top: 2px;">
+
+          <app-shared-buttons [ismodified]="true"    (btnEditClick)="OpenDiag(item.Id)"  (btnDeleteClick)="deleteItem(item.Id)"  ></app-shared-buttons>  
+        </mat-card-actions>
+      </div>   
     </div>
   </div>
 </div>
 
 <ng-template #callAPIDialog>
-  <div class="container">
-    <h2 mat-dialog-title>{{ DialogTitle }}</h2>
     <form [formGroup]="memberForm"  (ngSubmit) = "BeforeSave()">
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Statut</mat-label>
             <mat-select
@@ -83,7 +82,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Nom</mat-label>
             <input
@@ -102,7 +101,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Pr&eacute;nom</mat-label>
             <input
@@ -118,9 +117,9 @@
               Le Nom est obligatoire.</mat-error
             >
           </mat-form-field>
+       
         </div>
-
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Sexe</mat-label>
             <mat-select formControlName="Gender" required>
@@ -134,7 +133,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Skype</mat-label>
             <input
@@ -150,7 +149,7 @@
           </mat-form-field>
           <br />
         </div>
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>T&eacute;l&eacute;phone</mat-label>
             <input
@@ -167,8 +166,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <mat-form-field appearance="outline">
+        <div class="col-6">
+          <mat-form-field appearance="outline" >
             <mat-label>Date d'entr&eacute;e</mat-label>
             <input
               matInput
@@ -188,8 +187,8 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col">
-          <mat-form-field appearance="outline">
+        <div class="col-6">
+          <mat-form-field appearance="outline" >
             <mat-label>Date de naissance</mat-label>
             <input
               matInput
@@ -210,7 +209,7 @@
       </div>
 
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Profession</mat-label>
             <input
@@ -225,7 +224,7 @@
             >
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Adresse</mat-label>
             <input matInput id="Street" formControlName="Street" required />
@@ -236,7 +235,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Code postale</mat-label>
             <input matInput id="ZipCode" formControlName="ZipCode" required />
@@ -245,7 +244,7 @@
             >
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Pays</mat-label>
             <mat-select
@@ -260,7 +259,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Ville</mat-label>
             <input
@@ -275,7 +274,7 @@
             >
           </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-6">
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input
@@ -294,7 +293,10 @@
             >
           </mat-form-field>
         </div>
+        
       </div>
+      <div class="row">
+        <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Nom d'utilisateur</mat-label>
         <input
@@ -308,98 +310,183 @@
           >Le Nom d'utilisateur est obligatoire.</mat-error
         >
       </mat-form-field>
-
-      <mat-dialog-actions align="end">
-        <button mat-raised-button color="warn">Clear</button>
-        <button
-          mat-raised-button
-          mat-dialog-close
-          [disabled]="memberForm.invalid"
-          type="submit"
-          color="success"
-        >
-          Confirmer
-        </button>
-      </mat-dialog-actions>
+    </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select
+            name="MemberStateId"
+            formControlName="MemberStateId"
+            required
+          >
+            <mat-option
+              *ngFor="let status of MemberStatesId"
+              [value]="status.Id"
+            >
+              {{ status.Wording }}
+            </mat-option>
+            <mat-error
+              *ngIf="memberForm.controls['MemberStateId'].errors?.required"
+            >
+              La state est obligatoire.</mat-error
+            >
+          </mat-select>
+        </mat-form-field>
+        <br />
+        
+        <div class="card-footer py-6">
+  
+    
+          <div class="col-lg-9">
+            <button
+              type="button"
+              (click)="this.memberForm.reset()"
+              class="btn btn-primary me-2"      
+            >          
+                <span class="indicator-label">Clear</span>       
+     
+            </button>
+  
+            <button
+              type="submit"          
+              [disabled]="memberForm.invalid"    
+              data-bs-dismiss="offcanvas"
+              class="btn btn-active-light btn-color-muted" >
+              <ng-container >
+                <span class="indicator-label">Confirme</span>
+              </ng-container>
+  
+              
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     </form>
-  </div>
+
 </ng-template>
+<app-shared-drawer [template]="callAPIDialog" [fonctionality]="DialogTitle"></app-shared-drawer>
 
+<div class="card mb-5 mb-xl-8"  *ngIf="switchbtn == true" style="width: 105%;">
 
-
-<div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
-
-  <div class="row" style="margin-bottom: 10px;">
-    <div class="col-md-3">
-        <input class="form-control" type="file" #fileInput />
-    </div>
-    <div class="col-md-3">
-      <button mat-mini-fab color="primary"  matTooltip="Upload un fichier "
-     (click)="uploadFile();"><i style=" color: white;font-size:larger" class="bi bi-upload"></i></button>
-    </div>
-</div>
-  <div class="mat-elevation-z8">
-
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="Nom">
-        <th  mat-header-cell *matHeaderCellDef >Nom</th>
-        <td   mat-cell *matCellDef="let element">
-          {{ element.LastName }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="Prénom">
-        <th mat-header-cell *matHeaderCellDef >Prénom</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.FirstName }}</td>
-
-      </ng-container>
-
-      <ng-container matColumnDef="Date de naissance">
-        <th mat-header-cell *matHeaderCellDef >Date de naissance</th>
-        <td mat-cell *matCellDef="let element">{{ element.BirthDate|date }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="Profession">
-        <th mat-header-cell *matHeaderCellDef >Profession</th>
-        <td   mat-cell *matCellDef="let element">{{ element.Profession }}</td>
-      </ng-container>
-      <ng-container matColumnDef="Téléphone">
-        <th mat-header-cell *matHeaderCellDef >Téléphone</th>
-        <td   mat-cell *matCellDef="let element">{{ element.PhoneNumber}}</td>
-      </ng-container>
-      <ng-container matColumnDef="Evaluations" >
-        <th mat-header-cell *matHeaderCellDef >Evaluations</th>
-        <td   mat-cell *matCellDef="let element"> <a  *ngIf="element.MemberStatusId==4 || element.MemberStatusId==5"  class="btn btn-light"> <i style="font-size:24px ;color:rgb(7, 161, 71)" class="fa fa-mortar-board"></i> </a> </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef >Actions</th>
-
-        <td mat-cell *matCellDef="let element">
-          <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="OpenDiag(element.Id)">
-            <span  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"  class="svg-icon svg-icon-3"  ></span>
-          </button>
-          <button
-            href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" (click)="deleteItem(element.Id)" >
-            <span
-              [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
-              class="svg-icon svg-icon-3"
-            ></span>
-
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row  *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [pageSizeOptions]="[1, 3, 20]"
-      showFirstLastButtons
-      aria-label="Select page of dataSource"
-    >
-    </mat-paginator>
+  <div class="card-header border-0 pt-5">
+    <div class="row" style="margin-bottom: 8px;">
+      <div class="col-md-5">
+          <input class="form-control" type="file" #fileInput />
+      </div>
+      <div class="col-md-3">
+        <button mat-mini-fab color="primary"  matTooltip="Upload un fichier "
+       (click)="uploadFile();"><i style=" color: white;font-size:larger" class="bi bi-upload"></i></button>
+      </div>
   </div>
+  </div>
+<!-- end::Header -->
+<!-- begin::Body -->
+<div class="card-body py-3" >
+  <!-- begin::Table container -->
+  <div class="table-responsive">
+    <!-- begin::Table -->
+    <table class="table align-middle gs-0 gy-4">
+      <!-- begin::Table head -->
+      <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="min-w-70px"></th>
+          <th class="ps-4 min-w-280px ">Email</th>
+          <th class="min-w-200px">	Date de naissance</th>
+          <th class="min-w-125px">Profession</th>
+          <th class="min-w-200px">Téléphone</th>
+          <th class="min-w-150px">Evaluations</th>
+          <th class="min-w-100px">States</th>
+          <th class="min-w-200px text-end rounded-end"></th>
+        </tr>
+      </thead>
+      <!-- end::Table head -->
+      <!-- begin::Table body -->
+      <tbody>
+        <tr *ngFor="let element of rowData | filter:search">
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="symbol symbol-50px me-5">
+                  <span class="symbol-label bg-light">                 
 
+                    <img *ngIf=" element.Gender=='M'"   src="./assets/media/svg/avatars/001-boy.svg"   class="h-75 align-self-end"     alt="" />
+                    <img *ngIf=" element.Gender=='F'"  src="./assets/media/svg/avatars/006-girl-3.svg" alt=""  class="h-75 align-self-end" />
+                    <img   *ngIf=" element.Gender==''"  src="./assets/media/svg/avatars/unknown.svg" alt=""  class="h-75 align-self-end" />
+              
+                </span> 
+              </div>
+        
+            </div>
+          </td>
+          <td>
+      <div class="d-flex justify-content-start flex-column">
+                <a
+                  href="#"
+                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                >
+                {{ element.Email }}
+                </a>              
+              </div>
+          </td>
+          <td>
+            <a
+              href="#"
+              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+            >
+            {{ element.BirthDate|date }}
+            </a>
+          
+          </td>
+          <td>
+            <a
+              href="#"
+              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+            >
+            {{ element.Profession }}
+            </a>
+        
+          </td>
+          <td>
+            <a
+              href="#"
+              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+            >
+            {{ element.PhoneNumber}}
+            </a>
+          
+          </td>
+          <td>
+           <a  *ngIf="element.MemberStatusId==4 || element.MemberStatusId==5"  class="btn btn-light"> <i style="font-size:24px ;color:rgb(7, 161, 71)" class="fa fa-mortar-board"></i> </a> 
+          </td>
+          <td > 
+
+            <div *ngIf="element.MemberStateId==3">
+            <span class="badge badge-danger fs-7 fw-bold">
+            {{getvalue(element.MemberStateId)}}
+          </span></div>
+  
+          <div *ngIf="element.MemberStateId==2">
+            <span class="badge badge-success fs-7 fw-bold">
+            {{getvalue(element.MemberStateId)}}
+          </span></div>
+          <div *ngIf="element.MemberStateId==1">
+            <span class="badge badge-info fs-7 fw-bold">
+            {{getvalue(element.MemberStateId)}}
+          </span></div>
+  
+  
+          </td>
+          <td class="text-end">
+            <app-shared-buttons    (btnEditClick)="OpenDiag(element.Id)"  (btnDeleteClick)="deleteItem(element.Id)"  ></app-shared-buttons>  
+          </td>
+        </tr>
+      
+      </tbody>
+      <!-- end::Table body -->
+    </table>
+    <!-- end::Table -->
+  </div>
+  <!-- end::Table container -->
+</div>
+<!-- begin::Body -->
 </div>

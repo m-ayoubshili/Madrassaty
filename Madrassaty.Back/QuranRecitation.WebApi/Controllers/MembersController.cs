@@ -143,9 +143,9 @@ namespace QuranRecitation.WebApi.Controllers
 
                     _memberService.Update(model.Member);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return Request.CreateResponse(HttpStatusCode.NotFound,e);
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, model.Member);
@@ -217,6 +217,7 @@ namespace QuranRecitation.WebApi.Controllers
                     // create new user
                     var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
                     model.Member.EmailConfirmed = true;
+                    model.Member.MemberStateId = 2;
                     var result = await userManager.CreateAsync(model.Member, model.Password);
 
                     if (result.Succeeded)

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {UserService} from 'src/app/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
+import { MembersListService } from 'src/app/services/members/members-list.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,15 +24,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   hasError: boolean;
   returnUrl: string;
   isLoading$: Observable<boolean>;
-
+  list;
+  hide=true;
+ 
   // private fields
-  private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+  private unsubscribe: Subscription[] = []; 
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService:UserService
+    private userService:UserService,
+  // private memberService:MembersListService
   ) {
 
     // redirect to home if already logged in
@@ -58,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.email,
           Validators.minLength(3),
-          Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+          Validators.maxLength(320),
         ]),
       ],
       password: [
@@ -87,6 +91,8 @@ return this.loginForm.get('password');
 }
 
 loginUser() {
+  
+  
   //console.log(this.loginForm.value);
   this.userService.getUserToken(this.loginForm.value).subscribe((
     reqData:any[])=>{
@@ -98,10 +104,22 @@ loginUser() {
     //this.router.navigate(['/dashboard']);
     },
     (error : HttpErrorResponse)=>{
-      Swal(
-      'Erreur',
-      'Email ou mot de passe incorrect',
-       'error');
+      console.log(error.error.error_description)
+      this.onSaveComplete(error.error.error_description)
     })
+   
+
+}
+
+onSaveComplete(msg) {
+  Swal({
+    position: 'top',
+    type: "warning",
+    title: msg,
+    text:'',
+    showConfirmButton: false,
+    timer: 5000,
+    toast: true
+  })
 }
 }

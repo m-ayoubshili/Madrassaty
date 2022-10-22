@@ -98,7 +98,7 @@ namespace QuranRecitation.WebApi.Controllers
             var m = model.School.Name;
             var schoolExists = _schoolService.GetAll().Select(x => x.Name).ToList().Contains(m);
 
-            if (ModelState.IsValid && id == model.School.Id && !schoolExists)
+            if (ModelState.IsValid && id == model.School.Id && schoolExists)
             {
                 try
                 {

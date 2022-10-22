@@ -67,7 +67,7 @@ namespace QuranRecitation.WebApi.Controllers
         // POST: api/RecitationDetail
         [ResponseType(typeof(RecitationDetail))]
         public HttpResponseMessage Post(RecitationDetail model)
-        {
+         {
             if (ModelState.IsValid)
             {
                 try

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <div class="d-flex">
+        <mat-form-field appearance="outline" *ngIf="showSearch">
+          <mat-label>Search...</mat-label>
+          <input matInput type="search" (keyup)="onChangeEvent($event)" placeholder="Search"  >
+        </mat-form-field>
+      </div>
+        <div class="d-flex">
+          <button mat-mini-fab color="success" matTooltip="Ajouter" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" (click)="onClick()" ><mat-icon>add</mat-icon></button>    
+   
+          <button mat-mini-fab color="primary" matTooltip="Changer le mode d'affichage" (click)="onClickSwitchToCard()"><mat-icon>remove_red_eye</mat-icon></button>
+        </div>
+  
+    </div>
+  </nav>
+

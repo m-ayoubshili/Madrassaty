@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  of ,  BehaviorSubject } from 'rxjs';
+import { Observable ,  of ,  BehaviorSubject, Subject } from 'rxjs';
 import { SchoolYear } from 'src/app/models/schoolyear';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ export class SchoolyearService {
   private schoolYearUrl = environment.SCHOOLYEAR_URL;
   schoolYearIdSource = new  BehaviorSubject<number>(0);
   schoolYearIdData:any;
+  private _refreshrequired = new Subject<void>();
   private accessToken = JSON.parse(localStorage.getItem('currentUser'))['access_token']
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,6 +23,9 @@ export class SchoolyearService {
     this.schoolYearIdData= this.schoolYearIdSource.asObservable();
   }
 
+  get Refreshrequired() {
+    return this._refreshrequired;
+  }
   getSchoolYears(): Observable<SchoolYear[]> {
     return this.http.get<SchoolYear[]>(this.schoolYearUrl,this.httpOptions)
   }
@@ -38,8 +42,8 @@ export class SchoolyearService {
     return {
       Id: 0,
       description:null,
-      StartDay:new Date(),
-      EndDay:new Date(),
+      StartDay:null,
+      EndDay:null,
       Actif:false
     };
   }
@@ -55,7 +59,11 @@ export class SchoolyearService {
     return this.http.delete<SchoolYear>(this.schoolYearUrl+id, this.httpOptions)
   }
   UpdateActifAnneeScolaire(id) {
-    return this.http.put(this.schoolYearUrl + "UpdateActif?id=" + id, this.httpOptions);
+    return this.http.put(this.schoolYearUrl + "UpdateActif?id=" + id, this.httpOptions).pipe(
+      tap(() => {
+        this.Refreshrequired.next();
+      })
+      );;
 }
 changeSchoolYearId(Id: number){
   this.schoolYearIdSource.next(Id);

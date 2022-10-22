@@ -1,0 +1,117 @@
+<div class="card mb-5 mb-xl-8" style="width: 105%">
+    <div class="card-header border-0 pt-5">
+      <div class="card-toolbar">
+        <h4>List des Participants</h4>
+      </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+      <!-- begin::Table container -->
+      <div class="table-responsive">
+        <!-- begin::Table -->
+        <table class="table align-middle gs-0 gy-4 ml-5">
+          <!-- begin::Table head -->
+          <thead>
+            <tr class="fw-bolder text-muted bg-light">
+              <th style="width: 18%">Etudiant</th>
+              <th style="width: 12%">Date Naissance</th>
+              <th style="width: 12%">Email</th>
+              <th style="width: 12%">Téléphone</th>
+              <th style="width: 15%">Heure Début</th>
+              <th style="width: 20%">Contact</th>
+              <th style="width: 20%">Evaluation</th>
+            </tr>
+          </thead>
+          <!-- end::Table head -->
+          <!-- begin::Table body -->
+          <tbody>
+            <tr *ngFor="let item of students">
+                <td>
+                    <a
+                      href="#"
+                      class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    >
+                    {{item.MemberName}}
+                    </a>
+                  
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    >
+                    {{item.BirthDate |  date:'dd-MM-yyyy'}}
+                    </a>
+                  
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    >
+                    {{item.Email}}
+                    </a>
+                  
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    >
+                    {{item.PhoneNumber}}
+                    </a>
+                  
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    >
+                    {{item.StartTime | date:'HH:MM'}}
+                    </a>
+                  
+                  </td>
+                  <td>                 
+                            <a href="#" style="border-radius:12px" class="btn btn-icon btn-light-facebook btn-sm me-3 h-45px w-45px">
+                                <span class="material-icons" > video_camera_front</span>
+                            </a>
+                            <a href="#"  style="border-radius:12px"  class="btn btn-icon btn-light-twitter btn-sm me-3 h-45px w-45px">
+                                <i class="bi bi-skype fs-4"></i>
+                              </a>
+                            <a href="#"   style="border-radius:12px;"  class="  btn btn-icon btn btn-light-success btn-sm h-45px w-45px " >
+                              <i class="bi bi-whatsapp fs-4" style="color:green;"></i>
+                            </a>
+                </td>
+            
+                <td>
+                    <div *ngIf="(recitationType == 'S')">                      
+                            <a  [routerLink]="['/crafted/evaluation/session/evaluation-simple/'+item.Id+'/'+sessionId]"  style="border-radius:12px;"  class="btn btn-icon btn-light-info btn-sm h-45px w-45px">
+                                <span class="material-icons">school</span>
+                              </a>
+                      
+                    </div>
+                    <div *ngIf="(recitationType == 'D')">                     
+                            <a  [routerLink]="['/crafted/evaluation/session/evaluation-detaillee/'+item.Id+'/'+sessionId]"  style="border-radius:12px;"  class="btn btn-icon btn-light-info btn-sm h-45px w-45px">
+                                <span class="material-icons">school</span>
+                              </a>
+                    </div>
+              
+              
+                
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <button
+        matTooltip="Retour à la page des sessions"
+        class="btn btn-icon btn-bg btn-active-color-primary btn-sm"
+        [routerLink]="['/crafted/evaluation/session']"
+      >
+        <i class="fas fa-arrow-left" style="font-size: 30px"></i>
+      </button>
+      </div>
+    </div>
+  </div>
+  

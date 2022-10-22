@@ -8,20 +8,23 @@ namespace QuranRecitation.WebApi.Utils
 {
     public class EmailBody
     {
-        public string GenerateBodyEmailForUser(Member user)
+        public string GenerateBodyEmailForUser(Member user,string Link)
         {
-            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+           
             // Send an email with this link
             var hello = "Bonjour " + user.FirstName + " " + user.LastName + ",<br><br>";
             var welcome = "Bienvenue sur la plateforme School Management ! <br><br>";
             var dontForget = "Votre compte sur la base vient d'être créé. <br>";
             dontForget = "Vous allez bientot recevoir un email de confirmation de l'activation de votre compte";
+
             dontForget += "Merci.<br><br><br>";
+            var confirmation = "Please confirm your account by clicking <a href=\"" + Link + "\">here</a>";
             var signature = "School Management";
 
             var htmlContent = hello
                 + welcome
                 + dontForget
+                + confirmation
                 + signature;
             return htmlContent;
         }
@@ -44,7 +47,7 @@ namespace QuranRecitation.WebApi.Utils
         }
         public string GenerateBodyEmailForgotPassword(Member user)
         {
-            var url = "http://localhost:4200/#/editpassword/"+ user.Id;
+            var url = "http://localhost:4200/auth/change-password/"+ user.Id;
             var hello = "Bonjour, <strong>" + user.FirstName + " " + user.LastName + "</strong>.<br><br>";
             var bodytext = "Bienvenue sur la plateforme School management ! <br><br>";
             bodytext += "Une réinitialisation de votre mot de passe vient d'être demandée.<br>";

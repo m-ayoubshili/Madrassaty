@@ -1,8 +1,10 @@
 export class Member {
+    Email:string='';
     FirstName: string = '';
     LastName: string = '';
     Gender: string = '';
     SkypeId: string = '';
+    ParentEmail:string='';
     PhoneNumber: string = '';
     BeginningDate: Date;
     BirthDate: Date;
@@ -12,12 +14,12 @@ export class Member {
     City: string = '';
     Country: string = '';
     PhotoPath: string = '';
-    FullName?: string='';
-    Email: string;
+    FullName: string='';
     Password: string;
     SchoolId: Number;
     Login:string;
     MemberStatusId:number
+    MemberStateId:number
     UserName : string
     Id:string
 }

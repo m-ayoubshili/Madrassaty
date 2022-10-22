@@ -189,6 +189,7 @@ namespace QuranRecitation.WebApi.Controllers
         [ResponseType(typeof(RecitationSessionPostModel))]
         public IHttpActionResult PostRecitationSession(RecitationSessionPostModel recitationSessionPost)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -282,6 +283,15 @@ namespace QuranRecitation.WebApi.Controllers
                 if (rdlItem.RecitationId == id)
                 {
                     iRecitationDisciplineLevelService.Delete(rdlItem);
+                }
+            }
+
+            var listOfRecitationStudent = iStudentRecitationService.GetAll().Where(x => x.RecitationId == id).ToList().AsQueryable();
+            foreach (var rdlItem in listOfRecitationStudent)
+            {
+                if (rdlItem.RecitationId == id)
+                {
+                    iStudentRecitationService.Delete(rdlItem);
                 }
             }
 

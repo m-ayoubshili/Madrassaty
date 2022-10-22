@@ -1,0 +1,474 @@
+
+<div class="card mb-5 mb-xl-10">
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-bolder fs-3 mb-1">Evaluation détaillée</span>
+    </h3>
+    </div>
+  <div class="card-body pt-9 pb-0">
+    <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+      <div class="me-7 mb-4">
+        <div
+          class="
+            symbol symbol-100px symbol-lg-160px symbol-fixed
+            position-relative
+          "
+        >
+          <img src={{PhotoPath}} alt="Metronic" />
+  
+       
+          <div
+            class="
+              position-absolute
+              translate-middle
+              bottom-2
+              start-100
+              mb-4
+              bg-success
+              rounded-circle
+              border border-4 border-white
+              h-20px
+              w-20px
+            "
+          ></div>
+             <h3 class="align-items-start flex-column mt-3">
+            <span class="card-label fw-bolder fs-4 mb-1">{{Discipline.Wording}} :  <span class="text-muted fw-bold fs-5">{{Level.Wording}}</span></span> 
+           
+          </h3>
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            align-items-start
+            flex-wrap
+            mb-2
+          "
+        >
+          <div class="d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+              <a
+                class="
+                  text-gray-800 text-hover-primary
+                  fs-2
+                  fw-bolder
+                  me-1
+                  cursor-pointer
+                "
+              >
+              {{FullName}}
+              </a>
+              <a class="cursor-pointer">
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen026.svg'
+                  "
+                  class="svg-icon svg-icon-1 svg-icon-primary"
+                ></span>
+              </a> 
+            </div>
+
+            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com006.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                Developer
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen018.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                SF, Bay Area
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com011.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                max@kt.com
+              </a>
+            </div>
+          </div>
+
+       
+        </div>
+
+        <div class="d-flex flex-wrap flex-stack">
+          <div class="d-flex flex-column flex-grow-1 pe-8">
+            <div class="d-flex flex-wrap">
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <span
+                    [inlineSVG]="
+                      './assets/media/icons/duotune/arrows/arr066.svg'
+                    "
+                    class="svg-icon svg-icon-3 svg-icon-success me-2"
+                  ></span>
+                  <div class="fs-2 fw-bolder">4500</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400">Nombre de Surah</div>
+              </div>
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <span
+                    [inlineSVG]="
+                      './assets/media/icons/duotune/arrows/arr065.svg'
+                    "
+                    class="svg-icon svg-icon-3 svg-icon-danger me-2"
+                  ></span>
+                  <div class="fs-2 fw-bolder">75</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400"> Total Fautes D'apprentisage</div>
+              </div>
+
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <span
+                    [inlineSVG]="
+                      './assets/media/icons/duotune/arrows/arr066.svg'
+                    "
+                    class="svg-icon svg-icon-3 svg-icon-success me-2"
+                  ></span>
+                  <div class="fs-2 fw-bolder">60</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400">Total Fautes De Tajwid</div>
+              </div>
+            </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap flex-stack">
+      <div class="d-flex flex-column flex-grow-1">
+      
+      <form  [formGroup]="surahForm" style="margin-left:90px ;">
+        <div class="example-container">
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Surah</mat-label>
+            
+            <mat-select chosen  name="Surah" formControlName="Surah" required=""
+                        (selectionChange)="refreshAyahs()">
+                    
+                        <mat-option *ngFor="let opt of surahList" [value]="opt.number">{{opt.name}} | {{opt.englishName}}
+                        </mat-option>
+                      </mat-select>      
+         
+          </mat-form-field>
+    
+ 
+          <mat-form-field appearance="outline">
+            <mat-label>Ayah Début</mat-label>
+            
+            <input matInput  type="number" min="1" formControlName="AyahDebut" required type="text">         
+         
+          </mat-form-field>
+     
+     
+          <mat-form-field appearance="outline">
+            <mat-label>Ayah Fin</mat-label>
+            
+            <input matInput  type="number" min="1" formControlName="AyahFin"  required type="text">         
+         
+          </mat-form-field>
+          <a style="margin-left: 15px;padding: 10px;" (click)="validateSurah($event)" class="btn btn-sm btn-primary mb-2 " >             
+            Sauvegarder <i style="font-size: 20px;margin-left: 5px;" class="fa fa-save"></i>
+        </a>  
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-5 mb-xl-10">
+
+  <div class="card-body pt-9 pb-0">
+    <div class="d-flex flex-wrap flex-stack">
+      <div class="d-flex flex-column flex-grow-1">      
+      <div style="  text-align: center;margin-left:20px ;">   
+          
+        <button *ngFor="let item of fautes | paginate: { itemsPerPage: 5, currentPage: p }" (click)="onButtonClick(item)" class="{{item.cssclass}}"
+        type="button" class="btn btn-success dim" style="margin: 3px;">{{item.id}}</button>      
+    
+        <button class="btn  btn-primary dim "  type="button" (click)="pushItem($event)"><i
+            class="fa fa-plus"></i></button>
+
+        </div>
+        <pagination-controls  style="text-align: center;"  class="mt-9" (pageChange)="p = $event"></pagination-controls>  
+      </div>
+    
+      <div class="row text-center">
+        <div class="col-lg-12">
+          <div class="ibox ">
+           <h3 style="float: left;">Fautes de Tajwid</h3>
+            <br>
+            <br>
+
+            <div class="ibox-content col-lg-12 text-center">
+              <button class="btn btn-success" (click)="clickbut(item)" type="button"
+                *ngFor="let item of tajwidErrorData " style="background-color:  #16987e;margin:5px;">{{item.name}}</button>
+            </div>         
+          </div>
+        </div>
+      </div>    
+  
+        <div class="text-center"  style="font-size: 60px;color:#1ab394;  margin: auto;  padding: 10px;">
+          <div class="col-lg-12">
+            <rating [(ngModel)]="rate" [max]="max" tabindex="0" (keyup)="confirmSelection($event)"
+              (click)="confirmSelection($event)" (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
+              [titles]="['Innacceptable','Faible','Moyen', 'Bien', 'Très Bien']"></rating>
+            <span class="label" tabindex="0"
+              [ngClass]="{'label-danger': percent<=20, 'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+<div style="margin-top: -125px;">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+      <h2>Evaluation détaillée</h2>
+    </div>
+
+
+  
+
+  <div class="wrapper wrapper-content  animated fadeInRight" style="margin-top: -50px;">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <div class="row">
+ 
+              <div>
+                <div class="col-lg-12 text-center">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="ibox-content text-center">
+                        <h2>{{FullName}}</h2>
+                        <div class="m-b-sm">
+                          <img alt="image" class="img-circle circle-border" src={{PhotoPath}}
+                            style="width:150px; height:150px;">
+                        </div>
+                        <p class="font-bold" *ngIf="Discipline">{{Discipline.Wording}} ({{Level.Wording}})</p>
+                      
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col-lg-12">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <button type="button" class="btn btn-info m-r-sm"></button>
+                          Nombre de Surah
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-danger m-r-sm">3</button>
+                          Total Fautes D'apprentisage
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-primary m-r-sm">6</button>
+                          Total Fautes De Tajwid
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="ibox ">
+          <div class="ibox-title text-center">Fautes d'apprentisage</div>
+          <div class="ibox-content text-center" >
+
+            <div class="row text-center">
+              <form name="surahForm" [formGroup]="surahForm">
+                <div class="form-row">
+                  <div class="form-group col-md-4" [ngClass]="{'has-error': displayMessage.Surah}" style="display: inline-block;">
+                    <label for="Surah">Surah *</label>
+                    <select chosen class="form-control" name="Surah" formControlName="Surah" required=""
+                      (change)="refreshAyahs()">
+                      <option></option>
+                      <option *ngFor="let opt of surahList" [value]="opt.number">{{opt.name}} | {{opt.englishName}}
+                      </option>
+                    </select>
+                    <span class="help-block">
+                      {{displayMessage.Surah}}
+                    </span>
+                  </div>
+
+                  <div class="form-group col-md-3" [ngClass]="{'has-error': displayMessage.AyahDebut}" style="display: inline-block;">
+                    <label for="inputAyahDebut">Ayah Début *</label>
+                    <input type="number" min="1" class="form-control" formControlName="AyahDebut" id="AyahDebut">
+                    <span class="help-block">
+                      {{displayMessage.AyahDebut}}
+                    </span>
+                  </div>
+                  <div class="form-group col-md-3" [ngClass]="{'has-error': displayMessage.AyahFin}" style="display: inline-block;">
+                    <label for="inputAyahFin">Ayah Fin *</label>
+                    <input type="number" min="1" class="form-control" formControlName="AyahFin" id="AyahFin">
+                    <span class="help-block">
+                      {{displayMessage.AyahFin}}
+                    </span>
+                  </div>
+                  <button class="btn btn-primary dim" style="margin-left: 15px;" type="button"
+                    (click)="validateSurah($event)"><i class="fa fa-step-forward"></i></button>
+                </div>
+              </form>
+            </div>
+
+            <button *ngFor="let item of fautes" (click)="onButtonClick(item)" class="{{item.cssclass}}"
+              type="button" class="btn btn-success dim" style="margin: 3px;">{{item.id}}</button>
+
+            <button class="btn btn-success dim" style="margin-left: 15px;" type="button" (click)="pushItem($event)"><i
+                class="fa fa-plus"></i></button>
+
+          </div>
+        </div>
+      </div>
+     
+
+        <div style="width: 400px;">
+
+
+          <div class="chat-users">
+
+
+            <div class="chat-user" *ngFor="let item of recitationDetailList">
+              <div>
+                <span>{{item.SurahName}}</span>
+          
+              </div>
+              <div class="progress progress-small">
+                <div style="width: 60%;" class="progress-bar progress-bar-striped progress-bar-animated progress-bar-success"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <div class="ibox ">
+          <div class="ibox-title text-center"><h3>Fautes de Tajwid</h3></div>
+          <br>
+          <br>
+
+          <div class="ibox-content col-lg-12 text-center">
+      
+
+            <button class="btn btn-success" (click)="clickbut(item)" type="button"
+              *ngFor="let item of tajwidErrorData" style="background-color:  #16987e;margin:5px;">{{item.name}}</button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="row text-center" style="font-size: 60px;color:#1ab394">
+        <div class="col-lg-12">
+          <rating [(ngModel)]="rate" [max]="max" tabindex="0" (keyup)="confirmSelection($event)"
+            (click)="confirmSelection($event)" (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
+            [titles]="['Innacceptable','Faible','Moyen', 'Bien', 'Très Bien']"></rating>
+          <span class="label" tabindex="0"
+            [ngClass]="{'label-danger': percent<=20, 'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"></span>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>  -->

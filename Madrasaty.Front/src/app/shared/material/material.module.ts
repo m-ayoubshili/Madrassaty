@@ -1,5 +1,5 @@
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -23,6 +23,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {MatTreeModule} from '@angular/material/tree';
 import { NestableModule } from 'ngx-nestable';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDividerModule} from '@angular/material/divider';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { NestableModule } from 'ngx-nestable';
      MatFormFieldModule,
      NestableModule,
      MatInputModule,
+     MatSlideToggleModule,
      MatRadioModule,
      MatSelectModule,
      DragDropModule,
@@ -39,6 +43,7 @@ import { NestableModule } from 'ngx-nestable';
      MatCheckboxModule,
      MatDatepickerModule,
      MatNativeDateModule,
+     MatSidenavModule,
      MatButtonModule,
      MatSnackBarModule,
      MatTableModule,
@@ -47,15 +52,19 @@ import { NestableModule } from 'ngx-nestable';
      MatSortModule,
      MatDialogModule,
      MatCardModule,
-     MatTooltipModule
+     MatTooltipModule,
+     MatDividerModule
+ 
   ],
   exports: [
      MatToolbarModule,
      MatGridListModule,
      MatTreeModule,
+     MatSlideToggleModule,
      MatInputModule,
      NestableModule,
      MatRadioModule,
+     MatSidenavModule,
      CdkTreeModule,
      DragDropModule,
      MatSelectModule,
@@ -70,7 +79,9 @@ import { NestableModule } from 'ngx-nestable';
      MatPaginatorModule,
      MatSortModule,
      MatDialogModule,
-     MatTooltipModule
+     MatTooltipModule,
+     MatDividerModule
+     
   ],
   declarations: []
 })

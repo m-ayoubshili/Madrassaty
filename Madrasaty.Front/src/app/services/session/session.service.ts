@@ -67,6 +67,7 @@ private initializeSession(): RecitationSessionModel {
   };
 }
 createSession(session: RecitationSessionPostModel): Observable<RecitationSessionPostModel> {
+  console.log(session)
   return this.http.post<RecitationSessionPostModel>(this.sessionUrl, session,this.httpOptions)
     .pipe(
       tap(data => console.log('createSession: ' + JSON.stringify(data)),

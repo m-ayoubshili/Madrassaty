@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import { environment } from '../../../../../../environments/environment';
 
 @Component({
@@ -9,8 +10,15 @@ import { environment } from '../../../../../../environments/environment';
 export class AsideMenuComponent implements OnInit {
   appAngularVersion: string = environment.appVersion;
   appPreviewChangelogUrl: string = environment.appPreviewChangelogUrl;
+  currentUserId:any
+  currentMemberStatutId:number
+  constructor(private  userService:UserService) {}
 
-  constructor() {}
+  ngOnInit(): void { this.currentMemberStatutId=this.userService.getMemberStatutId();}
 
-  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.currentUserId=JSON.parse(JSON.parse(localStorage.getItem('currentUser'))['user'])['Id'];   
+
+  }
 }

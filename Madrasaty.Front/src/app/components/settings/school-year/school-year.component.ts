@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component,  ElementRef,  OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component,  ElementRef,  OnInit, ViewChildren } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { SchoolYear } from 'src/app/models/schoolyear';
@@ -8,8 +8,10 @@ import { GridOptions } from 'ag-grid-community';
 import swal from 'sweetalert2';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { GenericValidator } from 'src/app/shared/generic-validator';
-import { MatDialog } from '@angular/material/dialog';
-declare let $: any;
+
+import { etat } from 'src/app/models/etat';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+
 @Component({
   selector: 'app-school-year',
   templateUrl: './school-year.component.html',
@@ -18,9 +20,7 @@ declare let $: any;
 export class SchoolYearComponent implements OnInit {
   schoolYears: SchoolYear[];
   errorMessage: string;
- 
-  status: false;
-  rowId: number = -1;
+  schoolYear:SchoolYear;
   columnDefs
   rowData
   domLayout: string;
@@ -31,44 +31,39 @@ export class SchoolYearComponent implements OnInit {
   editingRowIndex: any;
   gridColumnApi;
   gridApi;
-  switchbtn: boolean;
+  switchbtn: boolean=false;
   search:string;
-  private genericValidator: GenericValidator;
-  private validationMessages: { [key: string]: { [key: string]: string } };
+  DialogTitle: string;
   schoolYearForm: FormGroup;
-  @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-  constructor(private formBuilder: FormBuilder,private datePipe:DatePipe ,private schoolyearService: SchoolyearService,private dialog: MatDialog) { 
-    this.dataGridInit();
+  constructor(private notification: NotificationService ,private formBuilder: FormBuilder,private datePipe:DatePipe ,private schoolyearService: SchoolyearService 
+    ) { }
 
-    this.validationMessages = {
-      Name: { required: 'Le nom est obligatoire et doit être unique.' },
-      DateD: { required: 'date debut est obligatoire' },
-      Datef: { required: 'date fin est obligatoire.' },
-    
-    };
-    
-    this.genericValidator = new GenericValidator(this.validationMessages);
-    this.schoolYearForm = this.formBuilder.group({
-      Name: ["", Validators.required],
-      DateD: ["", Validators.required],
-      Datef: ["", Validators.required],
+    ngOnInit() {
+      this.schoolYearForm = this.formBuilder.group({
+        description: ["", Validators.required],
+        StartDay: ["", Validators.required],
+        EndDay: ["", Validators.required],
+      });
+      this.refreshSchoolYearList()
+  
+    }
 
-    });
-
-
+  searchResult(data){
+    this.search=data
   }
-  OpenDiag() {
-    let dialogRef = this.dialog.open(this.callAPIDialog);
+  
+  OpenDiag(id: number) {  
+    this.DialogTitle = id == -1 ? "Ajouter année scolaire"  : "Modifier année scolaire"
+    this.schoolyearService.getSchoolYear(id)
+      .subscribe({
+        next: (schoolYear: SchoolYear) => this.displaySchoolYears(schoolYear),
+        error: err => console.log(err)
+      });
   
 
 }
 
-  ngOnInit() {
-    this.switchbtn = false;
-    this.displaySchools();
 
-  }
   dataGridInit() {
     this.gridOptions = <GridOptions>{
       context: {
@@ -96,45 +91,39 @@ export class SchoolYearComponent implements OnInit {
         {
           headerName: 'StartDay', field: 'StartDay', sortable: true, filter: true, resizable: true, cellRenderer: (data) => {
             return data.value ? this.datePipe.transform(data.value, 'dd/MM/yyyy')  : '';
-
           }
         },
-        {
-          headerName: 'EndDay', field: 'EndDay', sortable: true, filter: true, resizable: true, cellRenderer: (data) => {
+        {   headerName: 'EndDay', field: 'EndDay', sortable: true, filter: true, resizable: true, cellRenderer: (data) => {
             return data.value ? this.datePipe.transform(data.value, 'dd/MM/yyyy'): '';
-
           }
-        },
-      
-      ];
-  }
+        },      
+      ]; } 
 
-  displaySchools() {
-    this.schoolyearService.getSchoolYears().map(item => {
-      return item.map(s => {
-        s.StartDay = new Date(s.StartDay + "Z")
-        s.EndDay = new Date(s.EndDay + "Z")
-        return s
-      })
-    })
-      .subscribe(
-        {
-          next: schoolYearList => {
-            this.rowData= schoolYearList;
-          },
-          error: err => this.errorMessage = err
-        });
+
+
+  displaySchoolYears(schoolYear :SchoolYear) : void{
+    if (this.schoolYearForm) {
+      this.schoolYearForm.reset();
+    }
+    this.schoolYear =schoolYear 
+    this.schoolYearForm.patchValue({
+      description: this.schoolYear.description,
+      StartDay: this.schoolYear.StartDay,
+      EndDay: this.schoolYear.EndDay
+     
+    });
+  }
+  getActive(key){
+    return etat[key]
   }
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
     params.api.sizeColumnsToFit();
+  }
 
-  }
-  switchToCard() {
-    this.switchbtn = !(this.switchbtn);
-  }
+
+
   refreshSchoolYearList() {
     this.schoolyearService.getSchoolYears().map(item => {
       return item.map(s => {
@@ -145,9 +134,7 @@ export class SchoolYearComponent implements OnInit {
     })
       .subscribe(
         {
-          next: schoolYearList => {
-            this.rowData= schoolYearList
-                    },
+          next: schoolYearList => {this.rowData= schoolYearList},
           error: err => this.errorMessage = err
         });
   }
@@ -168,36 +155,43 @@ export class SchoolYearComponent implements OnInit {
       error: err => this.errorMessage = err
     })
   }
-  deleteElementAlert() {
-    return swal({
-      title: 'Etes-vous sûr de vouloir supprimer cet élément?',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmer',
-      type: 'warning',
-      cancelButtonText: 'Annuler',
 
-    })
-  }
   deleteItem(id: number) {
-
-    this.deleteElementAlert().then((result) => {
+    this.notification.deleteElementAlert().then((result) => {
       if (result.value) {
         this.schoolyearService.deleteSchoolYear(id)
           .subscribe({
-            next: () => this.refreshSchoolYearList(),
+            next: ()=> this.notification.onSaveComplete('warning',"Année scolaire","supprimée",this.refreshSchoolYearList()),
             error: err => this.errorMessage = err
           });
+      }else{
+        this.refreshSchoolYearList()
       }
     })
 
   }
-  editSchoolYear(id: number) {
-    this.rowId = id;
+   saveSchoolYear() {
+    if (this.schoolYearForm.valid) {
+      if (this.schoolYearForm.dirty) {
+        const year = { ...this.schoolYear, ...this.schoolYearForm.value };      
+        if (year.Id === 0) {
+          this.schoolyearService.createSchoolYear(year).subscribe({
+           next: () => this.notification.onSaveComplete('success',"Année scolaire","ajoutée",this.refreshSchoolYearList()),
+            error: err => this.errorMessage = err
+          });                 
+        } else {
+          this.schoolyearService.updateSchoolYear(year)
+            .subscribe({
+               next: () => this.notification.onSaveComplete('success',"Année scolaire","modifiée",this.refreshSchoolYearList()),            
+              error: err => this.errorMessage = err
+            });
+        }
+      } else {
+               
+      }
+    } else {
+      this.errorMessage = 'Please correct the validation errors.';
+    }
   }
-  openModal(id: number, fromGrid: false) {
-    if (fromGrid) { $("#myModal").modal("show"); }
-    this.rowId = id;
-  }
+
 }

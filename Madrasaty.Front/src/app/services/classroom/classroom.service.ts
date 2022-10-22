@@ -55,9 +55,9 @@ export class ClassroomService {
     return {
       Id: 0,
       Wording:null,
-      NumberProjector:0,
-      NumberDesk:0,
-      NumberChair:0
+      NumberProjector:null,
+      NumberDesk:null,
+      NumberChair:null
     };
   }
 

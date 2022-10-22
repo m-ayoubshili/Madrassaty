@@ -1,5 +1,5 @@
-import { SettingsHeaderComponent } from './shared/settings-header/settings-header.component';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+
+import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,12 +17,10 @@ import { UserService } from './services/user.service';
 import { MaterialModule } from './shared/material/material.module';
 
 import { AuthGuard } from './components/auth/authGard/auth.guard';
-import { SettingsHeaderModule } from './shared/settings-header/settings-header.module';
-import { SignalrService } from './services/RealTime-signalR/signalr.service';
-import { MessageService } from './services/message/message.service';
-import { MessageGroupService } from './services/messageGroup/messageGroup.service';
-import { MembersListService } from './services/members/members-list.service';
-import { MemberConnectionIdService } from './services/RealTime-signalR/member-connectionId.service';
+
+import { SharedHeaderModule } from './shared/shared-header/shared-header.module';
+
+
 
 /*
 function appInitializer(authService: AuthService) {
@@ -45,20 +43,16 @@ function appInitializer(authService: AuthService) {
     HttpClientModule,
     ClipboardModule,
     AppRoutingModule,
-    SettingsHeaderModule,
-
+    SharedHeaderModule,
     InlineSVGModule.forRoot(),
     NgbModule,
   ],
-  providers: [
-    UserService,
-    AuthGuard,
-    MemberConnectionIdService,
-    MembersListService,
-    SignalrService,
-    MessageService,
-    MessageGroupService,
+  providers: [UserService,
+    AuthGuard
+
   ],
+ 
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

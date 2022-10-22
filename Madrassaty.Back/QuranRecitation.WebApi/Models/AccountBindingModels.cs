@@ -62,7 +62,9 @@ namespace QuranRecitation.WebApi.Models
         [Required]
         public int MemberStatusId { get; set; }
 
-        
+    
+       public int MemberStateId { get; set; }
+
         [MaxLength(1)]
         public string Gender { get; set; }
         public string SkypeId { get; set; }
@@ -72,7 +74,7 @@ namespace QuranRecitation.WebApi.Models
         public string PhotoPath { get; set; }
         public string Street { get; set; }
         public string ZipCode { get; set; }
-        public string City { get; set; }
+        public string City { get; set; } 
         public string Country { get; set; }
         public List<string> ListEmail { get; set; }
 
@@ -117,8 +119,6 @@ namespace QuranRecitation.WebApi.Models
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string Password { get; set; }
-
-
         public Guid Id { get; set; }
     }
 }

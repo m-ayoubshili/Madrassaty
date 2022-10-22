@@ -16,7 +16,7 @@ export class StudentDisciplineLevelService {
     })
   };
   constructor(private http: HttpClient) { }
-  getStudentDisciplineLevel(studentId: any, disciplineId: number): Observable<StudentDisciplineLevel> {
+  getStudentDisciplineLevel(studentId: string, disciplineId: number): Observable<StudentDisciplineLevel> {
     return this.http.get<StudentDisciplineLevel>(environment.STUDENT_DISCIPLINELEVEL_URL + "?studentId=" + studentId.toString() + "&disciplineId=" + disciplineId, this.httpOptions)
   }
 }

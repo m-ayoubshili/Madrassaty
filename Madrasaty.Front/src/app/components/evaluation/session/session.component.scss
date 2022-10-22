@@ -1,0 +1,41 @@
+.mat-form-field{
+    width: 98%;
+  }
+  .inline {
+    display: inline;
+  }
+  
+
+  .flex {
+    display: flex;
+  }
+  
+  .gap-4 {
+    gap: 1rem /* 16px */;
+  }
+  
+  .justify-start {
+    justify-content: flex-start;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  .cardAnimation {
+    transition: transform 400ms;
+    will-change: transform;
+  
+  }
+  .cardAnimation:hover,
+  .cardAnimation:focus {
+    transform: translateY(10px);
+  }
+  
+  
+.row {
+    display: flex;
+  
+  }
+  .column {
+    flex: 1;
+  }

@@ -19,7 +19,7 @@ const routes: Routes = [
         component: GroupChatComponent,
       },
       {
-        path: 'chat-settings',
+        path: 'drawer-chat',
         component: DrawerChatComponent,
       },
 

@@ -93,6 +93,7 @@ export class ExamensService {
   }
   createExamen(examen: Examen): Observable<Examen> {
     examen.EndDate = examen.StartDate;
+    console.log("service"+examen)
     return this.httpclient.post<Examen>(
       environment.BASE_URL + "Examen/"+this.MemberUsername,
       examen,
@@ -129,6 +130,9 @@ export class ExamensService {
   }
 
   getExamenById(id: number): Observable<Examen> {
+    if (id === -1) {
+      return of(this.initializeExamen());
+    }
     return this.httpclient.get<Examen>(
       environment.BASE_URL + "Examen/" + id,
       this.httpOptions

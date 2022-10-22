@@ -90,6 +90,7 @@
   <div class="fv-row mb-10">
     <div class="d-flex justify-content-between mt-n5">
       <div class="d-flex flex-stack mb-2">
+        
         <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
         <a
           routerLink="/auth/forgot-password"
@@ -102,17 +103,32 @@
       </div>
     </div>
 
-    <input
-      class="form-control form-control-lg form-control-solid"
-      type="password"
-      name="password"
-      autocomplete="off"
-      formControlName="password"
-      [ngClass]="{
-        'is-invalid': loginForm.controls['password'].invalid,
-        'is-valid': loginForm.controls['password'].valid
-      }"
-    />
+    <div class="inner-addon left-addon">
+      <button
+        type="button"
+        [disableRipple]="true"
+        class="showbotton"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <input
+        class="form-control form-control-lg form-control-solid"
+        [type]="hide ? 'password' : 'text'"
+        name="Password"
+        formControlName="password"
+        autocomplete="off"
+        [ngClass]="{
+          'is-invalid': loginForm.controls['password'].invalid,
+          'is-valid': loginForm.controls['password'].valid
+        }"
+      />
+    </div>
+
     <ng-container
       [ngTemplateOutlet]="formError"
       [ngTemplateOutletContext]="{
@@ -208,3 +224,4 @@
   </ng-container>
 </ng-template>
 </div>
+>

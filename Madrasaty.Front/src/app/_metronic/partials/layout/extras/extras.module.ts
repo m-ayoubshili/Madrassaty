@@ -1,3 +1,4 @@
+import { AppResolverService } from './../../../../services/app-resolver.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MembersListService } from 'src/app/services/members/members-list.service';
 import { SchoolyearService } from 'src/app/services/schoolyear/schoolyear.service';
 import { DatePipe } from '@angular/common';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { DatePipe } from '@angular/common';
     LayoutScrollTopComponent,
     
   ],
-  imports: [CommonModule, InlineSVGModule, RouterModule, TranslationModule],
+  imports: [CommonModule, InlineSVGModule, RouterModule, TranslationModule,MaterialModule],
   exports: [
     NotificationsInnerComponent,
     QuickLinksInnerComponent,
@@ -31,6 +33,7 @@ import { DatePipe } from '@angular/common';
     MembersListService,
    SchoolyearService,
    DatePipe,
+   AppResolverService
   ]
 })
 export class ExtrasModule {}

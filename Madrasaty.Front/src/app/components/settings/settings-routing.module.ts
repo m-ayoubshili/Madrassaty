@@ -1,6 +1,4 @@
 import { HolidayComponent } from './holiday/holiday.component';
-
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SchoolComponent } from './school/school.component';
@@ -9,7 +7,7 @@ import { SettingsComponent } from './settings.component';
 import { MembersComponent } from './members/members.component';
 import { TajwidErrorComponent } from './tajwid-error/tajwid-error.component';
 import { DisciplineComponent } from './discipline/discipline.component';
-import { ClassroomListComponent } from './classroom/classroom-list/classroom-list.component';
+import { ClassroomListComponent } from './classroom/classroom-list.component';
 import { LevelComponent } from './level/level.component';
 
 const routes: Routes = [
@@ -21,7 +19,6 @@ const routes: Routes = [
         path: 'school',
         component: SchoolComponent,
       },
-
       {
         path: 'schoolyear',
         component: SchoolYearComponent,

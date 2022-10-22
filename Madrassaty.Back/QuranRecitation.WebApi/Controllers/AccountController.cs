@@ -26,6 +26,7 @@ using SendGrid.Helpers.Mail;
 using System.Web.Http.Description;
 using System.Net;
 using QuranRecitation.Data.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuranRecitation.WebApi.Controllers
 {
@@ -321,31 +322,6 @@ namespace QuranRecitation.WebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            //var user = new Member()
-            //{
-            //    UserName = model.Email,
-            //    Email = model.Email,
-            //    SchoolId = 1,
-            //    MemberStatusId = 1,
-            //    Login = "Mohamed Ali",
-            //    EmailConfirmed = true,
-            //    FirstName = "Mohamed Ali",
-            //    LastName = "NOUIRA",
-            //    Gender = "0",
-            //    SkypeId = "dali5051",
-            //    PhoneNumber = "0033623528785",
-            //    BeginningDate = DateTime.Now,
-            //    Profession = "Informaticien",
-            //    BirthDate = DateTime.Now,
-            //    PhotoPath = "./uploads/dali.jpeg",
-            //    Street = "35 Boulevard carnot",
-            //    ZipCode = "93200",
-            //    City = "Saint Denis",
-            //    Country = "France",
-            //};
-
-
             var user = new Member()
             {
                 Id = Guid.NewGuid(),
@@ -354,7 +330,8 @@ namespace QuranRecitation.WebApi.Controllers
                 SchoolId = model.SchoolId,
                 MemberStatusId = model.MemberStatusId,
                 Login = model.Email,
-                EmailConfirmed = true,
+                EmailConfirmed = false,
+                MemberStateId=1,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Gender = model.Gender,
@@ -545,17 +522,19 @@ namespace QuranRecitation.WebApi.Controllers
                     SchoolId = model.SchoolId,
                     MemberStatusId = model.MemberStatusId,
                     Login = model.Email,
-                    EmailConfirmed = true,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Gender = model.Gender,
-                    SkypeId = model.SkypeId,
+                    EmailConfirmed = false,
+                    MemberStateId = 1,
+                    FirstName = "",
+                    LastName = "",
+                    Gender = "",
+                    SkypeId = "",
                     BeginningDate = DateTime.Now,
-                    Profession = model.Profession,
+                    Profession = "",
                     BirthDate = model.BirthDate,
-                    Street = model.Street,
-                    ZipCode = model.ZipCode,
-                    City = model.City,
+                    Street = "",
+                    ZipCode = "",
+                    City = "",
+             
                     Country = model.Country,
                 };
 
@@ -564,10 +543,12 @@ namespace QuranRecitation.WebApi.Controllers
 
                 if (result.Succeeded)
                 {
-                     
+                  
+                    // string callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                    string callbackUrl = "http://localhost:4200/auth/confirm-email";
                     //sending email after inscription
                     var subject = "Création de votre compte";
-                    var htmlContent = email.GenerateBodyEmailForUser(user);
+                    var htmlContent = email.GenerateBodyEmailForUser(user, callbackUrl);
                     await Mail.SendSingleEmail(subject, user.Email, htmlContent);
                     
                     
@@ -587,6 +568,30 @@ namespace QuranRecitation.WebApi.Controllers
             }
             return Ok();
 
+        }
+
+        [Route("ConfirmEmail")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> ConfirmEmail(RegisterBindingModel model)
+        {
+            if(model.Email == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            var user = await UserManager.FindByEmailAsync(model.Email);
+
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+         
+            var result = await UserManager.ConfirmEmailAsync(user.Id,code);
+            if (result.Succeeded)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+         
         }
 
         // PUT api/Account/PasswordRecovery
@@ -616,8 +621,15 @@ namespace QuranRecitation.WebApi.Controllers
             }
         }
 
+        public class ConfirmEmailBindingModel
+        {
+            [Required]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+      
+        }
 
-        
+
         #endregion
     }
 }

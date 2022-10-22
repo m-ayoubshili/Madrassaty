@@ -25,11 +25,16 @@ namespace QuranRecitation.Data.Services
         {
             return _studentRecitationRepo.Create(studentRecitation);
         }
+        public void Delete(StudentRecitation studentRecitation)
+        {
+            _studentRecitationRepo.Delete(studentRecitation);
+        }
     }
 
     public interface IStudentRecitationService
     {
         IQueryable<StudentRecitation> GetAll();
         StudentRecitation Create(StudentRecitation studentRecitation);
+        void Delete(StudentRecitation studentRecitation);
     }
 }

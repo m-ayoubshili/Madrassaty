@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 import { first } from 'rxjs/operators';
+import { RegisterService } from 'src/app/services/register.service';
 import { UserService } from 'src/app/services/user.service';
 
 enum ErrorStates {
@@ -21,23 +22,12 @@ export class ForgotPasswordComponent implements OnInit {
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
   isLoading$: Observable<boolean>;
-
-  // private fields
-  private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-  constructor(private fb: FormBuilder,  private userService:UserService) {
+  private unsubscribe: Subscription[] = [];
+  constructor(private fb: FormBuilder,  private registerService:RegisterService) {
     //this.isLoading$ = this.authService.isLoading$;
   }
 
   ngOnInit(): void {
-    this.initForm();
-  }
-
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.forgotPasswordForm.controls;
-  }
-
-  initForm() {
     this.forgotPasswordForm = this.fb.group({
       email: [
         'admin@demo.com',
@@ -45,20 +35,26 @@ export class ForgotPasswordComponent implements OnInit {
           Validators.required,
           Validators.email,
           Validators.minLength(3),
-          Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+          Validators.maxLength(320), 
         ]),
       ],
     });
   }
 
+
   submit() {
     this.errorState = ErrorStates.NotSubmitted;
-    const forgotPasswordSubscr = this.userService
-      .forgotPassword(this.f.email.value)
+
+    let email=this.forgotPasswordForm.get('email').value
+    var data = { ...data,email:email};
+
+    const forgotPasswordSubscr = this.registerService
+      .SetPassword(data)
       .pipe(first())
       .subscribe((result: boolean) => {
         this.errorState = result ? ErrorStates.NoError : ErrorStates.HasError;
       });
+      console.log(this.errorState)
     this.unsubscribe.push(forgotPasswordSubscr);
   }
 }

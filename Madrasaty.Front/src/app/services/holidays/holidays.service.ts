@@ -33,8 +33,8 @@ export class HolidaysService {
   private initializeHoliday(): Holiday {
     return {
       Id: 0,
-      StartDay: new Date(),
-      EndDay: new Date(),
+      StartDay: null,
+      EndDay: null,
       description: ''
     };
   }

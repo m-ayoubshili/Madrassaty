@@ -1,0 +1,90 @@
+<div class="card mb-5 mb-xl-8" style="width: 105%">
+  <div class="card-header border-0 pt-5">
+    <div class="card-toolbar">
+      <h4>List des Notes</h4>
+    </div>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4 ml-5">
+        <!-- begin::Table head -->
+        <thead>
+          <tr class="fw-bolder text-muted bg-light">
+            <th style="width: 18%">Nom d'élève</th>
+            <th style="width: 22%">Note</th>
+            <th style="width: 50%">Observation</th>
+            <th style="width: 20%">Sauvegarder</th>
+          </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+          <tr *ngFor="let note of examenNotesList">
+            <td>{{ note.StudentFullName }}</td>
+            <td>
+              <div class="d-flex justify-content-start flex-column">
+                <input
+                  type="number"
+                  style="width: 100%"
+                  placeholder="note"
+                  class="form-control"
+                  [(ngModel)]="note.Note"
+                  max="20"
+                  min="0"
+                  #note2="ngModel"
+                  (change)="enforceMinMax()"
+                />
+                <div *ngIf="note2.errors && (note2.dirty || note2.touched)">
+                  <span *ngIf="note2.errors && (note2.dirty || note2.touched)" [hidden]="!note2.errors.max" style="color: red">
+                    Number should be between 0 and 20
+                  </span>
+                </div>
+                  <div *ngIf="note2.errors && (note2.dirty || note2.touched)">
+                    <span  *ngIf="note2.errors && (note2.dirty || note2.touched)" [hidden]="!note2.errors.min" style="color: red">
+                      Number should be between 0 and 20
+                    </span>
+                  </div>
+               
+              </div>
+            </td>
+            <td>
+              <textarea
+                class="form-control"
+                style="width: 500px; height: 30px"
+                [(ngModel)]="note.Observation"
+              ></textarea>
+            </td>
+
+            <td style="width: 20px">
+              <div class="symbol symbol-40px me-3">
+                <span class="symbol-label bg-light-success">
+                  <button
+                    class="btn btn-icon btn-bg btn-active-color-primary btn-sm"
+                    (click)="setNote(note)"
+                  >
+                    <i
+                      class="fas fa-save"
+                      style="color: #18b618; font-size: 25px"
+                    ></i>
+                  </button>
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button
+        matTooltip="Retour à la page des examens"
+        class="btn btn-icon btn-bg btn-active-color-primary btn-sm"
+        [routerLink]="['/crafted/evaluation/examen']"
+      >
+        <i class="fas fa-arrow-left" style="font-size: 30px"></i>
+      </button>
+    </div>
+  </div>
+</div>

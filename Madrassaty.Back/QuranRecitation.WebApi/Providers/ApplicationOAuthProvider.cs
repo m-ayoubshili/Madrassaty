@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using QuranRecitation.WebApi.Models;
 using QuranRecitation.Data.Model;
 using Newtonsoft.Json;
 
@@ -48,6 +44,21 @@ namespace QuranRecitation.WebApi.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+            if (user.EmailConfirmed == false && user.MemberStateId==1)
+            {
+                context.SetError("error", "please confirm your email and wait the admin to aprouve your account  ");
+                return;
+            }
+            if (user.EmailConfirmed == true && user.MemberStateId == 1)
+            {
+                context.SetError("error", "please wait the admin to aprouve your account ");
+                return;
+            }
+            if (user.EmailConfirmed == true && user.MemberStateId == 3)
+            {
+                context.SetError("error", "your account was rejected by the admin");
+                return;
+            }
 
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);
@@ -57,7 +68,7 @@ namespace QuranRecitation.WebApi.Providers
             AuthenticationProperties properties = CreateProperties("userName", user.UserName);
             AuthenticationProperties idProperties = CreateProperties("userId", user.Id.ToString());
             //AuthenticationProperties userProperties = CreateProperties("user", JsonConvert.SerializeObject(user));
-            AuthenticationProperties userProperties = CreateProperties("user", JsonConvert.SerializeObject(new { Id = user.Id, UserName = user.UserName, MemberStatusId = user.MemberStatusId }));
+            AuthenticationProperties userProperties = CreateProperties("user", JsonConvert.SerializeObject(new { Id = user.Id,schoolId=user.SchoolId , UserName = user.UserName, MemberStatusId = user.MemberStatusId }));
 
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);

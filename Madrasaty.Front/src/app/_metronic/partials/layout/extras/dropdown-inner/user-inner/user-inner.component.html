@@ -1,45 +1,91 @@
-<ng-container >
-  <!--*ngIf="user$ | async as _user"-->
-  <div class="menu-item px-3">
-    <div class="menu-content d-flex align-items-center px-3">
+<ng-container>
+  <div
+    class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown"
+    data-kt-menu-trigger="click"
+    data-kt-menu-placement="bottom-start"
+  >
+  <div class="menu-item px-3" style="margin-top: -19px;" >
+    <div class="menu-content d-flex align-items-center px-9">
          <div class="d-flex flex-column">
-        <div class="fw-bolder d-flex align-items-center fs-5">
-          <!--{{ _user.firstname }} {{ _user.lastname }} -->
-      
-            {{FullName}}
-        
-          
-        
-        </div>
-        <a class="fw-bold text-muted text-hover-primary fs-7 cursor-pointer">
-         {{anneeScolaireDescription }}
-          <!-- <p> user email</p>-->
-        </a>
+     
+        <div class="fw-bolder d-flex align-items-center fs-5 " >
+          <img [src]="PhotoPath" alt="metronic"  style=" margin-left: -34px; border-radius: 48%; width: 60px; margin-right: 16px;"/>
+          <div style="vertical-align:middle; margin-top: -7px;">
+            {{FirstName}} <br>              
+            {{LastName}} 
+          </div>
+        </div>  
+        <div class="d-flex
+        align-items-center
+        text-gray-600 text-hover-primary
+        me-4
+        mb-1 
+        fs-5   
+        cursor-pointer" style="margin-left: 44px;" >
+            {{memberStatusData.Wording}}        
+        </div>    
       </div>
     </div>
   </div>
+      
+  <div
+  class="menu-content d-flex align-items-center px-9"
+  data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+  data-kt-menu-placement="right-start" 
+  style="margin-left:-27px">
+     <span class="menu-link py-1"
+     ><span class="menu-icon"><i class="bi fs-3 bi-calendar-check"></i></span
+     ><span class="menu-title" data-link="/crafted/account">    {{anneeScolaireDescription }}</span
+     ></span>
+    </div>
+  <div class="separator mb-1"></div>
 
-  <div class="separator my-2"></div>
-
-  <div class="menu-item px-5">
-    <a routerLink="/crafted/pages/profile" class="menu-link px-5">
-      My Profile
-    </a>
+    <div
+      class="menu-item menu-lg-down-accordion me-lg-1"
+      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+      data-kt-menu-placement="right-start"
+      routerLink="/crafted/account/overview"
+    >
+      <span class="menu-link py-3"
+        ><span class="menu-icon"><i class="bi fs-3 bi-person"></i></span
+        ><span class="menu-title" data-link="/crafted/account">Account</span
+        ></span>
+      <div
+        class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px"
+        data-kt-menu-dismiss="true"
+      ></div>
+    </div>
+    <div
+      class="menu-item menu-lg-down-accordion me-lg-1"
+      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+      data-kt-menu-placement="right-start"
+      routerLink="/crafted/account/settings"
+    >
+      <span class="menu-link py-3"
+        ><span class="menu-icon"><i class="bi fs-3 bi-gear"></i></span
+        ><span class="menu-title" data-link="/error">Account Settings</span
+        ></span>
+      <div
+        class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px"
+        data-kt-menu-dismiss="true"
+      ></div>
+    </div>
+    <div
+      class="menu-item menu-lg-down-accordion me-lg-1"
+      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+      data-kt-menu-placement="right-start"
+      (click)="logout()"
+    >
+      <span class="menu-link py-3"
+        ><span class="menu-icon"><i class="bi fs-3  bi-box-arrow-right"></i></span
+        ><span class="menu-title" data-link="/crafted/widgets">LogOut</span
+        ></span>
+      <div
+        class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px"
+        data-kt-menu-dismiss="true"
+      ></div>
+    </div>
   </div>
 
-
-  <div class="separator my-2">
-    
-  </div>
-
-
-  <div class="menu-item px-5 my-1">
-    <a routerLink="/crafted/account/settings" class="menu-link px-5">
-      Account Settings
-    </a>
-  </div>
-
-  <div class="menu-item px-5">
-    <a (click)="logout()" class="menu-link px-5 cursor-pointer"> Sign Out </a>
-  </div>
 </ng-container>
+

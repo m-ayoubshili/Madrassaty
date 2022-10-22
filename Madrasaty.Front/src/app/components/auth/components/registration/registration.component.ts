@@ -16,8 +16,7 @@ import { RegisterService } from 'src/app/services/register.service';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
-  @Input() Password='';
-  @Input() ConfirmPassword='';
+
   hasError: boolean;
   registerform: FormGroup;
   minDate: Date;
@@ -59,7 +58,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       Profession: { required: 'Profession est  obligatoire.' },
       Street: { required: 'Adresse est  obligatoire.' },
       ZipCode: { required: 'Code postal est  obligatoire.' },
-      City: { required: 'Cité est  obligatoire.' },
+     // City: { required: 'Cité est  obligatoire.' },
       BirthDate: { required: 'La date de naissance est obligatoire.' },
       SchoolId: { required: 'Il faut choisir une école' },
       Gender: { required: 'Genre est obligatoire.' },
@@ -94,23 +93,23 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         //Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
       ]),
       ConfirmPassword: new FormControl("",[Validators.required,Validators.minLength(6),] ),
-      LastName: new FormControl("", [Validators.required]),
-      FirstName: new FormControl("", [Validators.required]),
-      Profession: new FormControl("", [Validators.required]),
+      //LastName: new FormControl("", [Validators.required]),
+      //FirstName: new FormControl("", [Validators.required]),
+      //Profession: new FormControl("", [Validators.required]),
       BeginningDate: new FormControl(),
-      Street: new FormControl("", [Validators.required]),
-      ZipCode: new FormControl("", [Validators.required]),
-      City: new FormControl("", [Validators.required]),
+      //Street: new FormControl("", [Validators.required]),
+      //ZipCode: new FormControl("", [Validators.required]),
+      //City: new FormControl("", [Validators.required]),
       SchoolId: new FormControl("", [Validators.required]),
-      Gender: new FormControl("", [Validators.required]),
-      Country: new FormControl("", [Validators.required]),
+     // Gender: new FormControl("", [Validators.required]),
+      //Country: new FormControl("", [Validators.required]),
       BirthDate: new FormControl(null, [Validators.required]),
       PhotoPath: new FormControl(),
-      MembreStatusId: new FormControl("",[Validators.required])
+      MembreStatusId: new FormControl("",[Validators.required]),
 
     }
     );
-    this.registerform.controls['Country'].setValue(this.defaultCountry, { onlySelf: true });
+    //this.registerform.controls['Country'].setValue(this.defaultCountry, { onlySelf: true });
     this.register.getCountries().subscribe(
       (countriesData) => this.countries = countriesData,
       (error) => console.log(error)
@@ -157,10 +156,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       data = { ...data, ListEmail: this.listAdmins};
       let dt=this.registerform.get('MembreStatusId').value;
       data={ ...data, MemberStatusId: dt};
-      let date= this.registerform.get('BirthDate').value ;
+      console.log(data)
+       let date= this.registerform.get('BirthDate').value ;
       date=new Date();
       data={ ...data, BirthDate: date};
-
+      console.log(data)
+ 
           this.register.RegisterUser(data) .subscribe({
             next: () => this.onSaveComplete(),
             error: err => this.errorMessage = err
@@ -172,7 +173,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     Swal({
       position: 'top',
       type: "success",
-      title: 'compte créer avec succès',
+      title: 'compte créer avec succès,please check your email and confirm it',
+      text:'',
       showConfirmButton: false,
       timer: 5000,
       toast: true

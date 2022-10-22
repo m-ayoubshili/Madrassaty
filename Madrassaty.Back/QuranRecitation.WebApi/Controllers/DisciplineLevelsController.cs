@@ -155,7 +155,25 @@ namespace QuranRecitation.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
-
+        // GET: api/DisciplineLevel/5
+        [ResponseType(typeof(DisciplineLevelModel))]
+        [HttpGet, Route("api/DisciplineLevelById/{id:int}")]
+        public HttpResponseMessage GetDisciplineLevelById(int id)
+        {
+            var level = _disciplineLevelService.GetById(id);
+            var model = new DisciplineLevelModel()
+            {
+                Id = level.Id,
+                DisciplineId = level.DisciplineId,
+                Wording = level.Wording,
+                Description = level.Description
+            };
+            if (level == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
 
         // DELETE: api/DisciplineLevels/5
         [ResponseType(typeof(DisciplineLevelModel))]

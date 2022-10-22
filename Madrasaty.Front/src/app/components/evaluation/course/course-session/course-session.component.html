@@ -1,0 +1,283 @@
+
+  
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header border-0 pt-5">
+      <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Séance De Cour</span>
+      </h3>
+      </div>
+    <div class="card-body pt-9 pb-0">
+      <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+        <div class="me-7 mb-4">
+          <div
+            class="
+              symbol symbol-100px symbol-lg-160px symbol-fixed
+              position-relative
+            "
+          >
+            <img  src={{PhotoPath}} alt="Metronic" />
+
+    
+ 
+
+   
+         
+          </div>
+        </div>
+  
+        <div class="flex-grow-1">
+          <div
+            class="
+              d-flex
+              justify-content-between
+              align-items-start
+              flex-wrap
+              mb-2
+            "
+          >
+            <div class="d-flex flex-column">
+              <div class="d-flex align-items-center mb-2">
+                <a
+                  class="
+                    text-gray-800 text-hover-primary
+                    fs-2
+                    fw-bolder
+                    me-1
+                    cursor-pointer
+                  "
+                >
+                {{currentCourse.Teacher}}
+                </a>
+                <a class="cursor-pointer">
+                  <span
+                    [inlineSVG]="
+                      './assets/media/icons/duotune/general/gen026.svg'
+                    "
+                    class="svg-icon svg-icon-1 svg-icon-primary"
+                  ></span>
+                </a> 
+              </div>
+  
+              <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                <a
+                  class="
+                    d-flex
+                    align-items-center
+                    text-gray-400 text-hover-primary
+                    me-5
+                    mb-2
+                    cursor-pointer
+                  "
+                >
+                <i class="material-icons me-2" style="font-size: 20px;">menu_book</i>
+                {{currentCourse.Discipline}}
+                </a>
+                <a
+                  class="
+                    d-flex
+                    align-items-center
+                    text-gray-400 text-hover-primary
+                    me-5
+                    mb-2
+                    cursor-pointer
+                  "
+                >
+                <i class="fas fa-layer-group me-2"></i>
+               
+                  {{currentCourse.DisciplineLevel}} 
+                </a>
+                <a
+                  class="
+                    d-flex
+                    align-items-center
+                    text-gray-400 text-hover-primary
+                    mb-2
+                    cursor-pointer
+                  "
+                >
+               <i class="fas fa-school  me-2"></i>
+                  {{classromm.Wording}}
+                </a>
+              </div>
+            </div>
+          
+            <div class="d-flex my-4">
+         
+                <a
+                  class="btn btn-lg btn-primary me-3 "   (click)="togglePresence(true)"             
+                >
+                <i class="fa fa-list"></i>
+                  Absence
+                  
+                </a>            
+              </div>
+          </div>
+  
+          <div class="d-flex flex-wrap flex-stack">
+            <div class="d-flex flex-column flex-grow-1 pe-8">
+              <div class="d-flex flex-wrap">
+                <div
+                  class="
+                    border border-gray-300 border-dashed
+                    rounded
+                    min-w-125px
+                    py-3
+                    px-4
+                    me-6
+                    mb-3
+                  "
+                >
+                  <div class="d-flex align-items-center">
+                    <i class="material-icons me-2" style="font-size: 30px;">group</i>
+                    <div class="fs-4 fw-bolder"> {{ nb }}</div>
+                  </div>
+  
+                </div>
+                <div
+                  class="
+                    border border-gray-300 border-dashed
+                    rounded
+                    min-w-125px
+                    py-3
+                    px-4
+                    me-6
+                    mb-3
+                  "
+                >
+                  <div class="d-flex align-items-center">
+                    <i class="material-icons me-3" style="font-size: 30px;">date_range</i>
+                    <div class="fs-4 fw-bolder"> {{currentCourseSession.Begin | date:'dd/MM/yyyy'}}</div>
+                  </div>
+  
+             
+                </div>
+  
+
+               
+
+                <div
+                  class="
+                    border border-gray-300 border-dashed
+                    rounded
+                    min-w-125px
+                    py-3
+                    px-4
+                    me-6
+                    mb-3
+                  "
+                >
+                  <div class="d-flex align-items-center">
+                    <i class="material-icons me-2" style="font-size: 35px;">access_time</i>
+                    <div class="fs-4 fw-bolder">  de {{currentCourseSession.Begin | date:'hh:mm'}} à {{currentCourseSession.EndTime | date:'hh:mm'}}</div>
+                  </div>
+  
+           
+                </div> 
+                
+              </div>
+              
+            </div>  
+            
+          </div>
+          <div class="d-flex flex-wrap flex-stack">
+           
+            <form  name="courseSessionForm" class="form-horizontal" [formGroup]="courseSessionForm" (ngSubmit)="saveCourseSession()">
+              <div class="widget-text-box">
+                <h4 class="media-heading">Remarque</h4>
+                <div class="form-group" [ngClass]="{'has-error': displayMessage.Remarque}">
+                  <textarea style="  width: 500px;" rows="3" class="form-control" formControlName="Remarque" id="Remarque"></textarea>
+                </div>
+                <br>
+                <br>               
+              </div>
+              
+            </form>
+        
+          </div>
+        
+          <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <a (click)=" this.courseSessionForm.reset()" class="btn btn-xs btn-white"><i class="fa fa-refresh"></i> Annuler </a>
+            <button (click)="saveCourseSession()"  [disabled]="courseSessionForm.invalid" class="btn btn-xs btn-primary btndelete"><i class="fa fa-floppy-o"></i> Sauvegader</button>
+          </div>
+        </div>
+        
+      </div>
+  
+ 
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-8"  *ngIf="showtogglePresence == true">
+
+    <div class="card-header border-0 pt-5">
+      <div class="card-toolbar">
+        <input type="text" [(ngModel)]="searchStudents" class="form-control" autocomplete="off"
+        id="autocomplete-students" placeholder="Rechercher un étudiant" style="border-radius: 3px;" />
+      </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+      <!-- begin::Table container -->
+      <div class="table-responsive">
+        <!-- begin::Table -->
+        <table class="table align-middle gs-0 gy-4">
+          <!-- begin::Table head -->
+          <thead>
+            <tr class="fw-bolder text-muted bg-light">
+              <th class="min-w-125px">Etudiant</th> 
+              <th class="ps-4 min-w-125px rounded-start"></th>
+              <th class="min-w-60px"></th>
+            
+        
+            </tr>
+          </thead>
+          <!-- end::Table head -->
+          <!-- begin::Table body -->
+          <tbody >
+            <tr *ngFor="let item of presences | filter:searchStudents">
+                <td>
+                    <div class="d-flex align-items-center">
+                    
+                      <div class="d-flex justify-content-start flex-column">
+                        <a           
+                          class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                        >
+                        {{ item.FullName }}
+                        </a>              
+                      </div>
+                    </div>
+                  </td>
+              <td>
+                <input type="radio" [value]="true" name="radio-{{item.MemberId}}"
+                (change)="updatePresence(item)" [(ngModel)]="item.Present"> Présent
+              </td>
+         
+           
+              <td>
+                <input class="form-check-input" type="radio" [value]="false"
+                                                  name="radio-{{item.MemberId}}" (change)="updatePresence(item)"
+                                                  [(ngModel)]="item.Present"> Absent
+              </td>
+           
+            </tr>
+         
+          </tbody>
+        
+        </table>
+        <div id="kt_account_signin_method" class="d-flex justify-content-end mb-2">
+            <button
+            class="btn btn-xs btn-primary btndelete"
+            (click)="togglePresence(false)"
+          >
+            Close
+          </button>
+          </div>
+     
+      </div>
+    
+    </div>
+    
+    
+    
+    </div>

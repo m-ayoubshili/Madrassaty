@@ -1,0 +1,43 @@
+.not{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    height: 30px;
+    width: 29px;
+    line-height: 28px;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #ff3131;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+}
+.message{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    height: 30px;
+    width: 29px;
+    line-height: 28px;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: rgb(96, 180, 96);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+
+}
+.droplanguage{
+   font-size: 15px;
+  color: #444444;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 12px;
+}
+.globalicon{
+    font-size: 23px;    
+    margin-right: 5px; 
+}

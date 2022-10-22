@@ -13,23 +13,27 @@
   </div>
   <div id="kt_account_profile_details" class="collapse show">
     
-    <form novalidate="" class="form">
+    <form novalidate=""  [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="form">
       <div class="card-body border-top p-9">
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
           <div class="col-lg-8">
-            <div
-              class="image-input image-input-outline"
-              data-kt-image-input="true"
-              [style.background-image]="'url(./assets/media/avatars/blank.png'"
-            >
-              <div
-                class="image-input-wrapper w-125px h-125px"
-                [style.background-image]="
-                  'url(./assets/media/avatars/150-2.jpg'
-                "
-              ></div>
-            </div>
+            <style>
+              i.fa-paperclip {
+               margin: 10px;
+               cursor: pointer;
+               font-size: 20px;
+              }
+              i:hover {
+               opacity: 0.6;
+              }
+            </style>            
+            <input class="fileupload" type="file" name="fileupload" value="fileupload" id="fileupload"
+            #fileInput (change)="onChange(fileInput.files[0])"  style="visibility:hidden;" />
+        <a>
+            <img src={{PhotoPath}} id="profile_picture" style="border-radius: 50%;" alt="profile_picture" style="width:150px; height:150px;border-radius: 50%;">
+            <div class="caption"><label class="label" for="fileupload"> <i class="fa fa-paperclip"></i>Choisir une image ...</label></div>
+        </a>
           </div>
         </div>
 
@@ -41,11 +45,11 @@
             <div class="row">
               <div class="col-lg-6 fv-row">
                 <input type="text"
-                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name" formControlName="FirstName" name="fName" value="Max" />
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name" formControlName="FirstName" />
               </div>
               <div class="col-lg-6 fv-row">
                 <input type="text"
-                  class="form-control form-control-lg form-control-solid" placeholder="Last name" formControlName="LastName" name="lName" value="Smith" />
+                  class="form-control form-control-lg form-control-solid" placeholder="Last name" formControlName="LastName" />
               </div>
             </div>
           </div>
@@ -54,12 +58,24 @@
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label required fw-bold fs-6" >Sexe</label>
           <div class="col-lg-8 fv-row">
-            <select
-            class="form-select form-select-solid form-select-lg fw-bold" name="Gender"  formControlName="Gender" >
+            <select  class="form-select form-select-solid form-select-lg fw-bold" name="Gender"  formControlName="Gender" >
             <option value="">Select a Genre...</option>
-            <option value="M">Masculin</option>
-            <option value="F">Femenin</option>
+            <option *ngFor="let option of genderOptions" [ngValue]="option.id">{{option.name}}</option>
+          
             </select>
+          </div>
+        </div>
+        <div class="row mb-6" *ngIf="currentMemberStatutId==4||currentMemberStatutId==5||currentMemberStatutId==6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Parent Email</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="email"
+              class="form-control form-control-lg form-control-solid" formControlName="ParentEmail" 
+              placeholder="Parent Email"
+              name="Parent Email"            
+            />
           </div>
         </div>
         <div class="row mb-6">
@@ -93,30 +109,33 @@
         
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-            ><span class="required">Date d'entrée </span></label
-          >
-          <div class="col-lg-8 fv-row">
-            <input
-              type="text"
-              class="form-control form-control-lg form-control-solid"
-              placeholder="Company website"
-              name="companySite"
-              value="keenthemes.com"
-            />
-          </div>
+            ><span class="required">Date d'entrée </span></label >        
+          <div class="col-lg-8 fv-row" style="display: flex;">      
+            <input style="width: 97%;" class="form-control form-control-lg form-control-solid" 
+             formControlName="BeginningDate | date:'dd/MM/yyyy" ngbDatepicker #dp="ngbDatepicker" value="{{profile.BeginningDate | date:'dd/MM/yyyy' }}">
+            <button  #buttonEl class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+      </div> 
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-            ><span class="required">Date de naissance </span></label >
-          <div class="col-lg-8 fv-row">
-            <input
-              type="text"
-              class="form-control form-control-lg form-control-solid"
-              placeholder="Company website"
-              name="companySite"
-              value="keenthemes.com"
-            />
-          </div>
+          ><span class="required">Date de naissance </span></label >
+          <div class="col-lg-8 fv-row" style="display: flex;">      
+                <input  style="width: 97%;" class="form-control form-control-lg form-control-solid" 
+                formControlName="BirthDate | date:'dd/MM/yyyy" ngbDatepicker #dp2="ngbDatepicker" value="{{profile.BirthDate | date:'dd/MM/yyyy' }}">
+                
+                <button  #buttonEl class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"></button>
+          </div> 
+ 
+          <style>
+            button.calendar, button.calendar:active {
+            width: 2.75rem;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+            background-repeat: no-repeat;
+            background-size: 27px;
+            background-position: center;
+          }
+          </style>
+                
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
@@ -179,12 +198,11 @@
           <div class="col-lg-8 fv-row">
             <select
               class="form-select form-select-solid form-select-lg fw-bold"
-              name="country"
+              name="country" formControlName="Country"
             >
               <option value="">Select a Country...</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-   
+              <option *ngFor="let country of countries" [value]="country.code">{{country.name}}
+              </option>
            
             </select>
           
@@ -193,10 +211,10 @@
       </div>
       <div class="card-footer d-flex justify-content-end py-6 px-9">
         <button
-          type="button"
+          type="submit"
           class="btn btn-primary"
           [disabled]="isLoading"
-          (click)="saveSettings()"
+         
         >
           <ng-container *ngIf="!isLoading">Save Changes</ng-container>
           <ng-container *ngIf="isLoading">

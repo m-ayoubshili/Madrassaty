@@ -1,73 +1,3985 @@
-<!-- begin::Row -->
-<div class="row gy-5 g-xl-8">
-  <div class="col-xxl-4">
-    <app-mixed-widget2
-      class="card card-xl-stretch mb-xl-8"
-      chartColor="danger"
-      chartHeight="200px"
-      strokeColor="#cb1e46"
-    ></app-mixed-widget2>
+<div *ngIf="currentMemberStatutId === 1">
+  <div class="container-fluid mb-4">
+    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5 g-xl-8">
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/80/000000/external-teachers-professions-woman-diversity-flaticons-lineal-color-flat-icons.png"
+              />
+
+              <div class="child">
+                <h4 class="card-title align-items-start flex-column">
+                  <span class="card-label fw-bolder fs-3 mb-1">Teachers</span>
+                  <br />
+                  <span class="text-muted fw-bold fs-7">1520</span>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/80/000000/external-parents-parenthood-flaticons-lineal-color-flat-icons-2.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Parents</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-itim2101-lineal-itim2101/80/000000/external-students-online-education-itim2101-lineal-itim2101.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Students</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/80/000000/external-earnings-finance-itim2101-lineal-color-itim2101.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Earnings</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xxl-4">
-    <app-lists-widget5 class="card card-xxl-stretch"></app-lists-widget5>
+ 
+  <div class="row gy-5 g-xl-8">
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-8">
+        <div class="card-body">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Earnings</span>
+          </h3>
+          <div #chartRef id="kt_charts_widget_4_chart" [style.height]="'350px'">
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [xaxis]="chartOptions.xaxis"
+                [stroke]="chartOptions.stroke"
+                [tooltip]="chartOptions.tooltip"
+                [dataLabels]="chartOptions.dataLabels"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-5">
+        <div class="card-body">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Expenses</span>
+          </h3>
+          <div class="fw-bolder fs-3" [ngClass]="'fs-3 text-' + chartColor">
+            $15,300
+          </div>
+          <div #chartRef id="kt_charts_widget_4_chart" [style.height]="'315px'">
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions2.series"
+                [chart]="chartOptions2.chart"
+                [xaxis]="chartOptions2.xaxis"
+                [yaxis]="chartOptions2.yaxis"
+                [dataLabels]="chartOptions2.dataLabels"
+                [stroke]="chartOptions.stroke"
+                [legend]="chartOptions2.legend"
+                [fill]="chartOptions2.fill"
+                [states]="chartOptions2.states"
+                [tooltip]="chartOptions2.tooltip"
+                [colors]="chartOptions2.colors"
+                [markers]="chartOptions2.markers"
+                [plotOptions]="chartOptions2.plotOptions"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-7">
+        <div class="card-body">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Students</span>
+          </h3>
+          <div
+            class="fw-bolder fs-3"
+            [ngClass]="'fs-3 text-' + chartColor"
+          ></div>
+          <div #chartRef id="kt_charts_widget_4_chart" [style.height]="'350px'">
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions3.series"
+                [chart]="chartOptions3.chart"
+                [labels]="chartOptions3.labels"
+                [responsive]="chartOptions3.responsive"
+              ></apx-chart>
+              <div class="student-report">
+                <div class="student-count pseudo-bg-blue">
+                  <h4 class="item-title">Female Students</h4>
+                  <div class="item-number">45,000</div>
+                </div>
+                <div class="student-count pseudo-bg-yellow">
+                  <h4 class="item-title">Male Students</h4>
+                  <div class="item-number">1,05,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xxl-4">
-    <app-mixed-widget10
-      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
-      chartColor="primary"
-      chartHeight="150px"
-    ></app-mixed-widget10>
-    <app-mixed-widget11
-      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
-      chartColor="primary"
-      chartHeight="175px"
-    ></app-mixed-widget11>
+  <div class="row gy-5 gx-xl-5">
+    <div class="col-xl-8">
+      <app-tables-widget10
+        class="card card-xxl-stretch mb-5 mb-xl-8"
+      ></app-tables-widget10>
+    </div>
+
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-5">
+        <div class="card-header border-0">
+          <h3 class="card-title fw-bolder text-dark">Notice Board</h3>
+          <div class="card-toolbar">
+            <!-- begin::Menu -->
+            <button
+              type="button"
+              class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+            </button>
+
+            <!-- end::Menu -->
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <!-- begin::Item -->
+          <div
+            class="d-flex align-items-center bg-light-warning rounded p-5 mb-7"
+          >
+            <!-- begin::Icon -->
+            <span class="svg-icon svg-icon-warning me-5">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/abstract/abs027.svg'"
+                class="svg-icon svg-icon-1"
+              ></span>
+            </span>
+            <!-- end::Icon -->
+            <!-- begin::Title -->
+            <div class="flex-grow-1 me-2">
+              <a
+                href="#"
+                class="fw-bolder text-gray-800 text-hover-primary fs-6"
+              >
+                Group lunch celebration
+              </a>
+              <span class="text-muted fw-bold d-block">Due in 2 Days</span>
+            </div>
+            <!-- end::Title -->
+            <!-- begin::Lable -->
+            <span class="fw-bolder text-warning py-1">+28%</span>
+            <!-- end::Lable -->
+          </div>
+          <!-- end::Item -->
+          <!-- begin::Item -->
+          <div
+            class="d-flex align-items-center bg-light-success rounded p-5 mb-7"
+          >
+            <!-- begin::Icon -->
+            <span class="svg-icon svg-icon-success me-5">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/abstract/abs027.svg'"
+                class="svg-icon svg-icon-1"
+              ></span>
+            </span>
+            <!-- end::Icon -->
+            <!-- begin::Title -->
+            <div class="flex-grow-1 me-2">
+              <a
+                href="#"
+                class="fw-bolder text-gray-800 text-hover-primary fs-6"
+              >
+                Navigation optimization
+              </a>
+              <span class="text-muted fw-bold d-block">Due in 2 Days</span>
+            </div>
+            <!-- end::Title -->
+            <!-- begin::Lable -->
+            <span class="fw-bolder text-success py-1">+50%</span>
+            <!-- end::Lable -->
+          </div>
+          <!-- end::Item -->
+          <!-- begin::Item -->
+          <div
+            class="d-flex align-items-center bg-light-danger rounded p-5 mb-7"
+          >
+            <!-- begin::Icon -->
+            <span class="svg-icon svg-icon-danger me-5">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/abstract/abs027.svg'"
+                class="svg-icon svg-icon-1"
+              ></span>
+            </span>
+            <!-- end::Icon -->
+            <!-- begin::Title -->
+            <div class="flex-grow-1 me-2">
+              <a
+                href="#"
+                class="fw-bolder text-gray-800 text-hover-primary fs-6"
+              >
+                Rebrand strategy planning
+              </a>
+              <span class="text-muted fw-bold d-block">Due in 5 Days</span>
+            </div>
+            <!-- end::Title -->
+            <!-- begin::Lable -->
+            <span class="fw-bolder text-danger py-1">-27%</span>
+            <!-- end::Lable -->
+          </div>
+          <!-- end::Item -->
+
+          <div
+            class="d-flex align-items-center bg-light-danger rounded p-5 mb-7"
+          >
+            <!-- begin::Icon -->
+            <span class="svg-icon svg-icon-danger me-5">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/abstract/abs027.svg'"
+                class="svg-icon svg-icon-1"
+              ></span>
+            </span>
+            <!-- end::Icon -->
+            <!-- begin::Title -->
+            <div class="flex-grow-1 me-2">
+              <a
+                href="#"
+                class="fw-bolder text-gray-800 text-hover-primary fs-6"
+              >
+                Rebrand strategy planning
+              </a>
+              <span class="text-muted fw-bold d-block">Due in 5 Days</span>
+            </div>
+            <!-- end::Title -->
+            <!-- begin::Lable -->
+            <span class="fw-bolder text-danger py-1">-27%</span>
+            <!-- end::Lable -->
+          </div>
+          <!-- end::Item -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row gy-5 gx-xl-5">
+  
+      <div  class="card card-xxl-stretch mb-5 mb-xl-8">
+          <div class="card-body pb-5">   
+      <full-calendar #calendar      
+      
+ 
+      
+      [options]="calendarOptions">
+      
+      </full-calendar>
+      </div>
+      </div>
+
+
+
+</div>
   </div>
 </div>
-<!-- end::Row -->
+<div *ngIf="currentMemberStatutId === 2">
+  <div class="row">
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card1"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div style="display: flex; align-items: center">
+          <div>
+            <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+          </div>
+          <div style="margin-left: 15px">
+            <h4 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+              <br />
+              <span class="text-muted fw-bold fs-7">1520</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card1"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div style="display: flex; align-items: center">
+          <div>
+            <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+          </div>
+          <div style="margin-left: 15px">
+            <h4 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bolder fs-3 mb-1">Notification</span>
+              <br />
+              <span class="text-muted fw-bold fs-7">1520</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- begin::Row -->
-<div class="row gy-5 gx-xl-8">
-  <div class="col-xxl-4">
-    <app-lists-widget3
-      class="card card-xxl-stretch mb-xl-3"
-    ></app-lists-widget3>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card1"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div style="display: flex; align-items: center">
+          <div>
+            <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+          </div>
+          <div style="margin-left: 15px">
+            <h4 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+              <br />
+              <span class="text-muted fw-bold fs-7">1520</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card1"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div style="display: flex; align-items: center">
+          <div>
+            <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+          </div>
+          <div style="margin-left: 15px">
+            <h4 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+              <br />
+              <span class="text-muted fw-bold fs-7">1520</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xl-8">
-    <app-tables-widget10
-      class="card card-xxl-stretch mb-5 mb-xl-8"
-    ></app-tables-widget10>
+  -->
+
+  <div class="row">
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="margin-left: -19px; display: flex; align-items: center">
+            <div>
+              <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Notification</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="display: flex; align-items: center">
+            <div>
+              <img
+                src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-mixed-sbts2018.png"
+              />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="display: flex; align-items: center">
+            <div>
+              <img
+                src="https://img.icons8.com/dotty/58/000000/attendance-mark.png"
+              />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Attendance</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <div class="custom-column">
+       
+          <div class="card"  style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        ">      
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+              </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+          </div>
+    
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <div class="custom-column">
+       
+          <div class="card"  style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        ">      
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+              </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Notifications</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+          </div>
+    
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <div class="custom-column">
+       
+          <div class="card"  style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        ">      
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+              </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+          </div>
+    
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <div class="custom-column">
+       
+          <div class="card"  style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        ">      
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+              </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Events</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+          </div>
+    
+        </div>
+      </div>
+    </div> -->
+
+  <div class="col-9-xl col-12">
+    <div class="row g-5 g-xl-8">
+      <div class="col-4-xl col-4">
+        <div class="card bgi-no-repeat mb-xl-8">
+          <div class="card-body">
+            <div class="heading-layout1">
+              <div class="item-title">
+                <h3>About Me</h3>
+              </div>
+            </div>
+            <div class="student-info">
+              <div class="media media-none--xs">
+                <img
+                  src="../../../assets/media/avatars/blank.png"
+                  class="img"
+                  alt="student"
+                />
+
+                <div
+                  class="media-body"
+                  style="display: inline-block; width: 70%"
+                >
+                  <h3 class="item-title">Jessia Rose</h3>
+                  <p>
+                    Aliquam erat volutpat. Curabiene natis massa sedde
+                    lacustiquen sodale word moun taiery.
+                  </p>
+                </div>
+              </div>
+
+              <div style="height: 497px">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Name:</td>
+                      <td class="font-medium text-dark-medium">Jessia Rose</td>
+                    </tr>
+                    <tr>
+                      <td>Gender:</td>
+                      <td class="font-medium text-dark-medium">Female</td>
+                    </tr>
+                    <tr>
+                      <td>Father Name:</td>
+                      <td class="font-medium text-dark-medium">Fahim Rahman</td>
+                    </tr>
+                    <tr>
+                      <td>Mother Name:</td>
+                      <td class="font-medium text-dark-medium">
+                        Jannatul Kazi
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Date Of Birth:</td>
+                      <td class="font-medium text-dark-medium">07.08.2006</td>
+                    </tr>
+                    <tr>
+                      <td>Religion:</td>
+                      <td class="font-medium text-dark-medium">Islam</td>
+                    </tr>
+                    <tr>
+                      <td>Father Occupation:</td>
+                      <td class="font-medium text-dark-medium">
+                        Graphic Designer
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>E-Mail:</td>
+                      <td class="font-medium text-dark-medium">
+                        jessiarose@gmail.com
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Admission Date:</td>
+                      <td class="font-medium text-dark-medium">05.01.2019</td>
+                    </tr>
+                    <tr>
+                      <td>Class:</td>
+                      <td class="font-medium text-dark-medium">2</td>
+                    </tr>
+                    <tr>
+                      <td>Section:</td>
+                      <td class="font-medium text-dark-medium">Pink</td>
+                    </tr>
+                    <tr>
+                      <td>Roll:</td>
+                      <td class="font-medium text-dark-medium">10005</td>
+                    </tr>
+                    <tr>
+                      <td>Adress:</td>
+                      <td class="font-medium text-dark-medium">
+                        House #10, Road #6, Australia
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Phone:</td>
+                      <td class="font-medium text-dark-medium">+ 88 9856418</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card bgi-no-repeat mb-xl-8">
+          <div class="card-header border-0 pt-5">
+            <h3 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bolder fs-3 mb-1"
+                >All Exam Results</span
+              >
+            </h3>
+            <div class="card-toolbar">
+              <!-- begin::Menu -->
+              <button
+                type="button"
+                class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                data-kt-menu-trigger="click"
+                data-kt-menu-placement="bottom-end"
+                data-kt-menu-flip="top-end"
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen024.svg'
+                  "
+                  class="svg-icon svg-icon-2"
+                ></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body py-3">
+            <div class="table-responsive">
+              <form class="search-form-box">
+                <div class="row gutters-7">
+                  <div class="col-lg-4 col-12 form-group">
+                    <input
+                      type="text"
+                      placeholder="Search by Exam ..."
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-lg-3 col-12 form-group">
+                    <input
+                      type="text"
+                      placeholder="Search by Subject ..."
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-lg-3 col-12 form-group">
+                    <input
+                      type="text"
+                      placeholder="dd/mm/yyyy"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-lg-2 col-12 form-group">
+                    <button
+                      type="submit"
+                      class="fw-btn-fill btn-gradient-yellow"
+                    >
+                      SEARCH
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div class="scrollable">
+                <table
+                  class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+                >
+                  <thead>
+                    <tr class="fw-bolder text-muted">
+                      <th class="w-25px">
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="1"
+                            data-kt-check="true"
+                            data-kt-check-target=".widget-13-check"
+                          />
+                        </div>
+                      </th>
+                      <th class="min-w-150px">Order Id</th>
+                      <th class="min-w-140px">Subject</th>
+                      <th class="min-w-120px">Grade</th>
+                      <th class="min-w-120px">Percent</th>
+                      <th class="min-w-120px">Date</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          56037-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Brasil
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: PH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Intertico
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Web, UI/UX Design
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $3560
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          05822-FXSP
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Belarus
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: BY</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          04/18/2021
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Agoda
+                        </a>
+                        <span
+                          class="text-muted fw-bold text-muted d-block fs-7"
+                        >
+                          Houses &amp; Hotels
+                        </span>
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $4850
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          4472-QREX
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Phillipines
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: BH</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          07/23/2019
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          RoadGee
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Transportation</span
+                        >
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $8376
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          00347-BCLQ
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Argentina
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: BR</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          12/21/2021
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          The Hill
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Insurance</span
+                        >
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $9486
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div
+                          class="form-check form-check-sm form-check-custom form-check-solid"
+                        >
+                          <input
+                            class="form-check-input widget-13-check"
+                            type="checkbox"
+                            value="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary fs-6"
+                        >
+                          59486-XDER
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Agoda
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: BT</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          05/28/2020
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Code: Paid</span
+                        >
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                        >
+                          Phillipines
+                        </a>
+                        <span class="text-muted fw-bold text-muted d-block fs-7"
+                          >Transportation</span
+                        >
+                      </td>
+                      <td class="text-dark fw-bolder text-hover-primary fs-6">
+                        $8476
+                      </td>
+                    </tr>
+                  </tbody>
+                  <!-- end::Table body -->
+                </table>
+              </div>
+              <!-- end::Table -->
+            </div>
+            <!-- end::Table container -->
+          </div>
+          <!-- begin::Body -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row gy-5 gx-xl-5">
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-7">
+        <div class="card-body">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Attendance</span>
+          </h3>
+          <div
+            class="fw-bolder fs-3"
+            [ngClass]="'fs-3 text-' + chartColor"
+          ></div>
+          <div #chartRef id="kt_charts_widget_4_chart" [style.height]="'300px'">
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions3.series"
+                [chart]="chartOptions3.chart"
+                [labels]="chartOptions3.labels"
+                [responsive]="chartOptions3.responsive"
+              ></apx-chart>
+              <div class="student-report">
+                <div class="student-count pseudo-bg-blue">
+                  <h4 class="item-title">Absent</h4>
+                  <div class="item-number">45%</div>
+                </div>
+                <div class="student-count pseudo-bg-yellow">
+                  <h4 class="item-title">Present</h4>
+                  <div class="item-number">70%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-5">
+        <div class="card-body" style="padding-right: 15px">
+          <div class="heading-layout1 mg-b-17">
+            <div class="item-title">
+              <h3>Notifications</h3>
+            </div>
+          </div>
+          <div
+            class="notice-box-wrap"
+            style="max-height: 286px; overflow-y: scroll; padding-right: 20px"
+          >
+            <div class="notice-box-wrap">
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xxl-4">
+      <mat-card class="demo-inline-calendar-card">
+        <mat-card-header style="margin-left: -26px"
+          ><h3>Events</h3></mat-card-header
+        >
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+    </div>
   </div>
 </div>
-<!-- end::Row -->
+<div *ngIf="currentMemberStatutId === 4">
+  <div class="row">
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="margin-left: -19px; display: flex; align-items: center">
+            <div>
+              <img src="https://img.icons8.com/wired/58/000000/alarm.png" />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1"
+                  >Total Students</span
+                >
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- begin::Row -->
-<div class="row gy-5 g-xl-8">
-  <div class="col-xl-4">
-    <app-lists-widget2 class="card card-xl-stretch mb-xl-8"></app-lists-widget2>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="display: flex; align-items: center">
+            <div>
+              <img
+                src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-mixed-sbts2018.png"
+              />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Total Exams</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="display: flex; align-items: center">
+            <div>
+              <img
+                src="https://img.icons8.com/dotty/58/000000/attendance-mark.png"
+              />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1"
+                  >Graduate Studes</span
+                >
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div
+        class="card bgi-no-repeat mb-xl-8"
+        style="
+          background-position: 'right top';
+          background-size: '30% auto';
+          background-image: 'url(./assets/media/svg/shapes/abstract-4.svg)';
+        "
+      >
+        <div class="card-body">
+          <div style="display: flex; align-items: center">
+            <div>
+              <img
+                src="https://img.icons8.com/dotty/58/000000/attendance-mark.png"
+              />
+            </div>
+            <div style="margin-left: 15px">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Total Income</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xl-4">
-    <app-lists-widget6 class="card card-xl-stretch mb-xl-8"></app-lists-widget6>
+
+  <div class="col-9-xl col-12">
+    <div class="row g-5 g-xl-8">
+      <div class="card bgi-no-repeat mb-xl-8">
+        <div class="card-header border-0 pt-5">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">My Students</span>
+          </h3>
+          <div class="card-toolbar">
+            <!-- begin::Menu -->
+            <button
+              type="button"
+              class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body py-3">
+          <div class="table-responsive">
+            <form class="search-form-box">
+              <div class="row gutters-7">
+                <div class="col-lg-4 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Exam ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Subject ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-2 col-12 form-group">
+                  <button type="submit" class="fw-btn-fill btn-gradient-yellow">
+                    SEARCH
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="scrollable">
+              <table
+                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+              >
+                <thead>
+                  <tr class="fw-bolder text-muted">
+                    <th class="w-25px">
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="1"
+                          data-kt-check="true"
+                          data-kt-check-target=".widget-13-check"
+                        />
+                      </div>
+                    </th>
+                    <th class="min-w-150px">Order Id</th>
+                    <th class="min-w-140px">Subject</th>
+                    <th class="min-w-120px">Grade</th>
+                    <th class="min-w-120px">Percent</th>
+                    <th class="min-w-120px">Date</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        05822-FXSP
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Belarus
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BY</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        04/18/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Houses &amp; Hotels
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $4850
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        4472-QREX
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        07/23/2019
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        RoadGee
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8376
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        00347-BCLQ
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Argentina
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BR</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        12/21/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        The Hill
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Insurance</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $9486
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        59486-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BT</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8476
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- end::Table body -->
+              </table>
+            </div>
+            <!-- end::Table -->
+          </div>
+          <!-- end::Table container -->
+
+          <!-- begin::Body -->
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xl-4">
-    <app-lists-widget4
-      class="card card-xl-stretch mb-5 mb-xl-8"
-    ></app-lists-widget4>
+
+  <div class="row gy-5 gx-xl-5">
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-7">
+        <div class="card-body">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Attendance</span>
+          </h3>
+          <div
+            class="fw-bolder fs-3"
+            [ngClass]="'fs-3 text-' + chartColor"
+          ></div>
+          <div #chartRef id="kt_charts_widget_4_chart" [style.height]="'300px'">
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions3.series"
+                [chart]="chartOptions3.chart"
+                [labels]="chartOptions3.labels"
+                [responsive]="chartOptions3.responsive"
+              ></apx-chart>
+              <div class="student-report">
+                <div class="student-count pseudo-bg-blue">
+                  <h4 class="item-title">Absent</h4>
+                  <div class="item-number">45%</div>
+                </div>
+                <div class="student-count pseudo-bg-yellow">
+                  <h4 class="item-title">Present</h4>
+                  <div class="item-number">70%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-5">
+        <div class="card-body" style="padding-right: 15px">
+          <div class="heading-layout1 mg-b-17">
+            <div class="item-title">
+              <h3>Notifications</h3>
+            </div>
+          </div>
+          <div
+            class="notice-box-wrap"
+            style="max-height: 286px; overflow-y: scroll; padding-right: 20px"
+          >
+            <div class="notice-box-wrap">
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xxl-4">
+      <mat-card class="demo-inline-calendar-card">
+        <mat-card-header style="margin-left: -26px"
+          ><h3>Events</h3></mat-card-header
+        >
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+    </div>
   </div>
 </div>
-<!-- end::Row -->
 
-<div class="row g-5 gx-xxl-8">
-  <div class="col-xxl-4">
-    <app-mixed-widget8
-      class="card card-xxl-stretch mb-xl-3"
-      chartColor="success"
-      chartHeight="150px"
-    ></app-mixed-widget8>
+<div *ngIf="currentMemberStatutId === 7">
+  <div class="container-fluid mb-4">
+    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5 g-xl-8">
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img src="https://img.icons8.com/dotty/80/000000/money.png" />
+
+              <div class="child">
+                <h4 class="card-title align-items-start flex-column">
+                  <span class="card-label fw-bolder fs-3 mb-1">Due Fees</span>
+                  <br />
+                  <span class="text-muted fw-bold fs-7">1520</span>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/pastel-glyph/80/000000/appointment-reminders.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1"
+                  >Notifications</span
+                >
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-justicon-lineal-color-justicon/80/000000/external-graduation-elearning-and-education-justicon-lineal-color-justicon-1.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Result</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-4">
+        <div class="card">
+          <div class="card-body parent">
+            <div class="child">
+              <img
+                src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/80/000000/external-earnings-finance-itim2101-lineal-color-itim2101.png"
+              />
+            </div>
+            <div class="child">
+              <h4 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-3 mb-1">Expenses</span>
+                <br />
+                <span class="text-muted fw-bold fs-7">1520</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-xxl-8">
-    <app-tables-widget5
-      class="card card-xxl-stretch mb-5 mb-xxl-8"
-    ></app-tables-widget5>
+  <div class="row gy-5 gx-xl-5">  
+    <div class="col-xxl-4">
+      <div class="card bgi-no-repeat mb-xl-5">    
+        <div class="card-header border-0 pt-5">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">My Kids</span>
+          </h3>
+          <div class="card-toolbar">
+            <!-- begin::Menu -->
+            <button
+              type="button"
+              class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+            </button>
+          </div>
+        </div>
+         
+          <div class="card-body "  style="height: 429px; overflow-y: scroll;">    
+            <div class="card parent" *ngFor="let item of parentchild" style="margin-bottom: 10px;  margin-left: -12px;">   
+              <div class="card-body child">
+              <div class="d-flex flex-column child">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" style="margin-left: -40px;" width="60">                      
+          
+              </div>
+         
+             <div class="mt-2">
+              <p class="text-secondary mb-1">{{item.FullName}}</p>     
+              <p class="text-muted mb-2">Sexe <span class="mx-1">:</span> <span>{{getvalue(item.Gender)}}</span></p>              
+              <p class="text-muted mb-2">Email <span class="mx-1">:</span> <span>{{item.Email}}</span></p>   
+              <p class="text-muted mb-2">Address <span class="mx-1">:</span> <span>{{item.Street}}</span></p>    
+              
+             </div> 
+        
+            </div>
+         
+             </div>
+      
+         
+        
+      </div>
+      </div>
+    </div>
+    <div class="col-xxl-8">
+      <div class="card bgi-no-repeat mb-xl-8">
+        <div class="card-header border-0 pt-5">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">All Expenses</span>
+          </h3>
+          <div class="card-toolbar">
+            <!-- begin::Menu -->
+            <button
+              type="button"
+              class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body py-3">
+          <div class="table-responsive">
+            <form class="search-form-box">
+              <div class="row gutters-7">
+                <div class="col-lg-4 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Exam ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Subject ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-2 col-12 form-group">
+                  <button type="submit" class="fw-btn-fill btn-gradient-yellow">
+                    SEARCH
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="scrollable" style=" height: 330px;">
+              <table
+                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+              >
+                <thead>
+                  <tr class="fw-bolder text-muted">
+                    <th class="w-25px">
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="1"
+                          data-kt-check="true"
+                          data-kt-check-target=".widget-13-check"
+                        />
+                      </div>
+                    </th>
+                    <th class="min-w-150px">Order Id</th>
+                    <th class="min-w-140px">Expanse</th>
+                    <th class="min-w-120px">Amount</th>
+                    <th class="min-w-120px">State</th>
+                    <th class="min-w-120px">Email</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        05822-FXSP
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Belarus
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BY</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        04/18/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Houses &amp; Hotels
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $4850
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        4472-QREX
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        07/23/2019
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        RoadGee
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8376
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        00347-BCLQ
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Argentina
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BR</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        12/21/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        The Hill
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Insurance</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $9486
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        59486-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BT</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8476
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- end::Table body -->
+              </table>
+            </div>
+            <!-- end::Table -->
+          </div>
+          <!-- end::Table container -->
+
+          <!-- begin::Body -->
+        </div>
+      </div>
+    </div>
+
   </div>
+ 
+  <div class="row gy-5 gx-xl-5">
+  
+    <div class="col-xl-4">
+      <div class="card bgi-no-repeat mb-xl-5">
+        <div class="card-body" style="padding-right: 15px">
+          <div class="heading-layout1 mg-b-17">
+            <div class="item-title">
+              <h3>Notifications</h3>
+            </div>
+          </div>
+          <div
+            class="notice-box-wrap"
+            style="max-height: 403px; overflow-y: scroll; padding-right: 20px"
+          >
+            <div class="notice-box-wrap">
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+              <div class="notice-list">
+                <div class="post-date bg-pink">16 June, 2019</div>
+                <h6 class="notice-title">
+                  <a href="#"
+                    >Great School manag Nulla rhoncus eleifensed mim us mi
+                    faucibus id. Mauris vestibulum non purus lobortismenearea</a
+                  >
+                </h6>
+                <div class="entry-meta">
+                  Jennyfar Lopez / <span>5 min ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <div class="card bgi-no-repeat mb-xl-8">
+        <div class="card-header border-0 pt-5">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">All Exam Results</span>
+          </h3>
+          <div class="card-toolbar">
+            <!-- begin::Menu -->
+            <button
+              type="button"
+              class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+              data-kt-menu-trigger="click"
+              data-kt-menu-placement="bottom-end"
+              data-kt-menu-flip="top-end"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+                class="svg-icon svg-icon-2"
+              ></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body py-3">
+          <div class="table-responsive">
+            <form class="search-form-box">
+              <div class="row gutters-7">
+                <div class="col-lg-4 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Exam ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="Search by Subject ..."
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-3 col-12 form-group">
+                  <input
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-lg-2 col-12 form-group">
+                  <button type="submit" class="fw-btn-fill btn-gradient-yellow">
+                    SEARCH
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="scrollable" style=" height: 330px;">
+              <table
+                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+              >
+                <thead>
+                  <tr class="fw-bolder text-muted">
+                    <th class="w-25px">
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="1"
+                          data-kt-check="true"
+                          data-kt-check-target=".widget-13-check"
+                        />
+                      </div>
+                    </th>
+                    <th class="min-w-150px">Order Id</th>
+                    <th class="min-w-140px">Examan Id</th>
+                    <th class="min-w-120px">Subject </th>
+                    <th class="min-w-120px">Class</th>
+                    <th class="min-w-120px">Date</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        56037-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Brasil
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: PH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Intertico
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Web, UI/UX Design
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $3560
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        05822-FXSP
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Belarus
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BY</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        04/18/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7">
+                        Houses &amp; Hotels
+                      </span>
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $4850
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        4472-QREX
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BH</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        07/23/2019
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        RoadGee
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8376
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        00347-BCLQ
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Argentina
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BR</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        12/21/2021
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        The Hill
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Insurance</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $9486
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div
+                        class="form-check form-check-sm form-check-custom form-check-solid"
+                      >
+                        <input
+                          class="form-check-input widget-13-check"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary fs-6"
+                      >
+                        59486-XDER
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Agoda
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: BT</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        05/28/2020
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Code: Paid</span
+                      >
+                    </td>
+                    <td>
+                      <a
+                        href="#"
+                        class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                      >
+                        Phillipines
+                      </a>
+                      <span class="text-muted fw-bold text-muted d-block fs-7"
+                        >Transportation</span
+                      >
+                    </td>
+                    <td class="text-dark fw-bolder text-hover-primary fs-6">
+                      $8476
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- end::Table body -->
+              </table>
+            </div>
+            <!-- end::Table -->
+          </div>
+          <!-- end::Table container -->
+
+          <!-- begin::Body -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+ 
 </div>

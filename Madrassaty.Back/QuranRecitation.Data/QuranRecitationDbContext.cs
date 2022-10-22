@@ -14,17 +14,18 @@ namespace QuranRecitation.Data
         }
         static QuranRecitationDbContext()
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<QuranRecitationDbContext, Migrations.Configuration>());
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<QuranRecitationDbContext, Migrations.Configuration>());
+            
         }
 
-        public QuranRecitationDbContext()
-            : base("name=DbPreQuranInstituteString")
+        public QuranRecitationDbContext(): base("name=DbPreQuranInstituteString") 
         {
             Database.SetInitializer<QuranRecitationDbContext>(new CreateDatabaseIfNotExists<QuranRecitationDbContext>());
         }
 
         public DbSet<School> Schools { get; set; }
+        public DbSet<MemberStates> MemberStates { get; set; }
+        
         public DbSet<MemberStatus> MemberStatuses { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
@@ -56,10 +57,7 @@ namespace QuranRecitation.Data
         public DbSet<RecitationTajwidError> RecitationTajwidError { get; set; }
         public DbSet<CourseSession> CourseSession { get; set; }
         public DbSet<Assiduite> Assiduite { get; set; }
-        public DbSet<Message> Message { get; set; }
-        public DbSet<MessageGroup> MessageGroup { get; set; }
-        public DbSet<MemberMessageGroup> MemberMessageGroup { get; set; }
-        public DbSet<MemberConnectionId> MemberConnectionId { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -68,7 +66,7 @@ namespace QuranRecitation.Data
             modelBuilder.Entity<CustomRole>().HasKey<Guid>(r => r.Id);
             modelBuilder.Entity<CustomUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
-            modelBuilder.Entity<StudentDisciplineLevel>().HasKey(sl => new { sl.StudentId, sl.DisciplineId }); // replaces the [Key] annotations
+            modelBuilder.Entity<StudentDisciplineLevel>().HasKey(sl => new { sl.StudentId , sl.DisciplineId }); // replaces the [Key] annotations
 
             modelBuilder.Entity<StudentDisciplineLevel>()
                 .HasRequired(sl => sl.Student)
@@ -79,16 +77,6 @@ namespace QuranRecitation.Data
                 .HasRequired(sl => sl.DisciplineLevel)
                 .WithMany(l => l.StudentDisciplineLevels)
                 .HasForeignKey(sl => sl.DisciplineLevelId);
-            modelBuilder.Entity<MemberMessageGroup>()
-                 .HasKey(mmg => new { mmg.MemberId, mmg.MessageGroupId });
-            modelBuilder.Entity<MemberMessageGroup>()
-                .HasRequired(mmg => mmg.Member)
-                .WithMany(mmg => mmg.MemberMessageGroup)
-                .HasForeignKey(mmg => mmg.MemberId);
-            modelBuilder.Entity<MemberMessageGroup>()
-                .HasRequired(mmg => mmg.MessageGroup)
-                .WithMany(mmg => mmg.MemberMessageGroup)
-                .HasForeignKey(mmg => mmg.MessageGroupId);
         }
     }
 }

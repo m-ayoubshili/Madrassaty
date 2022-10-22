@@ -1,133 +1,200 @@
-<app-settings-header (btnClick)="OpenDiag(-1)"  (btnClickSwitchToCard)="switchToCard()"></app-settings-header>
-<div class="container-fluid"  *ngIf="switchbtn == false">
-  <div class="row" >
-    <div class="col-lg-4" *ngFor="let item of rowData">
-      <div>
-        <mat-card class="card" style="width: 82%">
+<app-settings-header-shared  (SearchEvent)="searchResult($event)" (btnClickSwitchToCard)="this.switchbtn=!this.switchbtn"  (btnClick)="OpenDiag(-1)" ></app-settings-header-shared>
 
-          <div class="row">
-            <div class="column">
-              <mat-card-content>
-                <h2>
-                  <strong>{{ item.description }}</strong>
-                </h2>
-                <h5>
-                  <i
-                    ><strong> {{ item.StartDay|date }}</strong ></i
-                  >
-                </h5>
-                <h3>
-                  <strong>{{ item.EndDay|date }}</strong>
-                </h3>
-              </mat-card-content>
-            </div>
+<div class="container-fluid" *ngIf="switchbtn == false">
+  <div class="row">
+    <div class="col-xl-3 col-md-6 col-12" *ngFor="let item of rowData | filter:search">
+      <div class="card cardAnimation card-xl-stretch mb-5 mb-xl-8">
+        <div class="card-body d-flex align-items-center pt-3 pb-0">
+          <div class="d-flex flex-column flex-grow-1 py-2 py-lg-13 me-2">
+            <a
+              href="#"
+              class="fw-bolder text-dark fs-4 mb-2 text-hover-primary"
+            >
+              <h2>
+                <strong>{{ item.description }} </strong>
+              </h2>
+              <h5>
+                <i
+                  ><strong *ngIf="item.StartDay">
+                    {{ item.StartDay | date }}</strong
+                  ></i
+                >
+                <strong><br /></strong>
+              </h5>
+              <h3>
+                <strong *ngIf="item.EndDay">{{ item.EndDay | date }}</strong>
+                <strong><br /></strong>
+              </h3>
+            </a>
           </div>
-          <mat-card-actions align="end" style="margin-bottom: -5px">
-            <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
+        </div>
+        <mat-card-actions align="end" style="margin-top: -20px">
+          <app-shared-buttons  [ismodified]="true"   (btnEditClick)="OpenDiag(item.Id)" (btnDeleteClick)="deleteItem(item.Id)"  ></app-shared-buttons>
+ </mat-card-actions>
       </div>
+    </div>
+  </div>
+</div>
+		
 
+<app-shared-drawer [template]="callAPIDialog" [fonctionality]="DialogTitle"></app-shared-drawer>
+<ng-template #callAPIDialog>
+  <div class="container">
+   
+    <form [formGroup]="HolidayForm" (ngSubmit)="saveHoliday()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          required
+          type="text"
+          formControlName="description"
+        />
+        <mat-error *ngIf="HolidayForm.controls['description'].errors?.required">
+          Le nom est obligatoire.</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>date debut </mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          type="datetime"
+          required
+          formControlName="StartDay"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-error *ngIf="HolidayForm.controls['StartDay'].errors?.required"
+          >date debut est obligatoire.</mat-error
+        >
+        <mat-datepicker #picker1 color="primary"></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>date fin</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          type="datetime"
+          required
+          formControlName="EndDay"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-error *ngIf="HolidayForm.controls['EndDay'].errors?.required"
+          >date fin est obligatoire.</mat-error
+        >
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <div class="card-footer py-6">
+
+  
+        <div class="col-lg-9">
+          <button
+            type="button"
+            (click)=" this.HolidayForm.reset()"
+            class="btn btn-primary me-2"      
+          >          
+              <span class="indicator-label">Clear</span>       
+   
+          </button>
+
+          <button
+            type="submit"        
+            data-bs-dismiss="offcanvas"
+            [disabled]="HolidayForm.invalid"    
+            class="btn btn-active-light btn-color-muted" >
+            <ng-container >
+              <span class="indicator-label">Confirme</span>
+            </ng-container>
+
+            
+          </button>
+        </div>
+      </div>
+   
+    </form>
+  </div>
+</ng-template>
+
+
+<div class="card mb-5 mb-xl-8" *ngIf="switchbtn == true">
+  <div class="card-header border-0 pt-5">
+    <div class="card-toolbar">
+      <button
+        class="btn btn-sm btn-light-primary"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        (click)="OpenDiag(-1)"
+      >
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+        New Holiday
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body py-3">
+
+    <div class="table-responsive">
+ 
+      <table class="table align-middle gs-0 gy-4">
+    
+        <thead>
+          <tr class="fw-bolder text-muted bg-light">
+            <th class="min-w-125px">nouvelle Vacance scolaire </th>
+            <th class="ps-4 min-w-125px rounded-start">Date debut</th>
+            <th class="min-w-125px">Date fin</th>          
+            <th class="min-w-200px text-end rounded-end"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of rowData | filter:search">
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-start flex-column">
+                  <a
+                    class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                  >
+                    {{ element.description }}
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <a
+                class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                {{ element.StartDay | date }}
+              </a>
+            </td>
+            <td>
+              <a
+                href="#"
+                class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                {{ element.EndDay | date }}
+              </a>
+            </td>      
+            <td class="text-end">
+              <app-shared-buttons  [ismodified]="true"   (btnEditClick)="OpenDiag(element.Id)" (btnDeleteClick)="deleteItem(element.Id)"  ></app-shared-buttons>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 
-
-<ng-template #callAPIDialog>
-  <div class="container">
-   <h2 mat-dialog-title>{{DialogTitle}}</h2>
- <form [formGroup]="HolidayForm" (ngSubmit)="saveHoliday()" >
-
-    <mat-form-field appearance="outline">
-       <mat-label>Nom</mat-label>
-       <input matInput placeholder="Placeholder" required  type="text" formControlName="description" >
-      <mat-error *ngIf="HolidayForm.controls['description'].errors?.required"> Le nom est obligatoire.</mat-error>
-     </mat-form-field>
-     <br>
-     <mat-form-field color="accent" appearance="fill">
-      <mat-label>date debut </mat-label>
-      <input matInput [matDatepicker]="picker1" type="datetime" required formControlName="StartDay" >
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-     <mat-error *ngIf="HolidayForm.controls['StartDay'].errors?.required">date debut est obligatoire.</mat-error>
-      <mat-datepicker #picker1 color="primary"></mat-datepicker>
-    </mat-form-field>
-     <br>
-
-     <mat-form-field color="accent" appearance="fill">
-      <mat-label>date fin</mat-label>
-      <input matInput [matDatepicker]="picker2"  type="datetime" required formControlName="EndDay" >
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-     <mat-error *ngIf="HolidayForm.controls['EndDay'].errors?.required">date fin est obligatoire.</mat-error>
-      <mat-datepicker #picker2 color="primary"></mat-datepicker>
-    </mat-form-field>
-     <br>
-
-
-   <mat-dialog-actions align="end">
-     <button mat-raised-button (click)="ClearForm()" color="warn">Clear</button>
-     <button mat-raised-button mat-dialog-close [disabled]="HolidayForm.invalid" type="submit" color="success">Confirmer</button>
-   </mat-dialog-actions>
- </form>
-</div>
-</ng-template>
-
-
-
-<div lass="example-container mat-elevation-z8" *ngIf="switchbtn == true">
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="Description">
-        <th  mat-header-cell *matHeaderCellDef >Description</th>
-        <td    mat-cell *matCellDef="let element">
-          {{ element.description }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="StartDay">
-        <th mat-header-cell *matHeaderCellDef >Date début</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.StartDay |date }}</td>
-
-      </ng-container>
-
-      <ng-container matColumnDef="EndDay">
-        <th mat-header-cell *matHeaderCellDef >Date fin</th>
-        <td   mat-cell *matCellDef="let element">{{ element.EndDay|date }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef >Actions</th>
-
-        <td mat-cell *matCellDef="let element">
-          <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"  (click)="OpenDiag(element.Id)">
-            <span  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"  class="svg-icon svg-icon-3"  ></span>
-          </button>
-          <button
-            href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" (click)="deleteItem(element.Id)" >
-            <span
-              [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
-              class="svg-icon svg-icon-3"
-            ></span>
-
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row  *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [pageSizeOptions]="[1, 3, 20]"
-      showFirstLastButtons
-      aria-label="Select page of dataSource"
-    >
-    </mat-paginator>
-  </div>
-
-</div>

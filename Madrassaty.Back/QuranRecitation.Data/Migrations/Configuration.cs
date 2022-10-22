@@ -47,7 +47,20 @@ namespace QuranRecitation.Data.Migrations
                 context.SaveChanges();
             }
 
-            
+            if (context.MemberStates.ToList().Count == 0)
+            {
+                foreach (MemberStatesEnum memberStates in Enum.GetValues(typeof(MemberStatesEnum)))
+                    context.MemberStates.AddOrUpdate(ms => ms.Wording, new MemberStates
+                    {
+                        Wording = memberStates.GetType()
+                            .GetMember(memberStates.ToString()).First()
+                            .GetCustomAttribute<DisplayAttribute>().GetName()
+                    });
+                context.SaveChanges();
+            }
+
+
+
 
             // create admin User
             if (!context.Users.Any(u => u.UserName == "admin@admin.com" || u.Email == "admin@admin.com"))
@@ -68,8 +81,9 @@ namespace QuranRecitation.Data.Migrations
                     PhotoPath = "Unknown.jpg",
                     Profession = "administrateur",
                     Gender = "M",
-                    MemberStatusId = 1,
-                    FirstName="Anouar",
+                    MemberStatusId = 1,                 
+                    MemberStateId=1,
+                    FirstName ="Anouar",
                     LastName="BEN ZAHRA",
                     PhoneNumber="0101010101",
                     SchoolId = 1

@@ -25,10 +25,13 @@ export class EvaluationDetailleeService {
     this.itemData = this.item.asObservable();
 
   }
-  getSurah(): Observable<Surah[]> {
+/*   public getSurahs() {
+    return this.http.get("../../assets/files/surahs.json");.map((data) => data["data"])
+  } */
+   getSurah(): Observable<Surah[]> {
 
-    return this.http.get<Surah[]>(environment.QURAN_URL).map((data) => data["data"])
-  }
+    return this.http.get<Surah[]>(environment.QURAN_URL)
+  } 
   getSurahById(number: number): Observable<number> {
 
     return this.http.get<number>(environment.QURAN_URL + "/" + number).map((data) => data["data"]).map((da) => da.numberOfAyahs)

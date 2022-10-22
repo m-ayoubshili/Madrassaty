@@ -1,12 +1,12 @@
-<app-settings-header [showSearch]="false" (btnClick)="OpenDiag(-1)" (btnClickSwitchToCard)="switchToCard()">
-</app-settings-header>
-<nav>
+<app-settings-header-shared  (SearchEvent)="searchResult($event)" [showSearch]="false" (btnClick)="OpenDiag(-1)" (btnClickSwitchToCard)="this.switchbtn = !this.switchbtn"  >
+</app-settings-header-shared> 
+
   <div class="container-fluid">
     <div class="d-flex">
       <form [formGroup]="disciplineFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label disabled style="background:#eeeeee">Discipline </mat-label>
-          <mat-select (selectionChange)="changeDiscipline($event)" formControl="disciplineDropDown" required>
+        <mat-form-field appearance="outline">
+          <mat-label disabled >Discipline </mat-label>
+          <mat-select (selectionChange)="changeDiscipline($event)" formControlName="disciplineDropDown" required>
 
             <mat-option *ngFor="let disp of disciplineList" [value]="disp.Id"> {{disp.Wording}}</mat-option>
 
@@ -16,210 +16,36 @@
     </div>
   </div>
 
-</nav>
 
-<div class="row" *ngIf="switchbtn == false">
-  <div class="col-lg-4" *ngFor="let item of rowData | filter:search">
-
-
-    <mat-card class="card">
-      <div class="col-sm-12">
-        <h4 class="card-title"><strong class="strong">{{item.Wording}}</strong></h4>
-        <br>
-        <h5 class="card-text"><strong class="strong2">{{ item.Description}} </strong></h5>
-
-
-
-
-        <mat-card-actions align="end" style="margin-bottom: -5px;">
-          <button mat-mini-fab color="success" (click)="OpenDiag(item.Id)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-mini-fab color="warn" (click)="deleteItem(item.Id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-
-
-
-
-
-
-        <div class="clearfix"></div>
-      </div>
-
-    </mat-card>
-  </div>
-</div>
-
-<!-- affichage mode tableau -->
-<!-- <div class="example-container mat-elevation-z8" *ngIf="switchbtn == true">
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="rowData">
-
-   
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>name</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.Wording }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let element">{{ element.Description}}</td>
-
-      </ng-container>
-
-
-
-
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-
-        <td mat-cell *matCellDef="let element">
-          <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-            <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"
-              (click)="OpenDiag(element.Id)"></span>
-          </button>
-          <button href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-            <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'" class="svg-icon svg-icon-3"
-              (click)="deleteItem(element.Id)"></span>
-
-          </button>
-        </td>
-      </ng-container>
-
-     
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-   
-      <tr
-      mat-row
-      (click)="clickedRows.add(row)"
-      [class.demo-row-is-clicked]="clickedRows.has(row)"
-      *matRowDef="let row ; columns: displayedColumns;"
-  ></tr> 
-
-     
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons aria-label="Select page of rowData">
-    </mat-paginator>
-  </div>
-</div> -->
-<div class="example-container mat-elevation-z8" *ngIf="switchbtn == true">
-<table mat-table [dataSource]="rowData" class="mat-elevation-z8 demo-table">
-
-
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{element.Wording}}</td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="Description">
-    <th mat-header-cell *matHeaderCellDef>Description</th>
-    <td mat-cell *matCellDef="let element">{{element.Description}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="Actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-
-    <td mat-cell *matCellDef="let element">
-      <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-        <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"
-          (click)="OpenDiag(element.Id)"></span>
-      </button>
-      <button href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'" class="svg-icon svg-icon-3"
-          (click)="deleteItem(element.Id)"></span>
-
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-  mat-row
-  (click)="clickedRows.add(row)"
-  [class.demo-row-is-clicked]="clickedRows.has(row)"
-  *matRowDef="let row; columns: displayedColumns;"
-></tr>
-</table>
-<ul>
- 
-  <li *ngFor="let clickedRow of clickedRows">
-    Clicked on {{clickedRow.Id}}
-  </li>  
- 
-</ul>
-</div>
-<!-- formulaire pour ajouter un etudiant-->
-<div>
-<div *ngIf="(switchbtn == true)" class="example-container mat-elevation-z8">
+<div class="container-fluid" *ngIf="switchbtn == false ">
   <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox float-e-margins">
-        <!--  <a class="btn btn-info btndelete visible-xs visible-sm" (click)="sizeToFit()">Adapter la taille des colonnes</a>  -->
-        <div class="ibox-content " style=" overflow: hidden">
+  
+      <div class="col-lg-3" *ngFor="let item of rowData | filter:search">
+          <div class="card cardAnimation card-xl-stretch mb-5 mb-xl-8">
+              <div class="card-body d-flex align-items-center pt-3 pb-0">
+                  <div class="d-flex flex-column flex-grow-1 py-2 py-lg-13 me-2">         
+  
+                  <h4 ><i><strong >{{item.Wording}}</strong></i></h4>
+                  <h5><strong>{{item.Description}}</strong></h5>
+      
+                  <mat-card-actions align="end" style="    margin-bottom: -5px;" >
 
-          <ag-grid-angular class="ag-theme-alpine" [rowData]="rowData" [columnDefs]="columnDefs"
-            [gridOptions]="gridOptions" domLayout='autoHeight' [pagination]="true" [paginationPageSize]="'10'"
-            [localeText]="localeText" [suppressClickEdit]="true" [suppressMenuHide]="true"
-            (gridReady)="onGridReady($event)" [enableCellChangeFlash]="true" (cellDoubleClicked)="onCellClicked($event)"
-            (cellValueChanged)="onCellValueChanged($event)" [animateRows]="true"
-            [autoGroupColumnDef]="autoGroupColumnDef" [rowSelection]="rowSelection"
-            (selectionChanged)="onSelectionChanged($event)">
-          </ag-grid-angular>
-
-          <div class="mat-elevation-z8">
-            <br /> <br />
-            <div class="col-lg-4">
-              <h5>Etudiants :</h5>
-              <input type="text" [(ngModel)]="searchStudents" class="form-control" autocomplete="off"
-                id="autocomplete-students" placeholder="Rechercher..." style="border-radius: 3px;" />
-
-            </div>
-            <br>
+                    <app-shared-buttons  (btnEditClick)="OpenDiag(item.Id)"  (btnDeleteClick)="deleteItem(item.Id)"  ></app-shared-buttons>    
+                  </mat-card-actions>
+              </div>        
           </div>
-          <table *ngIf="students" class="table table-striped table-bordered table-hover dataTables-example">
-            <thead>
-
-              <tr>
-                <td>Associer</td>
-                <th>Nom</th>
-                <th>Genre</th>
-                <th>Date de naissance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let student of students | filter:searchStudents">
-                <td><input type="checkbox" [(ngModel)]="student.IsSelected" (change)="onChange()" />
-                </td>
-                <td> {{student.FullName}} </td>
-                <td> {{student.Sex}} </td>
-                <td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
-    </div>
+  
+      </div>
+   
+  
   </div>
-</div>
+  
+  </div>
 
+<app-shared-drawer *ngIf="selectedId" [template]="callAPIDialog" [fonctionality]="DialogTitle"></app-shared-drawer>
 
-<div *ngIf="errorMessage" class="alert alert-danger">
-  Error: {{ errorMessage }}
-</div>
-</div>
-
-
-
-<!-- formulaire ajout modification decipline level-->
 <ng-template #callAPIDialog>
-  <h2 mat-dialog-title>{{DialogTitle}}</h2>
   <form [formGroup]="LevelForm" (ngSubmit)="addLevel()">
     <mat-form-field appearance="outline">
       <mat-label>Nom </mat-label>
@@ -234,16 +60,99 @@
       <mat-error *ngIf="LevelForm.controls['Description'].errors?.required"> Description est obligatoire .
       </mat-error>
     </mat-form-field>
-
-
-
-
-
-
-    <mat-dialog-actions align="end">
-      <button mat-button color="warn" mat-dialog-close>Quitter</button>
-      <button mat-raised-button color="success" mat-dialog-close [disabled]="LevelForm.invalid"
-        type="submit">Confirmer</button>
-    </mat-dialog-actions>
+    <br />
+        <div class="card-footer py-6">
+  
+    
+          <div class="col-lg-9">
+            <button
+              type="button"
+              (click)="this.LevelForm.reset()"
+              class="btn btn-primary me-2"      
+            >          
+            <span class="indicator-label">Clear</span>      
+            </button>
+  
+            <button
+              type="submit"            
+              data-bs-dismiss="offcanvas"        
+              [disabled]="LevelForm.invalid"    
+              class="btn btn-active-light btn-color-muted" >
+              <ng-container >
+                <span class="indicator-label">Confirme</span>
+              </ng-container>
+  
+              
+            </button>
+          </div>
+        </div>
   </form>
 </ng-template>
+
+
+
+<div class="card mb-5 mb-xl-8"  *ngIf="switchbtn == true">
+
+  <div class="card-header border-0 pt-5">
+    <div class="card-toolbar">
+      <button class="btn btn-sm btn-light-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"   (click)="OpenDiag(-1)">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+        Nouvelle Despline
+       
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body py-3">
+
+ 
+    <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 100%;" [rowData]="rowData" [columnDefs]="columnDefs"
+                   
+    [gridOptions]="gridOptions"  domLayout='autoHeight' [pagination]="true"
+    [paginationPageSize]="'10'" [localeText]="localeText" [suppressClickEdit]="true" [suppressMenuHide]="true"
+    (gridReady)="onGridReady($event)" [enableCellChangeFlash]="true"
+    (cellDoubleClicked)="onCellClicked($event)" (cellValueChanged)="onCellValueChanged($event)"
+    [animateRows]="true" [autoGroupColumnDef]="autoGroupColumnDef" [rowSelection]="rowSelection"
+    (selectionChanged)="onSelectionChanged($event)" > 
+  </ag-grid-angular>
+  
+
+    <br/> <br/>
+    <div class="col-lg-4">
+        <h5>Etudiants :</h5>
+        <input type="text" [(ngModel)]="searchStudents" class="form-control" autocomplete="off" id="autocomplete-students" placeholder="Rechercher..." style="border-radius: 3px;margin-bottom: 5px;"/>
+   
+    </div>
+
+<table *ngIf="students" datatable="ng" dt-options="dtOptions"
+    class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
+   
+        <tr>
+            <td>Associer</td>
+            <th>Nom</th>
+            <th>Genre</th>
+            <th>Date de naissance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students | filter:searchStudents">
+            <td><input type="checkbox" [(ngModel)]="student.IsSelected" (change)="onChange()" />
+            </td>
+            <td> {{student.FullName}} </td>
+            <td> {{student.Sex}} </td>
+            <td>{{student.BirthDate | date:'dd/MM/yyyy'}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+  
+  </div>
+  
+  
+  
+  </div> 

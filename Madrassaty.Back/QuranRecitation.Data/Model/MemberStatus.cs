@@ -25,6 +25,8 @@ namespace QuranRecitation.Data.Model
         [Display(Name = "Étudiant non actif")]
         StudentOff,
         [Display(Name = "Nouvelle inscription")]
-        NewInscription
+        NewInscription,
+        [Display(Name = "Parent")]
+        Parent
     }
 }

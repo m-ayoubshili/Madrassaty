@@ -14,7 +14,7 @@ import { NestableSettings } from 'ngx-nestable/lib/nestable.models';
 export class TajwidErrorComponent implements OnInit {
   tajwidErrorData;
 
-  constructor( private tajwidErrorService: TajwidErrorService) { }
+  constructor(private tajwidErrorService: TajwidErrorService) { }
 
   ngOnInit(): void {
     this.tajwidErrorService.getTajwidErrors().subscribe(

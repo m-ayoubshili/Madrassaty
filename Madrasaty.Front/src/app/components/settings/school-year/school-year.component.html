@@ -1,65 +1,222 @@
-<app-settings-header (btnClick)="OpenDiag()" ></app-settings-header>
-<div class="row">
- <div class="col-lg-4" *ngFor="let item of rowData | filter:search">
-  
-     
-        <mat-card class="card">
-          <div class="col-sm-12">
-          <h5 class="card-title"><strong class="strong">{{item.description}}</strong></h5>
-          <br>
-          <h5 class="card-text"><strong class="strong2">{{ item.StartDay | date:'dd-MM-yyyy'}} =>
-            {{ item.EndDay | date:'dd-MM-yyyy'}}</strong></h5> 
-         
+<app-settings-header-shared
+(SearchEvent)="searchResult($event)"
+  (btnClickSwitchToCard)=" this.switchbtn = !this.switchbtn;"
+  (btnClick)="OpenDiag(-1)"
+></app-settings-header-shared>
 
+<div class="row" *ngIf="switchbtn == false">
+  <div class="col-lg-3" *ngFor="let item of rowData | filter: search">
+    <div class="card cardAnimation card-xl-stretch mb-5 mb-xl-6">
+      <div class="card-body d-flex align-items-center pt-3 pb-0">
+        <div class="d-flex flex-column flex-grow-1 py-2 py-lg-13 me-2 parent">
+          <a href="#" class="fw-bolder text-dark fs-4 mb-2 text-hover-primary">
+            <h4>
+              <strong>{{ item.description }}</strong>
+            </h4>
 
-            <mat-card-actions align="end" style="margin-bottom: -5px;">
-              <button mat-mini-fab color="success"><mat-icon>edit</mat-icon></button>
-              <button mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
-            </mat-card-actions>
-         
-        
-            
-      
-          <ui-switch [checked]="item.Actif"
-          (change)="setActifSchoolYear(item.Id)"> </ui-switch>
-        
-        <div class="clearfix"></div>
+            <h5>
+              Date de Début :
+              <i
+                ><strong>{{ item.StartDay | date: "dd-MM-yyyy" }}</strong></i
+              >
+            </h5>
+            <h5>
+              Date de Fin :
+              <i>
+                <strong> {{ item.EndDay | date: "dd-MM-yyyy" }}</strong></i
+              >
+            </h5>
+          </a>
+
+          <mat-card-actions
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: 10px;
+            "
+          >
+            <div class="switchbtn">
+              <ui-switch
+                [checked]="item.Actif"
+                (change)="setActifSchoolYear(item.Id)"
+              >
+              </ui-switch>
+            </div>
+            <div class="EditDeletBtn">
+              <app-shared-buttons  (btnEditClick)="OpenDiag(item.Id)"  (btnDeleteClick)="deleteItem(item.Id)"  ></app-shared-buttons>  
+            </div>
+          </mat-card-actions>
         </div>
-      
-      </mat-card>
+      </div>
     </div>
-
-    <!-- formiulaire pour l'ajout d'un année scolaire -->
+  </div>
+</div>
+    <!-- formulaire pour l'ajout d'un année scolaire -->
 
     <ng-template #callAPIDialog>
-    <form [formGroup]="schoolYearForm"  >
-          <mat-form-field appearance="outline">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="Placeholder" required  type="text" formControlName="Name">
-            <mat-error *ngIf="schoolYearForm.controls['Name'].errors?.required"> Le nom est obligatoire et doit être unique.</mat-error>
-          </mat-form-field>
-                   <br>
-          <mat-form-field appearance="fill">
-            <mat-label >Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" required  formControlName="DateD" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-error *ngIf="schoolYearForm.controls['DateD'].errors?.required">date debut est obligatoire.</mat-error>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label >Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker2" required  formControlName="Datef" />
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-error *ngIf="schoolYearForm.controls['Datef'].errors?.required">date fin est obligatoire.</mat-error>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-   
+      <form [formGroup]="schoolYearForm" (ngSubmit)="saveSchoolYear()">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input
+            matInput
+            placeholder="Placeholder"
+            required
+            type="text"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="schoolYearForm.controls['description'].errors?.required"
+          >
+            Le nom est obligatoire et doit être unique.
+          </mat-error>
+        </mat-form-field>
 
-        <mat-dialog-actions align="end">
-          <button mat-button mat-dialog-close color="warn">Quitter</button>
-          <button mat-raised-button color="success" >Confirmer</button>
-        </mat-dialog-actions>
-      </form> 
+        <br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            required
+            formControlName="StartDay"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-error
+            *ngIf="schoolYearForm.controls['StartDay'].errors?.required"
+            >date debut est obligatoire.</mat-error
+          >
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            required
+            formControlName="EndDay"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-error *ngIf="schoolYearForm.controls['EndDay'].errors?.required"
+            >date fin est obligatoire.</mat-error
+          >
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div class="card-footer py-6">
+          <div class="col-lg-9">
+            <button
+              type="button"
+              (click)="this.schoolYearForm.reset()"
+              class="btn btn-primary me-2"
+            >
+              <span class="indicator-label">Clear</span>
+            </button>
+            <button
+              type="submit"
+              [disabled]="schoolYearForm.invalid"
+              data-bs-dismiss="offcanvas"
+              class="btn btn-active-light btn-color-muted"            
+            >
+              <ng-container>
+                <span class="indicator-label">Confirme</span>
+              </ng-container>
+            </button>
+          </div>
+        </div>
+      </form>
     </ng-template>
-    
+    <app-shared-drawer [template]="callAPIDialog" [fonctionality]="DialogTitle"></app-shared-drawer>
+    <div class="card mb-5 mb-xl-8" *ngIf="switchbtn == true">
+      <div class="card-header border-0 pt-5">
+        <div class="card-toolbar">
+          <button
+            class="btn btn-sm btn-light-primary"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+            (click)="OpenDiag(-1)"
+          >
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+              class="svg-icon svg-icon-3"
+            ></span>
+            New School year
+          </button>
+        </div>
+      </div>
+      <!-- end::Header -->
+      <!-- begin::Body -->
+      <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+          <!-- begin::Table -->
+          <table class="table align-middle gs-0 gy-4">
+            <!-- begin::Table head -->
+            <thead>
+              <tr class="fw-bolder text-muted bg-light">
+                <th class="min-w-125px">Période de l'année scolaire </th>
+                <th class="ps-4 min-w-125px rounded-start">Date debut</th>
+                <th class="min-w-125px">Date fin</th>
+                <th class="min-w-125px">Etat</th>
+                <th class="min-w-200px text-end rounded-end"></th>
+              </tr>
+            </thead>
+            <!-- end::Table head -->
+            <!-- begin::Table body -->
+            <tbody>
+              <tr *ngFor="let element of rowData | filter:search">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-start flex-column">
+                      <a
+                        class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                      >
+                        {{ element.description }}
+                      </a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a
+                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                  >
+                    {{ element.StartDay | date }}
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="#"
+                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                  >
+                    {{ element.EndDay | date }}
+                  </a>
+                </td>
+                <td>                       
+
+                  <span  [ngClass]=" getActive(element.Actif)=='active' ? 'badge fw-bolder me-auto px-2 py-1  badge-light-success' : 'badge fw-bolder me-auto px-2 py-1  badge-light-danger' "
+                   [ngStyle]="getActive(element.Actif)=='active' ? 'background-color: #80e9b2;':'background-color: #F1416C' " 
+                  
+                >
+               <h6 [ngStyle]="{ 'color': (getActive(element.Actif)=='active' ? '#18b618' : '#F1416C') }"> {{ getActive(element.Actif) }}</h6>
+                </span>
+                </td>
+                <td class="text-end">
+                  <app-shared-buttons [ismodified]="true" (btnEditClick)="OpenDiag(item.Id)"  (btnDeleteClick)="deleteItem(item.Id)"  ></app-shared-buttons>  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+

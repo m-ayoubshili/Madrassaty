@@ -1,31 +1,48 @@
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
   <div class="card-header cursor-pointer">
     <div class="card-title m-0">
-      <h3 class="fw-bolder m-0">Profile Details</h3>
+      <h3 class="fw-bolder m-0">Profile Details over</h3>
     </div>
 
-    <a
+    <button
       routerLink="/crafted/account/settings"
       class="btn btn-primary align-self-center"
+      [disabled]="!ischecked"
     >
       Edit Profile
-    </a>
+    </button>
   </div>
 
   <div class="card-body p-9">
     <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Nom</label>
+      <label class="col-lg-4 fw-bold text-muted">Full Name</label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Max Smith</span>
+        <span class="fw-bolder fs-6 text-dark">{{memberData.FullName}}  </span>
       </div>
     </div>
 
     <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Prénom</label>
+      <label class="col-lg-4 fw-bold text-muted">Sexe</label>
 
       <div class="col-lg-8 fv-row">
-        <span class="fw-bold fs-6">Keenthemes</span>
+        <span class="fw-bold fs-6">{{getvalue(memberData.Gender)}} </span>
+      </div>
+    </div>
+    
+    <div class="row mb-7"  *ngIf="currentMemberStatutId==4||currentMemberStatutId==5||currentMemberStatutId==6">
+      <label class="col-lg-4 fw-bold text-muted">Email de parent</label>
+
+      <div class="col-lg-8 fv-row">
+        <span class="fw-bold fs-6">{{memberData.ParentEmail}} </span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Skype</label>
+
+      <div class="col-lg-8 fv-row">
+        <span class="fw-bold fs-6">{{memberData.SkypeId}} </span>
       </div>
     </div>
 
@@ -40,9 +57,7 @@
       </label>
 
       <div class="col-lg-8 d-flex align-items-center">
-        <span class="fw-bolder fs-6 me-2">044 3276 454 935</span>
-
-        <span class="badge badge-success">Verified</span>
+        <span class="fw-bolder fs-6 me-2">{{memberData.PhoneNumber}} </span>   
       </div>
     </div>
 
@@ -51,7 +66,7 @@
 
       <div class="col-lg-8">
         <a href="#" class="fw-bold fs-6 text-dark text-hover-primary">
-          keenthemes.com
+          {{memberData.BeginningDate | date:'dd/MM/yyyy' }}
         </a>
       </div>
     </div>
@@ -67,9 +82,18 @@
       </label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Germany</span>
+        <span class="fw-bolder fs-6 text-dark"> {{memberData.BirthDate | date:'dd/MM/yyyy' }}</span>
       </div>
     </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Profession</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{memberData.Profession}} </span>
+      </div>
+    </div>
+
     <div class="row mb-7">
       <label class="col-lg-4 fw-bold text-muted">
         Adresse
@@ -81,48 +105,71 @@
       </label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Germany</span>
+        <span class="fw-bolder fs-6 text-dark">{{memberData.Street}}</span>
       </div>
     </div>
 
-    <div class="row mb-7">
-      <label class="col-lg-4 fw-bold text-muted">Profession</label>
-
-      <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Email, Phone</span>
-      </div>
-    </div>
+   
     <div class="row mb-7">
       <label class="col-lg-4 fw-bold text-muted">Code postale</label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Email, Phone</span>
+        <span class="fw-bolder fs-6 text-dark">{{memberData.ZipCode}}</span>
       </div>
     </div>
     <div class="row mb-7">
       <label class="col-lg-4 fw-bold text-muted">Ville</label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Email, Phone</span>
+        <span class="fw-bolder fs-6 text-dark">{{memberData.City}}</span>
       </div>
     </div>
     <div class="row mb-7">
       <label class="col-lg-4 fw-bold text-muted">Pays</label>
 
       <div class="col-lg-8">
-        <span class="fw-bolder fs-6 text-dark">Email, Phone</span>
+        <span class="fw-bolder fs-6 text-dark">{{getVal(memberData.Country)}}</span>
       </div>
     </div>
+    
 
     <div class="row mb-10">
       <label class="col-lg-4 fw-bold text-muted">Allow Changes</label>
 
-      <div class="col-lg-8">
-        <span class="fw-bold fs-6">Yes</span>
+      <div class="col-lg-8">       
+          <mat-card-content>        
+        
+            <section class="example-section">
+              <mat-slide-toggle  [(ngModel)]="ischecked"
+                  class="example-margin"
+                  [color]="color"
+                  [checked]="checked">
+              
+              </mat-slide-toggle>
+            </section>
+          </mat-card-content>      
+       
       </div>
     </div>
 
-    <div
+
+  </div>
+</div>
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#kt_account_signin_method"
+  >
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Payment Section</h3>
+    </div>
+  </div>
+  <div id="kt_account_signin_method" class="collapse show">
+    <div class="card-body border-top p-9">
+  
+      <div
       class="
         notice
         d-flex
@@ -139,21 +186,129 @@
       <div class="d-flex flex-stack flex-grow-1">
         <div class="fw-bold">
           <h4 class="text-gray-800 fw-bolder">We need your attention!</h4>
-          <div class="fs-6 text-gray-600">
+          <div class="fs-6 text-gray-600">        
             Your payment was declined. To start using tools, please
-            <a class="fw-bolder" routerLink="/crafted/account/settings">
-              {{ " " }}
-              Add Payment Method
-            </a>
-            .
+            <button
+            class="btn  btn-active-primary"
+            (click)="togglePaymentForm(true)"
+          >
+          Add Payment Method
+          </button>
+          
+            
           </div>
         </div>
       </div>
     </div>
+    <ng-container *ngIf="!showPaymentSection">
+      <div class="d-flex flex-wrap align-items-center">
+
+        <div id="kt_signin_email_edit" class="flex-row-fluid d-none">
+          <div class="d-flex">
+            <button
+              id="kt_signin_submit"
+              type="submit"
+              class="btn btn-primary me-2 px-6"
+            >
+              Update Email</button
+            ><button
+              id="kt_signin_cancel"
+              type="button"
+              class="btn btn-color-gray-400 btn-active-light-primary px-6"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+ 
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showPaymentSection">
+      <div class="d-flex flex-wrap align-items-center">
+        <div id="kt_signin_email" class="d-none">
+       
+        
+        
+        </div>
+        <div id="kt_signin_email_edit" class="flex-row-fluid false">
+          <form id="kt_signin_change_email" class="form" novalidate="">
+            <div class="row mb-6">
+              <div class="col-lg-12 mt-5 mb-4 mb-lg-0">
+                      
+        
+          
+<section class="pricing py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Free Tier -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Monthly</h5>
+            <h6 class="card-price text-center">$30<span class="period">/month</span></h6>
+            <hr>        
+            <div class="d-grid">
+              <a  (click)="checkout('price_1KsnsPH1ud48pyOPGEst1PXm')" class="btn btn-primary text-uppercase">Pay $30</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Plus Tier -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">
+              semester</h5>
+            <h6 class="card-price text-center">$180<span class="period">/semester</span></h6>
+            <hr>
+           
+            <div class="d-grid">
+              <a href="#" class="btn btn-primary text-uppercase">Pay $180</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">
+              year</h5>
+            <h6 class="card-price text-center">$360<span class="period">/year</span></h6>
+            <hr>
+         
+            <div class="d-grid">
+              <a (click)="checkout('price_1Kt68CH1ud48pyOPI1BroZrc')" class="btn btn-primary text-uppercase">Pay $360</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</section>
+            
+        
+              
+              </div>
+            </div>
+            <div class="d-flex">          
+              <button
+                id="kt_signin_cancel"
+                type="button"
+                class="btn btn-color-gray-400 btn-active-light-primary px-6"
+                (click)="togglePaymentForm(false)">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-container>
+    </div>
   </div>
 </div>
 
-<div class="row gy-10 gx-xl-10">
+
+<!-- <div class="row gy-10 gx-xl-10">
   <div class="col-xl-6">
     <app-charts-widget1
       class="card card-xxl-stretch mb-5 mb-xl-10"
@@ -165,18 +320,19 @@
       class="card card-xxl-stretch mb-5 mb-xl-10"
     ></app-tables-widget1>
   </div>
-</div>
+</div> -->
 
-<div class="row gy-10 gx-xl-10">
+<!-- <div class="row gy-10 gx-xl-10">
   <div class="col-xl-6">
     <app-lists-widget5
       class="card card-xxl-stretch mb-5 mb-xl-10"
     ></app-lists-widget5>
   </div>
 
-  <div class="col-xl-6">
+   <div class="col-xl-6">
     <app-tables-widget5
       class="card card-xxl-stretch mb-5 mb-xl-10"
     ></app-tables-widget5>
-  </div>
+  </div> 
 </div>
+ -->

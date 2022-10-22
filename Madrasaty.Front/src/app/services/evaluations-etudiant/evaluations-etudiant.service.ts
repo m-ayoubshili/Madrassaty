@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RecitationDetail } from 'src/app/models/recitation-detail';
 import { Observable ,  of ,  BehaviorSubject } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -33,10 +33,9 @@ export class EvaluationsEtudiantService {
     (this.studentRecitationDetailUrl + studentId, this.httpOptions)
   }
 
-
   getSurahs(){
-    return this.http.get<string>(environment.QURAN_URL).map((data) => data["data"])
-  }
+    return this.http.get<string>(environment.QURAN_URL).pipe(map((data) => data["data"]))
+  } 
   public getPoemes(){
     return this.http.get("../../../assets/files/moutoun.json");
   }

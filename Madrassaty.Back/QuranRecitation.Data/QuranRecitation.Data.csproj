@@ -61,9 +61,8 @@
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
@@ -114,7 +113,6 @@
       <HintPath>..\packages\ServicePointManagerExtensions.1.0.2\lib\net45\ServicePointManagerExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity.Repository, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
@@ -124,7 +122,6 @@
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -144,15 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Migrations\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Migrations\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Migrations\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+    <Content Include="ApplicationInsights.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -166,137 +155,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202005261713294_Init.cs" />
-    <Compile Include="Migrations\202005261713294_Init.Designer.cs">
-      <DependentUpon>202005261713294_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202204010843281_initial.cs" />
+    <Compile Include="Migrations\202204010843281_initial.Designer.cs">
+      <DependentUpon>202204010843281_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005271014272_CoursePeriodicity.cs" />
-    <Compile Include="Migrations\202005271014272_CoursePeriodicity.Designer.cs">
-      <DependentUpon>202005271014272_CoursePeriodicity.cs</DependentUpon>
+    <Compile Include="Migrations\202204071224503_123.cs" />
+    <Compile Include="Migrations\202204071224503_123.Designer.cs">
+      <DependentUpon>202204071224503_123.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005271410482_AddSubjectAndCoefficientToExamen.cs" />
-    <Compile Include="Migrations\202005271410482_AddSubjectAndCoefficientToExamen.Designer.cs">
-      <DependentUpon>202005271410482_AddSubjectAndCoefficientToExamen.cs</DependentUpon>
+    <Compile Include="Migrations\202204211052093_add parant.cs" />
+    <Compile Include="Migrations\202204211052093_add parant.Designer.cs">
+      <DependentUpon>202204211052093_add parant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006120909385_Add_TajwidErro_Table.cs" />
-    <Compile Include="Migrations\202006120909385_Add_TajwidErro_Table.Designer.cs">
-      <DependentUpon>202006120909385_Add_TajwidErro_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006180913564_AddRelation_RecitationDetail_TajwidError.cs" />
-    <Compile Include="Migrations\202006180913564_AddRelation_RecitationDetail_TajwidError.Designer.cs">
-      <DependentUpon>202006180913564_AddRelation_RecitationDetail_TajwidError.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006181101128_fix_migrations.cs" />
-    <Compile Include="Migrations\202006181101128_fix_migrations.Designer.cs">
-      <DependentUpon>202006181101128_fix_migrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006220926464_DateNullable.cs" />
-    <Compile Include="Migrations\202006220926464_DateNullable.Designer.cs">
-      <DependentUpon>202006220926464_DateNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006221416101_update_RecitationDetail_Table.cs" />
-    <Compile Include="Migrations\202006221416101_update_RecitationDetail_Table.Designer.cs">
-      <DependentUpon>202006221416101_update_RecitationDetail_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006231108161_Add_DateEvaluation_toTable_RecitationDetail.cs" />
-    <Compile Include="Migrations\202006231108161_Add_DateEvaluation_toTable_RecitationDetail.Designer.cs">
-      <DependentUpon>202006231108161_Add_DateEvaluation_toTable_RecitationDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006241412077_fix_bug.cs" />
-    <Compile Include="Migrations\202006241412077_fix_bug.Designer.cs">
-      <DependentUpon>202006241412077_fix_bug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006301133353_UnicitySchoolName.cs" />
-    <Compile Include="Migrations\202006301133353_UnicitySchoolName.Designer.cs">
-      <DependentUpon>202006301133353_UnicitySchoolName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007030855068_AddNewAttributsToSchool.cs" />
-    <Compile Include="Migrations\202007030855068_AddNewAttributsToSchool.Designer.cs">
-      <DependentUpon>202007030855068_AddNewAttributsToSchool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007060835310_UpdateSchoolAttributesLength.cs" />
-    <Compile Include="Migrations\202007060835310_UpdateSchoolAttributesLength.Designer.cs">
-      <DependentUpon>202007060835310_UpdateSchoolAttributesLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007071303185_AddPhotoPathInSchool.cs" />
-    <Compile Include="Migrations\202007071303185_AddPhotoPathInSchool.Designer.cs">
-      <DependentUpon>202007071303185_AddPhotoPathInSchool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007090738529_Delete_FK_SubjectInCourse.cs" />
-    <Compile Include="Migrations\202007090738529_Delete_FK_SubjectInCourse.Designer.cs">
-      <DependentUpon>202007090738529_Delete_FK_SubjectInCourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007091539053_Delete_FK_PeriodicityInCourse.cs" />
-    <Compile Include="Migrations\202007091539053_Delete_FK_PeriodicityInCourse.Designer.cs">
-      <DependentUpon>202007091539053_Delete_FK_PeriodicityInCourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007151400581_Add_NewAttributs_And_Relation_Course_Recurrence.cs" />
-    <Compile Include="Migrations\202007151400581_Add_NewAttributs_And_Relation_Course_Recurrence.Designer.cs">
-      <DependentUpon>202007151400581_Add_NewAttributs_And_Relation_Course_Recurrence.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007210849080_Adding_CourseSession_Table.cs" />
-    <Compile Include="Migrations\202007210849080_Adding_CourseSession_Table.Designer.cs">
-      <DependentUpon>202007210849080_Adding_CourseSession_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007221301157_AddNewColumn_Remarque_In_CourseSession.cs" />
-    <Compile Include="Migrations\202007221301157_AddNewColumn_Remarque_In_CourseSession.Designer.cs">
-      <DependentUpon>202007221301157_AddNewColumn_Remarque_In_CourseSession.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007271351221_Adding_Assiduite_CourseSession.cs" />
-    <Compile Include="Migrations\202007271351221_Adding_Assiduite_CourseSession.Designer.cs">
-      <DependentUpon>202007271351221_Adding_Assiduite_CourseSession.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206101245527_AddMessageTable.cs" />
-    <Compile Include="Migrations\202206101245527_AddMessageTable.Designer.cs">
-      <DependentUpon>202206101245527_AddMessageTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206141533526_fix.cs" />
-    <Compile Include="Migrations\202206141533526_fix.Designer.cs">
-      <DependentUpon>202206141533526_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206201851361_fixMessageGroup.cs" />
-    <Compile Include="Migrations\202206201851361_fixMessageGroup.Designer.cs">
-      <DependentUpon>202206201851361_fixMessageGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206201859368_fixMessageGroup2.cs" />
-    <Compile Include="Migrations\202206201859368_fixMessageGroup2.Designer.cs">
-      <DependentUpon>202206201859368_fixMessageGroup2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206231531369_changeGroup-Member-Relation.cs" />
-    <Compile Include="Migrations\202206231531369_changeGroup-Member-Relation.Designer.cs">
-      <DependentUpon>202206231531369_changeGroup-Member-Relation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206231612412_changeGroup-Member-Relation2.cs" />
-    <Compile Include="Migrations\202206231612412_changeGroup-Member-Relation2.Designer.cs">
-      <DependentUpon>202206231612412_changeGroup-Member-Relation2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206251123100_addMemberMesageGroubTable.cs" />
-    <Compile Include="Migrations\202206251123100_addMemberMesageGroubTable.Designer.cs">
-      <DependentUpon>202206251123100_addMemberMesageGroubTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207111045332_addPhotoPathToMessage.cs" />
-    <Compile Include="Migrations\202207111045332_addPhotoPathToMessage.Designer.cs">
-      <DependentUpon>202207111045332_addPhotoPathToMessage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207120955140_addConnectionIdTable.cs" />
-    <Compile Include="Migrations\202207120955140_addConnectionIdTable.Designer.cs">
-      <DependentUpon>202207120955140_addConnectionIdTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207121327563_fix1.cs" />
-    <Compile Include="Migrations\202207121327563_fix1.Designer.cs">
-      <DependentUpon>202207121327563_fix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AnneeScolaire.cs" />
     <Compile Include="Model\Assiduite.cs" />
-    <Compile Include="Model\MemberConnectionId.cs" />
-    <Compile Include="Model\MemberMessageGroup.cs" />
     <Compile Include="Model\Classroom.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\CourseSession.cs" />
-    <Compile Include="Model\MessageGroup.cs" />
     <Compile Include="Model\LetterError.cs" />
-    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\MemberStates.cs" />
     <Compile Include="Model\Moutoun.cs" />
     <Compile Include="Model\MoutounSessionDetail.cs" />
     <Compile Include="Model\RecitationTajwidError.cs" />
@@ -331,14 +209,11 @@
     <Compile Include="QuranRecitationDbContext.cs" />
     <Compile Include="Repositories\AnneeScolaireRepository.cs" />
     <Compile Include="Repositories\AssiduiteRepository.cs" />
-    <Compile Include="Repositories\MemberConnectionIdRepository.cs" />
-    <Compile Include="Repositories\MemberMessageGroupRepository.cs" />
-    <Compile Include="Repositories\MessageGroupRepository.cs" />
-    <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\CourseSessionRepository.cs" />
     <Compile Include="Repositories\ExamenNotesRepository.cs" />
     <Compile Include="Repositories\ExamenRepository.cs" />
     <Compile Include="Repositories\LearningErrorRepository.cs" />
+    <Compile Include="Repositories\MemberStatesRepository.cs" />
     <Compile Include="Repositories\MoutounRepository.cs" />
     <Compile Include="Repositories\MoutounSessionDetailRepository.cs" />
     <Compile Include="Repositories\MoutounSessionRepository.cs" />
@@ -361,10 +236,7 @@
     <Compile Include="Services\ExamenNotesService.cs" />
     <Compile Include="Services\ExamenService.cs" />
     <Compile Include="Services\LearningErrorService.cs" />
-    <Compile Include="Services\MemberConnectionIdService.cs" />
-    <Compile Include="Services\MemberMessageGroupService.cs" />
-    <Compile Include="Services\MessageGroupService.cs" />
-    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\MemberStatesService.cs" />
     <Compile Include="Services\MoutounService.cs" />
     <Compile Include="Services\MoutounSessionDetailService.cs" />
     <Compile Include="Services\MoutounSessionService.cs" />
@@ -396,95 +268,14 @@
     <Compile Include="Services\VacanceScolaireService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005261713294_Init.resx">
-      <DependentUpon>202005261713294_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204010843281_initial.resx">
+      <DependentUpon>202204010843281_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005271014272_CoursePeriodicity.resx">
-      <DependentUpon>202005271014272_CoursePeriodicity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204071224503_123.resx">
+      <DependentUpon>202204071224503_123.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005271410482_AddSubjectAndCoefficientToExamen.resx">
-      <DependentUpon>202005271410482_AddSubjectAndCoefficientToExamen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006120909385_Add_TajwidErro_Table.resx">
-      <DependentUpon>202006120909385_Add_TajwidErro_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006180913564_AddRelation_RecitationDetail_TajwidError.resx">
-      <DependentUpon>202006180913564_AddRelation_RecitationDetail_TajwidError.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006181101128_fix_migrations.resx">
-      <DependentUpon>202006181101128_fix_migrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006220926464_DateNullable.resx">
-      <DependentUpon>202006220926464_DateNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006221416101_update_RecitationDetail_Table.resx">
-      <DependentUpon>202006221416101_update_RecitationDetail_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006231108161_Add_DateEvaluation_toTable_RecitationDetail.resx">
-      <DependentUpon>202006231108161_Add_DateEvaluation_toTable_RecitationDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006241412077_fix_bug.resx">
-      <DependentUpon>202006241412077_fix_bug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006301133353_UnicitySchoolName.resx">
-      <DependentUpon>202006301133353_UnicitySchoolName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007030855068_AddNewAttributsToSchool.resx">
-      <DependentUpon>202007030855068_AddNewAttributsToSchool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007060835310_UpdateSchoolAttributesLength.resx">
-      <DependentUpon>202007060835310_UpdateSchoolAttributesLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007071303185_AddPhotoPathInSchool.resx">
-      <DependentUpon>202007071303185_AddPhotoPathInSchool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007090738529_Delete_FK_SubjectInCourse.resx">
-      <DependentUpon>202007090738529_Delete_FK_SubjectInCourse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007091539053_Delete_FK_PeriodicityInCourse.resx">
-      <DependentUpon>202007091539053_Delete_FK_PeriodicityInCourse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007151400581_Add_NewAttributs_And_Relation_Course_Recurrence.resx">
-      <DependentUpon>202007151400581_Add_NewAttributs_And_Relation_Course_Recurrence.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007210849080_Adding_CourseSession_Table.resx">
-      <DependentUpon>202007210849080_Adding_CourseSession_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007221301157_AddNewColumn_Remarque_In_CourseSession.resx">
-      <DependentUpon>202007221301157_AddNewColumn_Remarque_In_CourseSession.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007271351221_Adding_Assiduite_CourseSession.resx">
-      <DependentUpon>202007271351221_Adding_Assiduite_CourseSession.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206101245527_AddMessageTable.resx">
-      <DependentUpon>202206101245527_AddMessageTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206141533526_fix.resx">
-      <DependentUpon>202206141533526_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206201851361_fixMessageGroup.resx">
-      <DependentUpon>202206201851361_fixMessageGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206201859368_fixMessageGroup2.resx">
-      <DependentUpon>202206201859368_fixMessageGroup2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206231531369_changeGroup-Member-Relation.resx">
-      <DependentUpon>202206231531369_changeGroup-Member-Relation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206231612412_changeGroup-Member-Relation2.resx">
-      <DependentUpon>202206231612412_changeGroup-Member-Relation2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206251123100_addMemberMesageGroubTable.resx">
-      <DependentUpon>202206251123100_addMemberMesageGroubTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207111045332_addPhotoPathToMessage.resx">
-      <DependentUpon>202207111045332_addPhotoPathToMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207120955140_addConnectionIdTable.resx">
-      <DependentUpon>202207120955140_addConnectionIdTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207121327563_fix1.resx">
-      <DependentUpon>202207121327563_fix1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204211052093_add parant.resx">
+      <DependentUpon>202204211052093_add parant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -518,7 +309,15 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -12,10 +12,6 @@ namespace QuranRecitation.Data.Model
     [Table("Member")]
     public class Member : IdentityUser<Guid, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
-        public Member()
-        {
-            this.MemberMessageGroup = new HashSet<MemberMessageGroup>();
-        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Member, Guid> manager, string authType)
         {
             // Note the authenticationType must match the one defined in
@@ -33,12 +29,17 @@ namespace QuranRecitation.Data.Model
         public int MemberStatusId { get; set; }
         [ForeignKey("MemberStatusId")]
         public virtual MemberStatus MemberStatus { get; set; }
+
+       public int MemberStateId { get; set; }
+       [ForeignKey("MemberStateId")]
+       public virtual MemberStates MemberStates { get; set; }
         public string Login { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [MaxLength(1)]
         public string Gender { get; set; }
         public string SkypeId { get; set; }
+        public string ParentEmail { get; set; }
         public DateTime? BeginningDate { get; set; }
         public string Profession { get; set; }
         public DateTime? BirthDate { get; set; }
@@ -50,8 +51,7 @@ namespace QuranRecitation.Data.Model
         public string Country { get; set; }
         [Timestamp]
         public byte[] CreatedOn { get; set; }
-        public virtual ICollection<MemberMessageGroup> MemberMessageGroup { get; set; }
-
+      
         public virtual ICollection<StudentDisciplineLevel> StudentDisciplineLevels { get; set; }
 
         [NotMapped]

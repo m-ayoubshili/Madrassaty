@@ -1,7 +1,7 @@
 import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of, Subject } from 'rxjs';
 import { Member } from 'src/app/models/member';
 import { catchError, tap, map } from 'rxjs/operators';
 import { MemberFilter } from 'src/app/models/member-filter';
@@ -11,7 +11,11 @@ export class MembersListService {
   private memberUrl = environment.BASE_URL + "Members";
   private accessToken = JSON.parse(localStorage.getItem('currentUser'))['access_token']
   private User = JSON.parse(localStorage.getItem("currentUser"))["user"];
-  private IdUser:string = JSON.parse(this.User).Id;
+  private IdUser = JSON.parse(this.User).Id;
+  memberData;
+
+  private _refreshrequired = new Subject<void>();
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,20 +26,25 @@ export class MembersListService {
   memberIdSource = new BehaviorSubject<number>(0);
   http: HttpClient;
   memberIdData: any;
+  connectedUserData
+
   currentUser: Member;
+
+  get Refreshrequired() {
+    return this._refreshrequired;
+  }
   public getMemberStatus() {
     return this.httpclient.get(environment.BASE_URL + "MemberStatus");
+  }
+  public getMemberStates() {
+    return this.httpclient.get(environment.BASE_URL + "MemberStates");
   }
   constructor(private httpclient: HttpClient) {
     this.memberIdData = this.memberIdSource.asObservable();
   }
-  // public getMembers()
-  // {
-  //   return this.httpclient.get(environment.BASE_URL+"Members",this.httpOptions);
-  // }
-  getCurrentUserId(){
-    return this.IdUser;
-  }
+
+
+
   getMembers(): Observable<Member[]> {
     return this.httpclient.get<Member[]>(this.memberUrl, this.httpOptions)
   }
@@ -97,20 +106,23 @@ export class MembersListService {
       LastName: '',
       Gender: '',
       SkypeId: '',
+      ParentEmail:'',
       PhoneNumber: '',
-      BeginningDate: new Date(),
-      BirthDate: new Date(),
+      BeginningDate: null,
+      BirthDate: null,
       Profession: '',
       Street: '',
       ZipCode: '',
       City: '',
       Country: '',
+      FullName:'',
       PhotoPath: '',
       Id: '00000000-0000-0000-0000-000000000000',
       Email: '',
       Password: '',
       SchoolId: 0,
       MemberStatusId: 0,
+      MemberStateId:1,
       UserName: ''
     };
   }
@@ -129,7 +141,12 @@ export class MembersListService {
     return photoPath;
   }
   updateProfile(profileModel): Observable<Member> {
-    return this.httpclient.put<Member>(environment.BASE_URL + "Members/" + profileModel.Member.Id, profileModel, this.httpOptions)
+    return this.httpclient.put<Member>(environment.BASE_URL + "Members/" + profileModel.Member.Id, profileModel, this.httpOptions).pipe(
+    tap(() => {
+      this.Refreshrequired.next();
+
+    })
+    )
   }
 
   validateProfile(profileModel): Observable<Member> {

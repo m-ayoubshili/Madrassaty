@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../shared/material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -45,6 +46,7 @@ const routes: Routes = [
     AsideMenuComponent,
     TopbarComponent,
     PageTitleComponent,
+
     HeaderMenuComponent,
   ],
   imports: [
@@ -54,7 +56,7 @@ const routes: Routes = [
     InlineSVGModule,
     NgbDropdownModule,
     NgbProgressbarModule,
-  
+    MaterialModule,
     ExtrasModule,
     ModalsModule,
     DrawersModule,

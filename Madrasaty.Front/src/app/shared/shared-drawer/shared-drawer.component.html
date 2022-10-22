@@ -1,0 +1,47 @@
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width:500px">
+  <div class="card shadow-none w-100">
+    <div class="card-header">
+      <h5 class="card-title fw-bold text-gray-600">
+        {{ fonctionality }}
+      </h5>
+  
+      <div class="card-toolbar">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"
+            class="svg-icon svg-icon-2"
+          ></span>
+        </button>
+      </div>
+    </div> 
+    <div class="card-body" >
+
+      <div >
+        <div class="mb-0">
+          <div class="mb-7">
+              <div class="card card-custom">         
+            
+           
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <ng-template [ngTemplateOutlet]=" template || defaultTemplate">
+  
+                      </ng-template>
+  
+                    </div>
+                  </div>  
+              </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+</div>
+</div>
+
+
+<ng-template #defaultTemplate >
+  <p>no</p>
+ </ng-template>
+ 

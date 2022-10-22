@@ -48,11 +48,16 @@ export class RegisterService {
   }
 
   SetPassword(passwordmodel) {
+    console.log(passwordmodel)
     return this.httpclient.post(
       environment.BASE_URL + "Account/PasswordRecovery",
       passwordmodel,
       this.httpOptions
     );
+  }
+
+  ConfirmEmail(email) {     
+    return this.httpclient.post(environment.BASE_URL +"Account/ConfirmEmail",email,this.httpOptions);
   }
 
   ChangePassword(passwordmodel) {

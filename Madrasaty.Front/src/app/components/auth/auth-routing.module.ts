@@ -4,12 +4,13 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    component: AuthComponent,
+    path: '', component: AuthComponent,
     children: [
       {
         path: '',
@@ -19,11 +20,20 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        data: { returnUrl: window.location.pathname },
+      
       },
       {
         path: 'registration',
         component: RegistrationComponent,
+      },
+      {
+        path: 'confirm-email',
+        component: ConfirmEmailComponent,
+      }
+      ,
+      {
+        path: 'change-password/:Id',
+        component: ChangePasswordComponent,
       },
       {
         path: 'forgot-password',

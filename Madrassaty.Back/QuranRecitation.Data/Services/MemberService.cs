@@ -11,11 +11,13 @@ namespace QuranRecitation.Data.Services
     {
         private readonly IMemberRepository _memberRepo;
         private readonly IMemberStatusRepository _memberStatusRepo;
+        private readonly IMemberStatesRepository _memberStateRepo;
 
-        public MemberService(IMemberRepository memberRepo, IMemberStatusRepository memberStatusRepo)
+        public MemberService(IMemberRepository memberRepo, IMemberStatusRepository memberStatusRepo, IMemberStatesRepository memberStateRepo)
         {
             _memberRepo = memberRepo;
             _memberStatusRepo = memberStatusRepo;
+            _memberStateRepo = memberStateRepo;
         }
 
         public IQueryable<Member> GetAll()
@@ -40,8 +42,10 @@ namespace QuranRecitation.Data.Services
         public void Update(Member member)
         {
             var memberStatus = _memberStatusRepo.GetById(member.MemberStatusId);
-            if (memberStatus != null)
+           var memberState = _memberStateRepo.GetById(member.MemberStateId);
+            if (memberStatus != null && memberState != null)
                 member.MemberStatus = memberStatus;
+                member.MemberStates = memberState;
             _memberRepo.Update(member);
         }
 

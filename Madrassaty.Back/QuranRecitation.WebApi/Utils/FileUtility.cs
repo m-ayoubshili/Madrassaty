@@ -19,15 +19,5 @@ namespace QuranRecitation.WebApi.Utils
 
             File.WriteAllBytes(path, imageByteArray);
         }
-        public static void MessageSaveUploadedPhoto(byte[] imageByteArray, string filename)
-        {
-            string path = HttpContext.Current.Server.MapPath("~/images/messages/" + filename + ".jpg");
-
-            if (File.Exists(path))
-                File.Delete(path);
-
-            File.WriteAllBytes(path, imageByteArray);
-        }
-
     }
 }

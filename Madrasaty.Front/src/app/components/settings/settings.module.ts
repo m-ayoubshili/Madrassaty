@@ -3,7 +3,7 @@ import { LevelComponent } from './level/level.component';
 import { HolidaysService } from './../../services/holidays/holidays.service';
 
 import { MaterialModule } from './../../shared/material/material.module';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiSwitchModule } from 'ngx-toggle-switch';
 import { SettingsRoutingModule } from './settings-routing.module';
@@ -14,7 +14,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { ToolbarComponent } from 'src/app/_metronic/layout/components/toolbar/toolbar.component';
 import { SchoolService } from 'src/app/services/school/school.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingsHeaderComponent } from 'src/app/shared/settings-header/settings-header.component';
+import { HeaderSharedComponent } from 'src/app/shared/shared-header/shared-header.component';
 import { MatInputModule } from '@angular/material/input';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HolidayComponent } from './holiday/holiday.component';
@@ -22,11 +22,20 @@ import { MAT_RADIO_DEFAULT_OPTIONS_FACTORY } from '@angular/material/radio';
 
 import { MembersComponent } from './members/members.component';
 import { TajwidErrorComponent } from './tajwid-error/tajwid-error.component';
-import { ClassroomListComponent } from './classroom/classroom-list/classroom-list.component';
+import { ClassroomListComponent } from './classroom/classroom-list.component';
 import { ClassroomService } from 'src/app/services/classroom/classroom.service';
 import { DisciplineService } from 'src/app/services/discipline/discipline.service';
 import { LevelService } from 'src/app/services/level/level.service';
 import { MembersListService } from 'src/app/services/members/members-list.service';
+import { AgGridModule } from 'ag-grid-angular';
+import { BtnUpdateDeleteComponent } from 'src/app/shared/btn-update-delete/btn-update-delete.component';
+import { LevelChildComponent } from './level/level-child/level-child.component';
+
+import { SharedHeaderModule } from 'src/app/shared/shared-header/shared-header.module';
+import { WidgetsModule } from 'src/app/_metronic/partials/content/widgets/widgets.module';
+import { DrawersModule } from 'src/app/_metronic/partials';
+import { SharedDrawerModule } from 'src/app/shared/shared-drawer/shared-drawer.module';
+
 
 
 
@@ -34,15 +43,17 @@ import { MembersListService } from 'src/app/services/members/members-list.servic
   declarations: [
     SchoolYearComponent,
     SchoolComponent,
-    SettingsComponent,
-    SettingsHeaderComponent,
+    SettingsComponent,     
     HolidayComponent,
     LevelComponent,
     ClassroomListComponent,
-    DisciplineComponent,
-
+    DisciplineComponent,     
     MembersComponent,
-    TajwidErrorComponent
+    TajwidErrorComponent,
+    BtnUpdateDeleteComponent,
+    LevelChildComponent,
+  
+   
 
   ],
   imports: [
@@ -55,15 +66,18 @@ import { MembersListService } from 'src/app/services/members/members-list.servic
     MaterialModule,
     UiSwitchModule,
     Ng2SearchPipeModule,
+    SharedHeaderModule,
+    WidgetsModule,
 
-
-
-
+    SharedDrawerModule,
+   AgGridModule.withComponents(null)
   ] ,providers: [SchoolService,
     ClassroomService,
     LevelService,
     DisciplineService,
     HolidaysService,
   MembersListService],
+
+
 })
 export class SettingsModule { }

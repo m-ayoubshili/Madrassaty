@@ -1,26 +1,26 @@
-.mat-success {
-    background-color: rgb(33, 172, 33);
-    color: #fff;
-  }
-  .mat-warn {
-    margin-left: 7px;
-    margin-right: 13px;
-  }
-  .card {
-    background-color: white;
-    padding: 10px;
-    border-radius: 24px;
-    min-height: 131px;
-    margin-top: 15px;
-  }
- .strong{
-    margin-left: 40px;
-   
-  }
-  .strong2{
-    margin-left: 25px;
-     
-  }
-  .card-title{
-      margin-left: 25px;
-  }
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field{
+  width: 100%;
+}
+
+.table.gs-0 th:first-child, .table.gs-0 td:first-child {
+  padding-left: 1rem;
+}
+.table.gs-0 th:last-child, .table.gs-0 td:last-child {
+  padding-right: 1rem;
+}
+.cardAnimation {
+  transition: transform 400ms;
+  will-change: transform;
+
+}
+.cardAnimation:hover,
+.cardAnimation:focus {
+  transform: translateY(10px);
+}
+
